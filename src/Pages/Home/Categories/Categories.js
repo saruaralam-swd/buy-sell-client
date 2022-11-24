@@ -3,18 +3,10 @@ import React, { useEffect, useState } from 'react';
 import Category from './Category';
 
 const Categories = () => {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/allCategories')
-      .then(res => res.json())
-      .then(data => setCategories(data))
-  }, []);
-
   // const { data: categories = [] } = useQuery({
   //   queryKey: ['allCategories'],
   //   queryFn: async () => {
-  //     const res = await fetch('http://localhost:5000/allCategories');
+  //     const res = await fetch('http://localhost:5000/categories');
   //     const data = await res.json();
   //     return data;
   //   }
@@ -26,7 +18,7 @@ const Categories = () => {
 
       <div className='grid grid-cols-3 gap-10'>
         {
-          categories.map(category => <Category key={category._id} category={category}></Category>)
+          // categories.map(category => <Category key={category._id} category={category}></Category>)
         }
       </div>
     </div>

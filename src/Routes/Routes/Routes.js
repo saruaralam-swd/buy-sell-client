@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
+import Products from "../../Pages/Products/Products/Products";
 import SignUp from "../../Pages/SignUp/SignUp";
 
 export const router = createBrowserRouter([
@@ -21,6 +23,19 @@ export const router = createBrowserRouter([
         path: '/signup',
         element: <SignUp></SignUp>
       },
+      {
+        path: 'categories/:id',
+        loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`),
+        element: <Products></Products>
+      },
     ]
+  },
+  {
+    path: '/dashBoard',
+    element: <DashBoardLayout></DashBoardLayout>
+  },
+  {
+    path: '*',
+    element: <div>Page Not Found</div>
   }
 ]);

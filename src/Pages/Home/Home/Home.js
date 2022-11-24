@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <>
       <Categories></Categories>
-      <UserDocument></UserDocument>
+      {/* <UserDocument></UserDocument> */}
     </>
   );
 };
