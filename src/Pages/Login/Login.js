@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BiLockAlt, BiChevronRightCircle } from "react-icons/bi";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
-
+  const { signIn } = useContext(AuthContext);
   const { register, handleSubmit } = useForm()
 
   const handleLogin = data => {
+    const email = (data.email)
+    const password = (data.password)
 
+    signIn(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user)
+      })
+      .catch(error => { console.log(error.message) })
   };
 
   return (
@@ -19,6 +28,14 @@ const Login = () => {
           <h2 className='text-center font-semibold text-xl sm:text-lg text-slate-700'>Welcome To Buy and Sell Web Application</h2>
           <p className='text-center mt-4 s text-xl sm:text-sm text-slate-500'>Enter your credentials to access your account</p>
           <form onSubmit={handleSubmit(handleLogin)} className='mt-10'>
+            <div className="my-4">
+              <label htmlFor="email" className='mb-1 text-sm tracking-wide text-gray-600'>Select the user type</label>
+              <select className="select pl-10 border text-sm placeholder-gray-500   rounded-2xl border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400">
+                <option>Seller</option>
+                <option>Bearer</option>
+              </select>
+            </div>
+
             <div className='mb-4'>
               <label htmlFor="email" className='mb-1 text-sm tracking-wide text-gray-600'>E-Mail Address:</label>
               <div className='relative'>
@@ -36,14 +53,14 @@ const Login = () => {
               <Link className='flex justify-end text-primary hover:underline'>Forget Password</Link>
             </div>
 
-            <button className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign Up
+            <button className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign In
               <span><BiChevronRightCircle /></span>
             </button>
           </form>
           <div className='divider'>or</div>
-          <div>
-            <Link><FaGoogle /></Link>  
-          </div>
+
+          {/* <Link><FaGoogle className='inline-block' /></Link>
+          <p>Don't have an account? <Link to='/signup'>Create New Account</Link></p> */}
         </div>
       </div>
     </div>

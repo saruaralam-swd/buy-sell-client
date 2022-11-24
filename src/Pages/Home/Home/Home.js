@@ -1,10 +1,12 @@
 import React from 'react';
+import Categories from '../Categories/Categories';
 import UserDocument from '../UserDocument/UserDocument';
 
 const Home = () => {
   return (
     <>
-     <UserDocument></UserDocument> 
+      <Categories></Categories>
+      <UserDocument></UserDocument>
     </>
   );
 };
