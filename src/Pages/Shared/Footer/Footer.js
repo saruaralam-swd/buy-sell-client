@@ -22,7 +22,7 @@ const Footer = () => {
           <p>Sign up and receive the latest tips via email.</p>
           <p>Email</p>
           <input type="text" placeholder="Type here" className="input input-bordered input-info w-full max-w-xs text-black" /> <br />
-          <button className='btn btn-primary'>Subscribe</button>
+          <button className='btn btn-primary text-white'>Subscribe</button>
         </div>
       </div>
     </div>
