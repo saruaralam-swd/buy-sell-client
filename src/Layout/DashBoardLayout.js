@@ -19,7 +19,7 @@ const DashBoardLayout = () => {
           <label htmlFor="dashBoard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80  text-base-content">
             <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
-            <li><Link to='/dashboard/myWishList'>Wish list</Link></li>
+            {/* <li><Link to='/dashboard/myWishList'>Wish list</Link></li> */}
             <li><Link to='/dashboard/myProducts'>My Products</Link></li>
             <li><Link to='/dashboard/addProducts'>Add Products</Link></li>
             <li><Link to='/dashboard/myBuyer'>My Buyer</Link></li>
