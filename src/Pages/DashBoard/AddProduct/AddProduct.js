@@ -10,8 +10,6 @@ const AddProduct = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState('');
-  // const [categoryId, setCategoryId] = useState('');
-
 
   const { data: categories = [], isLoading } = useQuery({
     queryKey: [''],
@@ -47,6 +45,7 @@ const AddProduct = () => {
           data.categoryId = category[0]?._id;
           data.sellerName = user?.displayName;
           data.available = true;
+          data.advertise = false;
 
           const date = {
             hour: new Date().getHours(),
@@ -63,9 +62,23 @@ const AddProduct = () => {
           else if (date.hour === 12) {
             date.hour = `${date.hour} pm`
           }
-
           data.postTime = date;
-          console.log(data);
+
+          fetch('http://localhost:5000/product', {
+            method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          })
+            .then(res => res.json())
+            .then(productData => {
+              console.log(productData);
+              if (productData.acknowledged) {
+                alert(`product ${data?.productName} is added successfully`)
+                navigate('/dashboard/myProducts')
+              }
+            })
         }
 
       })
@@ -123,18 +136,22 @@ const AddProduct = () => {
           </div>
 
           <div>
-            <label className="label text-sm font-semibold"><span className="label-text">Location</span></label>
+            <label className="label text-sm font-semibold"><span className="label-text">Add your address</span></label>
             <input type="text" {...register('location')} className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
+
           </div>
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Purchase Time</span></label>
-            <input type="text" {...register('purChase')} className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
+            <input type="text" {...register('purchaseTime', {
+              required: 'add when you buy this product'
+            })} placeholder='10 days ago' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' />
+            {errors.purchaseTime && <p className='text-red-600 text-xs'>*{errors.purchaseTime?.message}</p>}
           </div>
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Used Time</span></label>
-            <input type="text" {...register('usedTime')} className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
+            <input type="text" {...register('usedTime')} placeholder='only 3 days' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
           </div>
         </div>
 
