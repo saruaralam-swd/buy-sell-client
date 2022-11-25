@@ -44,6 +44,7 @@ const AddProduct = () => {
           data.categoryName = categoryName;
           data.categoryId = category[0]?._id;
           data.sellerName = user?.displayName;
+          data.sellerEmail = user?.email;
           data.available = true;
           data.advertise = false;
 
@@ -54,13 +55,13 @@ const AddProduct = () => {
           }
 
           if (date.hour < 12) {
-            date.hour = `${date.hour} am`
+            date.hour = `${date.hour}am`
           }
           else if (date.hour > 12) {
-            date.hour = `${date.hour - 12} pm`
+            date.hour = `${date.hour - 12}pm`
           }
           else if (date.hour === 12) {
-            date.hour = `${date.hour} pm`
+            date.hour = `${date.hour}pm`
           }
           data.postTime = date;
 
@@ -79,6 +80,8 @@ const AddProduct = () => {
                 navigate('/dashboard/myProducts')
               }
             })
+
+          console.log(data)
         }
 
       })
@@ -132,13 +135,12 @@ const AddProduct = () => {
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Phone Number</span></label>
-            <input type="number" {...register('phoneNumber')} className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
+            <input type="number" {...register('phoneNumber')} placeholder='your phone number' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
           </div>
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Add your address</span></label>
             <input type="text" {...register('location')} className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
-
           </div>
 
           <div>
@@ -151,8 +153,12 @@ const AddProduct = () => {
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Used Time</span></label>
-            <input type="text" {...register('usedTime')} placeholder='only 3 days' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
+            <input type="text" {...register('usedTime', {
+              required: 'add product use time'
+            })} placeholder='10 days' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' />
+            {errors.usedTime && <p className='text-red-600 text-xs'>*{errors.usedTime?.message}</p>}
           </div>
+
         </div>
 
         <div className='mt-5'>

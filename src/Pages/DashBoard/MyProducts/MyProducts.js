@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const MyProducts = () => {
 
-  const { data: products } = useQuery({
+  const { data: products = [], refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/products`);
@@ -12,6 +12,17 @@ const MyProducts = () => {
       return data;
     }
   });
+
+  const handleAdvertise = id => {
+    fetch(`http://localhost:5000/products/${id}`, {
+      method: "PUT",
+    })
+      .then(res => res.json())
+      .then(data => {
+        refetch();
+        console.log(data);
+      })
+  }
 
   return (
     <div>
@@ -36,7 +47,11 @@ const MyProducts = () => {
                 <td>{product?.productName}</td>
                 <td>{product?.available ? "available" : "sold"}</td>
                 <td>{product?.resalePrice} Tk</td>
-                <td><button className='btn btn-primary btn-sm'>advertise</button></td>
+                <td>
+                  {
+                    product?.advertise ? "" : <button onClick={() => handleAdvertise(product._id)} className='btn btn-primary btn-sm'>advertise</button>
+                  }
+                </td>
                 <td className='space-x-2'>
                   <button className='btn btn-primary btn-sm'>Edit</button>
                   <button className='btn btn-primary btn-sm'>Delete</button>
