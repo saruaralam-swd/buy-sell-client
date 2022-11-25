@@ -33,6 +33,7 @@ const MyProducts = () => {
           <tr>
             <th></th>
             <th>Name</th>
+            <th>email</th>
             <th>status</th>
             <th>Price</th>
             <th>advertise</th>
@@ -45,6 +46,7 @@ const MyProducts = () => {
               <tr key={product._id}>
                 <th>{index + 1}</th>
                 <td>{product?.productName}</td>
+                <td>{product?.sellerEmail}</td>
                 <td>{product?.available ? "available" : "sold"}</td>
                 <td>{product?.resalePrice} Tk</td>
                 <td>

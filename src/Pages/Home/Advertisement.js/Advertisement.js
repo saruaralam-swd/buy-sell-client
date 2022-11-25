@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loading from '../../../Components/Loading';
 import Product from '../../Products/Products/Product';
+import AdvertisementCard from './AdvertisementCard';
 
 const Advertisement = () => {
 
@@ -23,7 +24,7 @@ const Advertisement = () => {
       <h2 className="text-2xl my-5 font-semibold">Advertisement</h2>
       <div className=''>
         {
-          advertisement.map(product => <Product key={product._id} product={product}></Product>)
+          advertisement.map(product => <AdvertisementCard key={product._id} product={product}></AdvertisementCard>)
         }
       </div>
     </div>

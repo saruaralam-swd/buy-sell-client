@@ -6,8 +6,8 @@ import UserDocument from '../UserDocument/UserDocument';
 const Home = () => {
   return (
     <>
-      {/* <Categories></Categories> */}
-      {/* <UserDocument></UserDocument> */}
+      <Categories></Categories>
+      <UserDocument></UserDocument>
       <Advertisement></Advertisement>
     </>
   );

@@ -4,7 +4,7 @@ import hosupe from '../../../assets/userDocument/hosupe.png'
 
 const UserDocument = () => {
   return (
-    <div className='md:flex items-center w-4/5 mx-auto my-20'>
+    <div className='md:flex items-center px-10 my-20'>
       <div className='space-y-4 md:w-1/2'>
         <h2 className='text-2xl font-bold text-slate-700 mb-3'>User Documents For Everyone</h2>  
         <p className='text-base text-slate-500'>Real users will complete the registration by providing the email. Once the registration is completed, users can easily access the website. You can update your profile by going to the Personal Profile section. If users want to advertise, they have to advertise through the advertiser form. After adding the ad users have to wait for approval which will be available access by the website owner.</p>
