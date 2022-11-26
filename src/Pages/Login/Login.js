@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BiLockAlt, BiChevronRightCircle } from "react-icons/bi";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../hooks/UseToken';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate()
+
+  const [loginUserEmail, setLoginUserEmail] = useState('');
+  const [token] = useToken(loginUserEmail);
+  if (token){
+    navigate('/');
+  }
 
   const handleLogin = data => {
     const email = (data.email)
@@ -20,7 +27,7 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         console.log(user)
-        navigate('/')
+        setLoginUserEmail(user?.email)
       })
       .catch(error => { console.log(error.message) })
   };

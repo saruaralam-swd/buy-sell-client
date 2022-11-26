@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { BiLockAlt, BiChevronRightCircle } from "react-icons/bi";
 import { FaGoogle, } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../hooks/UseToken';
 
 const SignUp = () => {
   const { createUser, updateUser } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const nagivate = useNavigate();
+  const navigate = useNavigate();
+
+  const [createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail);
+  if (token) {
+    navigate('/');
+  }
 
   // create user
   const handleSignUp = data => {
@@ -56,7 +63,7 @@ const SignUp = () => {
       .then(data => {
         if (data.acknowledged) {
           alert('successfully create user')
-          nagivate('/')
+          setCreatedUserEmail(email)
         }
       })
   };

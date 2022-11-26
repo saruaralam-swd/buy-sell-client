@@ -1,13 +1,21 @@
 import React from 'react';
 import { UserCircleIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid'
+import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
 
 const CategoryProduct = ({ product }) => {
   const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
   const { hour, minute, seconds } = postTime;
+
+
+
+  const handleBuyProduct = id => {
+
+  };
+
   return (
     <div className='mb-10'>
       <div className='border rounded-lg grid md:grid-cols-4 gap-5'>
-        <img src={image} className='md:h-[280px] lg:h-[200px] mx-auto col-span-4 md:col-span-2 lg:col-span-1' alt="" />
+        <img src={image} className=' lg:h-[200px] mx-auto md:mx-0 col-span-4 md:col-span-2 lg:col-span-1' alt="" />
 
         <div className=' col-span-4 md:col-span-2 lg:col-span-3 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5'>
           <div className='space-y-1 border-r-2 md:pr-2'>
@@ -18,7 +26,7 @@ const CategoryProduct = ({ product }) => {
             </div>
             <p>{description.length > 100 ? (description.slice(0, 100) + "...") : description}</p>
             <div className='space-x-2'>
-              <button className='btn btn-primary btn-sm'>Book Now</button>
+              <label htmlFor="product-order-modal" className="btn btn-primary btn-sm"> Book Now </label>
               <button className='btn btn-primary btn-sm'>See Details</button>
             </div>
           </div>
@@ -35,6 +43,7 @@ const CategoryProduct = ({ product }) => {
           </div>
         </div>
       </div>
+      <ProductOrderModal product={product}></ProductOrderModal>
     </div>
   );
 };

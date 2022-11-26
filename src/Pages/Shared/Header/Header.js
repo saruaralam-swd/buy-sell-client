@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 import { AuthContext } from '../../../Context/AuthProvider';
-import { Bars3Icon, Squares2X2Icon } from '@heroicons/react/24/solid'
+import { Bars3Icon, Squares2X2Icon, UserCircleIcon } from '@heroicons/react/24/solid'
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -16,6 +16,9 @@ const Header = () => {
   };
 
   const navMenu = <>
+    {
+      user?.uid && <li><Link to='/'>Welcome! {user?.displayName}</Link></li>
+    }
     <li><Link to='/'>Home</Link></li>
     {
       user?.uid ? <></> :
@@ -58,7 +61,7 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80/people" alt='profile img' />
+                <UserCircleIcon /> 
               </div>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary text-white rounded-box w-52">
@@ -69,7 +72,7 @@ const Header = () => {
       }
 
       <label htmlFor="dashBoard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
-        <Squares2X2Icon className="h-6 w-6 "  />
+        <Squares2X2Icon className="h-6 w-6 " />
       </label>
     </div >
   );
