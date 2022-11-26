@@ -19,7 +19,7 @@ const Categories = () => {
     return <Loading></Loading>
   }
 
-  console.log(categories)
+
 
   return (
     <div className='px-10'>
@@ -29,6 +29,7 @@ const Categories = () => {
           categories.map(category => <Category key={category._id} category={category}></Category>)
         }
       </div>
+      
     </div>
   );
 };

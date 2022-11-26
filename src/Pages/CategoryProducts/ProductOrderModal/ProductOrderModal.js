@@ -1,13 +1,44 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
+import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 
-const ProductOrderModal = ({ product }) => {
+const ProductOrderModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
-  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
-  const { hour, minute, seconds } = postTime;
+  const { _id, productName, resalePrice } = product;
+  const { register, handleSubmit, formState: { errors } } = useForm()
 
-  const handleProductOrder = product => {
-    
+  const handleProductOrder = data => {
+    data.name = user?.displayName;
+    data.email = user?.email;
+    data.price = resalePrice;
+    data.productName = productName;
+    data.productId = _id;
+    console.log(data);
+
+    fetch(`http://localhost:5000/order`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(productData => {
+        console.log(productData);
+        if (productData.acknowledged) {
+          
+          fetch(`http://localhost:5000/available/${_id}`, {
+            method: 'PUT',
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            setProduct(null);
+            toast.success(`${productName} product order successful`)
+          })
+        }
+      })
   };
 
   return (
@@ -16,22 +47,16 @@ const ProductOrderModal = ({ product }) => {
       <div className="modal">
         <div className="modal-box relative">
           <label htmlFor="product-order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <h3 className="text-lg font-bold">Name</h3>
+          <h3 className="text-lg font-bold">{productName}</h3>
 
-          <form onSubmit={handleProductOrder} className='mt-6 space-y-3'>
-            <input type="text" disabled className="input input-bordered w-full" />
+          <form onSubmit={handleSubmit(handleProductOrder)} className='mt-6 space-y-3'>
+            <input type="text" defaultValue={user?.displayName} disabled className="input input-bordered w-full" />
+            <input defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input input-bordered w-full" required />
+            <input type="number" defaultValue={resalePrice} disabled className="input input-bordered w-full" required />
+            <input {...register('phoneNumber')} type="number" placeholder='Your Phone Number' className="input input-bordered w-full" required />
+            <input {...register('meetingLocation')} type="text" placeholder='Add receive place' className="input input-bordered w-full" required />
 
-            <select name='slot' className="select select-bordered w-full">
-              {/* {
-                slots.map((slot, index) => <option key={index} value={slot}>{slot}</option>)
-              } */}
-            </select>
-
-            <input name='name' defaultValue={user?.displayName} disabled type="text" placeholder="Your Name" className="input input-bordered w-full" required />
-            <input name='email' defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input input-bordered w-full" required />
-            <input name='phone' type="text" placeholder="Phone Number" className="input input-bordered w-full" required />
-
-            <input type="submit" className='btn btn-accent w-full' value="Submit" />
+            <input type="submit" className='btn btn-accent w-full text-xl' value="Submit" />
           </form>
         </div>
       </div>

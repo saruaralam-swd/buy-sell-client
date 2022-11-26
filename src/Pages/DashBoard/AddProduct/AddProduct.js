@@ -47,8 +47,14 @@ const AddProduct = () => {
           data.sellerEmail = user?.email;
           data.available = true;
           data.advertise = false;
+          data.verify = "unverified";
+          data.wishList = false;
+          data.report = false;
 
           const date = {
+            todayDate: new Date().getDate(),
+            month: new Date().getMonth() + 1,
+            year: new Date().getFullYear(),
             hour: new Date().getHours(),
             minute: new Date().getMinutes(),
             seconds: new Date().getSeconds(),

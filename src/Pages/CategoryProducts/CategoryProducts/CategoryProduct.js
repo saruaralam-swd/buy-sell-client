@@ -2,15 +2,9 @@ import React from 'react';
 import { UserCircleIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid'
 import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
 
-const CategoryProduct = ({ product }) => {
-  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
+const CategoryProduct = ({ categoryProduct, setProduct}) => {
+  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime } = categoryProduct;
   const { hour, minute, seconds } = postTime;
-
-
-
-  const handleBuyProduct = id => {
-
-  };
 
   return (
     <div className='mb-10'>
@@ -26,7 +20,7 @@ const CategoryProduct = ({ product }) => {
             </div>
             <p>{description.length > 100 ? (description.slice(0, 100) + "...") : description}</p>
             <div className='space-x-2'>
-              <label htmlFor="product-order-modal" className="btn btn-primary btn-sm"> Book Now </label>
+              <label onClick={() => setProduct(categoryProduct)} htmlFor="product-order-modal" className="btn btn-primary btn-sm"> Book Now </label>
               <button className='btn btn-primary btn-sm'>See Details</button>
             </div>
           </div>
@@ -43,7 +37,6 @@ const CategoryProduct = ({ product }) => {
           </div>
         </div>
       </div>
-      <ProductOrderModal product={product}></ProductOrderModal>
     </div>
   );
 };
