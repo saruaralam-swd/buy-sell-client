@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 
 const ProductOrderModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
-  const { _id, productName, resalePrice } = product;
+  const { _id, productName, image, resalePrice } = product;
   const { register, handleSubmit, formState: { errors } } = useForm()
 
   const handleProductOrder = data => {
@@ -14,31 +14,31 @@ const ProductOrderModal = ({ product, setProduct }) => {
     data.price = resalePrice;
     data.productName = productName;
     data.productId = _id;
-    console.log(data);
+    data.productImage = image;
 
-    fetch(`http://localhost:5000/order`, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(productData => {
-        console.log(productData);
-        if (productData.acknowledged) {
-          
-          fetch(`http://localhost:5000/available/${_id}`, {
-            method: 'PUT',
-          })
-          .then(res => res.json())
-          .then(data => {
-            console.log(data)
-            setProduct(null);
-            toast.success(`${productName} product order successful`)
-          })
-        }
+      fetch(`http://localhost:5000/order`, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(data)
       })
+        .then(res => res.json())
+        .then(productData => {
+          console.log(productData);
+          if (productData.acknowledged) {
+
+            fetch(`http://localhost:5000/available/${_id}`, {
+              method: 'PUT',
+            })
+              .then(res => res.json())
+              .then(data => {
+                console.log(data)
+                setProduct(null);
+                toast.success(`${productName} product order successful`)
+              })
+          }
+        })
   };
 
   return (
