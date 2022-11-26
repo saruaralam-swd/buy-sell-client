@@ -13,6 +13,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Products from "../../Pages/Products/Products/Products";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -33,14 +34,14 @@ export const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`),
         element: <CategoryProducts></CategoryProducts>
       },
     ]
   },
   {
     path: '/dashboard',
-    element: <DashBoardLayout></DashBoardLayout>,
+    element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
     children: [
       {
         path: '/dashboard/myOrders',
@@ -51,23 +52,23 @@ export const router = createBrowserRouter([
         element: <MyProducts></MyProducts>
       },
       {
-        path: '/dashboard/addProducts', 
+        path: '/dashboard/addProducts',
         element: <AddProduct></AddProduct>
       },
       {
-        path: '/dashboard/myBuyer', 
+        path: '/dashboard/myBuyer',
         element: <MyBuyers></MyBuyers>
       },
       {
-        path: '/dashboard/allSeller', 
+        path: '/dashboard/allSeller',
         element: <AllSellers></AllSellers>
       },
       {
-        path: '/dashboard/allBuyer', 
+        path: '/dashboard/allBuyer',
         element: <AllBuyers></AllBuyers>
       },
       {
-        path: '/dashboard/reportedProducts', 
+        path: '/dashboard/reportedProducts',
         element: <ReportedProducts></ReportedProducts>
       },
     ]

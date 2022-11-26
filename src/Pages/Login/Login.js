@@ -2,19 +2,22 @@ import React, { useContext, useState } from 'react';
 import { BiLockAlt, BiChevronRightCircle } from "react-icons/bi";
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../hooks/UseToken';
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
+
   const navigate = useNavigate()
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/';
 
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token] = useToken(loginUserEmail);
   if (token){
-    navigate('/');
+    navigate(from, {replace : true});
   }
 
   const handleLogin = data => {
