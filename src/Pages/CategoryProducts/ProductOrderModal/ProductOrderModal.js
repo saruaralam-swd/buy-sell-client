@@ -15,30 +15,33 @@ const ProductOrderModal = ({ product, setProduct }) => {
     data.productName = productName;
     data.productId = _id;
     data.productImage = image;
+    data.sellerEmail = product?.sellerEmail;
+    data.sellerLocation = product?.location;
+    
 
-      fetch(`http://localhost:5000/order`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(data)
-      })
-        .then(res => res.json())
-        .then(productData => {
-          console.log(productData);
-          if (productData.acknowledged) {
+    fetch(`http://localhost:5000/order`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(productData => {
+        console.log(productData);
+        if (productData.acknowledged) {
 
-            fetch(`http://localhost:5000/available/${_id}`, {
-              method: 'PUT',
+          fetch(`http://localhost:5000/available/${_id}`, {
+            method: 'PUT',
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+              setProduct(null);
+              toast.success(`${productName} product order successful`)
             })
-              .then(res => res.json())
-              .then(data => {
-                console.log(data)
-                setProduct(null);
-                toast.success(`${productName} product order successful`)
-              })
-          }
-        })
+        }
+      })
   };
 
   return (
