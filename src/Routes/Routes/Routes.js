@@ -14,6 +14,7 @@ import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -49,15 +50,15 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/myProducts',
-        element: <MyProducts></MyProducts>
+        element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
       },
       {
         path: '/dashboard/addProducts',
-        element: <AddProduct></AddProduct>
+        element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
       },
       {
         path: '/dashboard/myBuyer',
-        element: <MyBuyers></MyBuyers>
+        element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
       },
       {
         path: '/dashboard/allSeller',
