@@ -1,9 +1,8 @@
 import React from 'react';
-import { UserCircleIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid'
-import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
+import { UserCircleIcon, PhoneIcon, MapPinIcon, CheckBadgeIcon } from '@heroicons/react/24/solid'
 
 const CategoryProduct = ({ categoryProduct, setProduct }) => {
-  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime } = categoryProduct;
+  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, verify} = categoryProduct;
   const { hour, minute, seconds } = postTime;
 
   return (
@@ -33,7 +32,7 @@ const CategoryProduct = ({ categoryProduct, setProduct }) => {
 
           <div className='space-y-1'>
             <p className='uppercase font-semibold'>seller info</p>
-            <p> <UserCircleIcon className='h-4 w-4 inline-block' /> {sellerName}</p>
+            <p> <UserCircleIcon className='h-4 w-4 inline-block' />{sellerName} {verify === "verified" && <CheckBadgeIcon className='h-6 w-6 text-green-500 inline-block'/>}</p>
             <p> <PhoneIcon className='h-4 w-4 inline-block' /> {phoneNumber}</p>
             <p> <MapPinIcon className='h-4 w-4 inline-block' /> {location}</p>
           </div>

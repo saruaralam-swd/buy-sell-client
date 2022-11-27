@@ -1,13 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const MyProducts = () => {
+  const { user } = useContext(AuthContext);
 
   const { data: products = [], refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/products`);
+      const res = await fetch(`http://localhost:5000/myProducts?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        },
+      });
       const data = await res.json();
       return data;
     }
@@ -24,6 +29,10 @@ const MyProducts = () => {
       })
   }
 
+  const handleProductDelete = id => {
+
+  }
+ 
   return (
     <div>
       <h2 className="text-3xl text-center">My Products</h2>
@@ -56,7 +65,7 @@ const MyProducts = () => {
                 </td>
                 <td className='space-x-2'>
                   <button className='btn btn-primary btn-sm'>Edit</button>
-                  <button className='btn btn-primary btn-sm'>Delete</button>
+                  <button onClick={handleProductDelete} className='btn btn-primary btn-sm'>Delete</button>
                 </td>
               </tr>
             )

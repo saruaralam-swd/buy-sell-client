@@ -4,12 +4,14 @@ import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState('');
+  const [btnBlur, setBtnBlur] = useState(false);
 
   const { data: categories = [], isLoading } = useQuery({
     queryKey: [''],
@@ -29,6 +31,7 @@ const AddProduct = () => {
   const imageHostKey = process.env.REACT_APP_imageBb_Key;
 
   const handleAddProduct = data => {
+    setBtnBlur(true);
     const image = data.image[0];
     const formData = new FormData()
     formData.append('image', image);
@@ -71,10 +74,11 @@ const AddProduct = () => {
           }
           data.postTime = date;
 
-          fetch('http://localhost:5000/product', {
+          fetch(`http://localhost:5000/product?email=${user?.email}`, {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
+              authorization: `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify(data)
           })
@@ -82,8 +86,13 @@ const AddProduct = () => {
             .then(productData => {
               console.log(productData);
               if (productData.acknowledged) {
-                alert(`product ${data?.productName} is added successfully`)
+                toast.success(`product ${data?.productName} is added successfully`)
                 navigate('/dashboard/myProducts')
+                setBtnBlur(false)
+              }
+              else{
+                toast.error('please provice vails info')
+                setBtnBlur(false)
               }
             })
 
@@ -171,7 +180,7 @@ const AddProduct = () => {
           <textarea {...register('description')} className="textarea border-indigo-500 focus:outline-1 focus:outline-indigo-600 w-full text-lg placeholder:italic" placeholder="Product Description"></textarea>
         </div>
 
-        <button className='bg-primary hover:bg-violet-600 duration-300 text-white px-4 py-1 rounded-md '>Add Now</button>
+        <button disabled={btnBlur} className='btn btn-primary btn-md mt-5'>Add Now</button>
       </form>
     </div>
   );
