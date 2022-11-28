@@ -7,11 +7,14 @@ import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../hooks/UseToken';
 import toast from 'react-hot-toast';
 import useTittle from '../../hooks/useTittle';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
   useTittle('Login')
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleLogin } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
+  const googleProvider = new GoogleAuthProvider();
+  
 
   const navigate = useNavigate()
   const location = useLocation();
@@ -38,6 +41,41 @@ const Login = () => {
       .catch(error => { toast.error(error.message) })
   };
 
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+
+        const userData = {
+          name: user?.displayName,
+          email: user?.email,
+          role: 'bearer',
+        };
+
+        fetch('http://localhost:5000/users', {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(userData)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            if (data.acknowledged) {
+              toast.success('successfully create user')
+              setLoginUserEmail(user?.email)
+            }
+          })
+
+      })
+      .catch(error => {
+        toast.error(error.message)
+      })
+  };
+
+
   return (
     <div className='bg-gray-100 w-full '>
       <div className='flex justify-center py-20'>
@@ -50,7 +88,7 @@ const Login = () => {
               <label htmlFor="email" className='mb-1 text-sm tracking-wide text-gray-600'>E-Mail Address:</label>
               <div className='relative'>
                 <div className='inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400 '> <BiLockAlt /> </div>
-                <input type="email"
+                <input type="email" name='email'
                   {...register("email", {
                     required: "Email Address is required"
                   })}
@@ -63,7 +101,7 @@ const Login = () => {
               <label htmlFor="email" className='mb-1 text-sm tracking-wide text-gray-600'>Password:</label>
               <div className='relative'>
                 <div className='inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400 '> <BiLockAlt /> </div>
-                <input type="password"
+                <input type="password" name='password'
                   {...register("password", {
                     required: "Password is required",
                     minLength: { value: 6, message: "password must be 6 character" }
@@ -74,7 +112,7 @@ const Login = () => {
               <Link className='flex justify-end text-primary hover:underline'>Forget Password</Link>
             </div>
 
-            <button className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign In
+            <button onClick={handleGoogleLogin} className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign In
               <span><BiChevronRightCircle /></span>
             </button>
 
@@ -82,8 +120,10 @@ const Login = () => {
           </form>
           <div className='divider'>or</div>
 
-          {/* <Link><FaGoogle className='inline-block' /></Link>
-          <p>Don't have an account? <Link to='/signup'>Create New Account</Link></p> */}
+          <button onClick={handleGoogleLogin} className='flex gap-10 btn btn-outline btn-primary w-full rounded-full btn-md'>
+            <Link><FaGoogle className='inline-block' /></Link>
+            continue with google
+          </button>
         </div>
       </div>
     </div>

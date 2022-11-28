@@ -1,3 +1,35 @@
+# website name: Buy & Resale (e-commerce) website
+
+Live link : []
+
+# Feature & Functionality: 
+- login 2 types of login systems (email/password, google) 
+- sign up system add
+- i am use some package (react-hook-form, react-router-dom, react-icons,  react-hot-toast, firebase)
+- this project i am use user authentication system
+- And have private routing feature to block unauthorize user.
+- If a user is logged in, only then a user can access this private route.
+- authorization system (JWT)
+- dynamic title show set based on route
+- Dashboard route will show according to user type
+- User Data has been safe in 3 ways (JWT, check user type buyer, seller, admin, request email and Verify Email are same email)
+- 
+
+
+## css libraries
+- daisyui Tailwind component library
+
+## css frameworks
+- Tailwind
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

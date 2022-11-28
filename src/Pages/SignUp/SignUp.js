@@ -7,12 +7,14 @@ import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../hooks/UseToken';
 import toast from 'react-hot-toast';
 import useTittle from '../../hooks/useTittle';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SignUp = () => {
   useTittle('SignUp')
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, googleLogin } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate();
+  const googleProvider = new GoogleAuthProvider()
 
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
@@ -70,6 +72,41 @@ const SignUp = () => {
         }
       })
   };
+
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+
+        const userData = {
+          name: user?.displayName,
+          email: user?.email,
+          role: 'bearer',
+        };
+
+        fetch('http://localhost:5000/users', {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(userData)
+        })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            if (data.acknowledged) {
+              toast.success('successfully create user')
+              setCreatedUserEmail(user?.email)
+            }
+          })
+
+      })
+      .catch(error => {
+        toast.error(error.message)
+      })
+  };
+
 
   return (
     <div className='bg-gray-100 w-full '>
@@ -134,9 +171,11 @@ const SignUp = () => {
             <p>Already have an Account? <Link to='/login' className='text-primary'>Login</Link></p>
           </form>
           <div className='divider'>or</div>
-          <div>
-            <Link><FaGoogle /></Link>
-          </div>
+
+          <button onClick={handleGoogleLogin} className='flex gap-10 btn btn-outline btn-primary w-full rounded-full btn-md'>
+            <Link><FaGoogle className='inline-block' /></Link>
+            continue with google
+          </button>
         </div>
       </div>
     </div>

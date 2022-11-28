@@ -3,8 +3,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
+import useTittle from '../../../hooks/useTittle';
 
 const MyOrders = () => {
+  useTittle("My Order")
   const { user } = useContext(AuthContext);
 
   const { data: orders = [], isLoading } = useQuery({
@@ -35,9 +37,10 @@ const MyOrders = () => {
             <tr>
               <th>S/N</th>
               <th>Image</th>
-              <th>title</th>
+              <th>Product Name</th>
               <th>Price</th>
               <th>email</th>
+              
               <th>available/sold</th>
             </tr>
           </thead>
@@ -49,7 +52,7 @@ const MyOrders = () => {
                   <th>{index + 1}</th>
                   <td>
                     <div className="avatar">
-                      <div className="mask w-20 h-20">
+                      <div className="mask w-16 h-16">
                         <img src={order?.productImage} alt="" />
                       </div>
                     </div>

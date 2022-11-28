@@ -17,7 +17,7 @@ const ProductOrderModal = ({ product, setProduct }) => {
     data.productImage = image;
     data.sellerEmail = product?.sellerEmail;
     data.sellerLocation = product?.location;
-    
+  
 
     fetch(`http://localhost:5000/order`, {
       method: 'POST',
@@ -34,6 +34,7 @@ const ProductOrderModal = ({ product, setProduct }) => {
           toast.success(`${productName} product order successful`)
         }
       })
+
   };
 
   return (

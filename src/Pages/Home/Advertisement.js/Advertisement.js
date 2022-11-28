@@ -1,15 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import Loading from '../../../Components/Loading';
-import Product from '../../Products/Products/Product';
+import { AuthContext } from '../../../Context/AuthProvider';
 import AdvertisementCard from './AdvertisementCard';
 
 const Advertisement = () => {
+  const { user } = useContext(AuthContext);
 
   const { data: advertisement = [], isLoading } = useQuery({
     queryKey: ['advertisement'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/advertisement`);
+      const res = await fetch(`http://localhost:5000/advertisement?email=${user?.email}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      });
       const data = await res.json();
       return data;
     }
