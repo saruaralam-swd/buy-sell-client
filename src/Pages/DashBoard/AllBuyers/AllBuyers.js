@@ -9,7 +9,7 @@ const AllBuyers = () => {
   useTittle('All Buyers')
   const { user } = useContext(AuthContext);
 
-  const { data: buyers = [], isLoading } = useQuery({
+  const { data: buyers = [], isLoading, refetch } = useQuery({
     queryKey: ['allBuyers', user?.email],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/allBuyers?email=${user?.email}`, {
@@ -26,7 +26,23 @@ const AllBuyers = () => {
     return <Loading></Loading>
   }
 
-  console.log(buyers);
+
+  const handleBuyerDelete = id => {
+    const permission = window.confirm('Are Your sure you want to delete?')
+    if (permission) {
+      fetch(`http://localhost:5000/buyer/${id}?email=${user?.email}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          refetch();
+        })
+    }
+  }
 
   return (
     <div>
@@ -48,7 +64,7 @@ const AllBuyers = () => {
                 <tr key={index}>
                   <th>{index + 1}</th>
                   <td>{buyer?.email}</td>
-                  <td><button><TrashIcon className='h-10 w-10 text-red-400' /></button></td>
+                  <td><button onClick={() => handleBuyerDelete(buyer._id)}><TrashIcon className='h-10 w-10 text-red-400' /></button></td>
                 </tr>
               )
             }

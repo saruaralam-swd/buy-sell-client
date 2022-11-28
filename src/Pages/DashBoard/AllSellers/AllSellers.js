@@ -41,6 +41,23 @@ const AllSellers = () => {
       })
   };
 
+  const handleSellerDelete = id => {
+    const permission = window.confirm('Are Your sure you want to delete?')
+    if (permission) {
+      fetch(`http://localhost:5000/seller/${id}?email=${user?.email}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          refetch();
+        })
+    }
+  }
+
   return (
     <div>
       <h2 className="text-3xl text-center">All Sellers</h2>
@@ -72,7 +89,7 @@ const AllSellers = () => {
                       seller?.verify === true && <p><CheckBadgeIcon className='h-6 w-6 text-green-500' /> </p>
                     }
                   </td>
-                  <td><button><TrashIcon className='h-10 w-10 text-red-400' /></button></td>
+                  <td><button onClick={() => handleSellerDelete(seller._id)}><TrashIcon className='h-10 w-10 text-red-400' /></button></td>
                 </tr>
               )
             }

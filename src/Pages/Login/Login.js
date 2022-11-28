@@ -41,7 +41,8 @@ const Login = () => {
       .catch(error => { toast.error(error.message) })
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = (e) => {
+
     googleLogin(googleProvider)
       .then(result => {
         const user = result.user;
@@ -112,7 +113,7 @@ const Login = () => {
               <Link className='flex justify-end text-primary hover:underline'>Forget Password</Link>
             </div>
 
-            <button onClick={handleGoogleLogin} className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign In
+            <button className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign In
               <span><BiChevronRightCircle /></span>
             </button>
 

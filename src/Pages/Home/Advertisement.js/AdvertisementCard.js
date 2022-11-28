@@ -1,8 +1,8 @@
 import React from 'react';
 import { UserCircleIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/solid'
 
-const AdvertisementCard = ({ product }) => {
-  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product; 
+const AdvertisementCard = ({ product, setProduct }) => {
+  const { _id, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
   const { hour, minute, seconds } = postTime;
 
   return (
@@ -19,7 +19,7 @@ const AdvertisementCard = ({ product }) => {
             </div>
             <p>{description.length > 100 ? (description.slice(0, 100) + "...") : description}</p>
             <div className='space-x-2'>
-              <button className='btn btn-primary btn-sm'>Book Now</button>
+              <label onClick={() => setProduct(product)} htmlFor="product-order-modal" className="btn btn-primary btn-sm"> Book Now </label>
               <button className='btn btn-primary btn-sm'>See Details</button>
             </div>
           </div>

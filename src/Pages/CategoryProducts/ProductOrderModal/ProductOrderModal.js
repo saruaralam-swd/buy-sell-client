@@ -11,13 +11,13 @@ const ProductOrderModal = ({ product, setProduct }) => {
   const handleProductOrder = data => {
     data.name = user?.displayName;
     data.email = user?.email;
-    data.price = resalePrice;
+    data.price = parseInt(resalePrice);
     data.productName = productName;
     data.productId = _id;
     data.productImage = image;
     data.sellerEmail = product?.sellerEmail;
     data.sellerLocation = product?.location;
-  
+
 
     fetch(`http://localhost:5000/order`, {
       method: 'POST',
@@ -39,23 +39,38 @@ const ProductOrderModal = ({ product, setProduct }) => {
 
   return (
     <>
-      <input type="checkbox" id="product-order-modal" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box relative">
-          <label htmlFor="product-order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-          <h3 className="text-lg font-bold">{productName}</h3>
+      {
+        user?.uid ?
+          <>
+            <input type="checkbox" id="product-order-modal" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box relative">
+                <label htmlFor="product-order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 className="text-lg font-bold">{productName}</h3>
 
-          <form onSubmit={handleSubmit(handleProductOrder)} className='mt-6 space-y-3'>
-            <input type="text" defaultValue={user?.displayName} disabled className="input input-bordered w-full" />
-            <input defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input input-bordered w-full" required />
-            <input type="number" defaultValue={resalePrice} disabled className="input input-bordered w-full" required />
-            <input {...register('phoneNumber')} type="number" placeholder='Your Phone Number' className="input input-bordered w-full" required />
-            <input {...register('meetingLocation')} type="text" placeholder='Add receive place' className="input input-bordered w-full" required />
+                <form onSubmit={handleSubmit(handleProductOrder)} className='mt-6 space-y-3'>
+                  <input type="text" defaultValue={user?.displayName} disabled className="input input-bordered w-full" />
+                  <input defaultValue={user?.email} disabled type="email" placeholder="Email Address" className="input input-bordered w-full" required />
+                  <input type="number" defaultValue={resalePrice} disabled className="input input-bordered w-full" required />
+                  <input {...register('phoneNumber')} type="number" placeholder='Your Phone Number' className="input input-bordered w-full" required />
+                  <input {...register('meetingLocation')} type="text" placeholder='Add receive place' className="input input-bordered w-full" required />
 
-            <input type="submit" className='btn btn-accent w-full text-xl' value="Submit" />
-          </form>
-        </div>
-      </div>
+                  <input type="submit" className='btn btn-accent w-full text-xl' value="Submit" />
+                </form>
+              </div>
+            </div>
+          </>
+          :
+          <>
+            <input type="checkbox" id="product-order-modal" className="modal-toggle" />
+            <div className="modal">
+              <div className="modal-box relative">
+                <label htmlFor="product-order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                <h3 className="text-lg font-bold">Please login to buy Product</h3>
+              </div>
+            </div>
+          </>
+      }
     </>
   );
 };
