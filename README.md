@@ -1,6 +1,9 @@
 # website name: Buy & Resale (e-commerce) website
 
-Live link : []
+Live link : [https://buy-cell--web.web.app/]
+
+- adminEmail: saru@gmail.com
+- adminPassword: 123456
 
 # Feature & Functionality: 
 - login 2 types of login systems (email/password, google) 

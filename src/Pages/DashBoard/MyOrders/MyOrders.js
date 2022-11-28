@@ -12,7 +12,7 @@ const MyOrders = () => {
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ['orders', user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/orders?email=${user?.email}`, {
+      const res = await fetch(`https://used-products-resale-server.vercel.app/orders?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }

@@ -9,7 +9,7 @@ const MyProducts = () => {
   const { data: products = [], refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/myProducts?email=${user?.email}`, {
+      const res = await fetch(`https://used-products-resale-server.vercel.app/myProducts?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
         },
@@ -20,7 +20,7 @@ const MyProducts = () => {
   });
 
   const handleAdvertise = id => {
-    fetch(`http://localhost:5000/products/${id}?email=${user?.email}`, {
+    fetch(`https://used-products-resale-server.vercel.app/products/${id}?email=${user?.email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -38,7 +38,7 @@ const MyProducts = () => {
   const handleProductDelete = (id, produceName) => {
     const permission = window.confirm(`${produceName}, Are your sure your want to delete?`)
     if (permission) {
-      fetch(`http://localhost:5000/product/${id}?email=${user?.email}`, {
+      fetch(`https://used-products-resale-server.vercel.app/product/${id}?email=${user?.email}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
