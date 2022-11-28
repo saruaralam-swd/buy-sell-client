@@ -5,8 +5,11 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../hooks/UseToken';
+import toast from 'react-hot-toast';
+import useTittle from '../../hooks/useTittle';
 
 const Login = () => {
+  useTittle('Login')
   const { signIn } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
 
@@ -16,8 +19,8 @@ const Login = () => {
 
   const [loginUserEmail, setLoginUserEmail] = useState('');
   const [token] = useToken(loginUserEmail);
-  if (token){
-    navigate(from, {replace : true});
+  if (token) {
+    navigate(from, { replace: true });
   }
 
   const handleLogin = data => {
@@ -32,7 +35,7 @@ const Login = () => {
         console.log(user)
         setLoginUserEmail(user?.email)
       })
-      .catch(error => { console.log(error.message) })
+      .catch(error => { toast.error(error.message) })
   };
 
   return (
@@ -74,6 +77,8 @@ const Login = () => {
             <button className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign In
               <span><BiChevronRightCircle /></span>
             </button>
+
+            <p>New to Buy & Resale? <Link to='/signup' className='text-primary'>Create new Account</Link></p>
           </form>
           <div className='divider'>or</div>
 

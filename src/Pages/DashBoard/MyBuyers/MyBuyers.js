@@ -23,7 +23,6 @@ const MyBuyers = () => {
     return <Loading></Loading>
   }
 
-  console.log(buyers);
 
   return (
     <div>
@@ -38,8 +37,7 @@ const MyBuyers = () => {
               <th>Name</th>
               <th>Email</th>
               <th>phone</th>
-              <th>Address</th>
-              <th>location</th>
+              <th>purchased product</th>
             </tr>
           </thead>
           <tbody>
@@ -50,8 +48,7 @@ const MyBuyers = () => {
                   <td>{buyer?.name}</td>
                   <td>{buyer?.email}</td>
                   <td>{buyer?.phoneNumber}</td>
-                  <td>{buyer?.sellerLocation}</td>
-                  <td>{buyer?.meetingLocation}</td>
+                  <td>{buyer?.productName}</td>
                 </tr>
               )
             }

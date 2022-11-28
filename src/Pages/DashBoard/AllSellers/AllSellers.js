@@ -3,11 +3,13 @@ import React, { useContext } from 'react';
 import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { CheckBadgeIcon, TrashIcon } from '@heroicons/react/24/solid'
+import useTittle from '../../../hooks/useTittle';
 
 const AllSellers = () => {
+  useTittle('All Seller')
   const { user } = useContext(AuthContext);
 
-  const { data: sellers = [], isLoading } = useQuery({
+  const { data: sellers = [], isLoading, refetch } = useQuery({
     queryKey: ['mySellers', user?.email],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/allSellers?email=${user?.email}`, {
@@ -24,7 +26,20 @@ const AllSellers = () => {
     return <Loading></Loading>
   }
 
-  console.log(sellers);
+
+  const handleSellerVerify = (sellerEmail) => {
+    fetch(`http://localhost:5000/verifySeller/${sellerEmail}?email=${user?.email}`, {
+      method: 'PUT',
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        refetch();
+      })
+  };
 
   return (
     <div>
@@ -47,14 +62,14 @@ const AllSellers = () => {
               sellers?.map((seller, index) =>
                 <tr key={index}>
                   <th>{index + 1}</th>
-                  <td>{seller?.sellerName}</td>
-                  <td>{seller?.sellerEmail}</td>
+                  <td>{seller?.name}</td>
+                  <td>{seller?.email}</td>
                   <td>
                     {
-                      seller?.verify === "unverified" && <button className='btn btn-secondary btn-sm'>make verify</button>
+                      !seller?.verify && <button onClick={() => handleSellerVerify(seller?.email)} className='btn btn-secondary btn-sm'>verify seller</button>
                     }
                     {
-                      seller?.verify === "verified" && <button><CheckBadgeIcon className='h-6 w-6 text-green-500' /> </button>
+                      seller?.verify === true && <p><CheckBadgeIcon className='h-6 w-6 text-green-500' /> </p>
                     }
                   </td>
                   <td><button><TrashIcon className='h-10 w-10 text-red-400' /></button></td>

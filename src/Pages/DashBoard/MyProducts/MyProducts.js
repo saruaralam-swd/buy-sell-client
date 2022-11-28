@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const MyProducts = () => {
@@ -19,20 +20,40 @@ const MyProducts = () => {
   });
 
   const handleAdvertise = id => {
-    fetch(`http://localhost:5000/products/${id}`, {
+    fetch(`http://localhost:5000/products/${id}?email=${user?.email}`, {
       method: "PUT",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+      }
     })
       .then(res => res.json())
       .then(data => {
         refetch();
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success('Advertise Done')
+        }
       })
   }
 
-  const handleProductDelete = id => {
-
+  const handleProductDelete = (id, produceName) => {
+    const permission = window.confirm(`${produceName}, Are your sure your want to delete?`)
+    if (permission) {
+      fetch(`http://localhost:5000/product/${id}?email=${user?.email}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('accessToken')}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.acknowledged) {
+            toast.success('successfully delete your product')
+            refetch()
+          }
+        })
+    }
   }
- 
+
   return (
     <div>
       <h2 className="text-3xl text-center">My Products</h2>
@@ -46,7 +67,7 @@ const MyProducts = () => {
             <th>status</th>
             <th>Price</th>
             <th>advertise</th>
-            <th>Edit/Delete</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -64,8 +85,7 @@ const MyProducts = () => {
                   }
                 </td>
                 <td className='space-x-2'>
-                  <button className='btn btn-primary btn-sm'>Edit</button>
-                  <button onClick={handleProductDelete} className='btn btn-primary btn-sm'>Delete</button>
+                  <button onClick={() => handleProductDelete(product._id, product?.productName)} className='btn btn-primary btn-sm'>Delete</button>
                 </td>
               </tr>
             )

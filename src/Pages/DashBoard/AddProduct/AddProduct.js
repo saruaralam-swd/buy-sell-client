@@ -12,6 +12,7 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState('');
   const [btnBlur, setBtnBlur] = useState(false);
+  const [selectCategory, setSelectedCategory] = useState(0);
 
   const { data: categories = [], isLoading } = useQuery({
     queryKey: [''],
@@ -27,6 +28,7 @@ const AddProduct = () => {
   }
 
   const category = categories.filter(c => c.categoryName === categoryName);
+  console.log('loading time: ', category.length);
 
   const imageHostKey = process.env.REACT_APP_imageBb_Key;
 
@@ -35,6 +37,14 @@ const AddProduct = () => {
     const image = data.image[0];
     const formData = new FormData()
     formData.append('image', image);
+
+
+    console.log('click category: ', category.length);
+    if (category.length !== 1) {
+      setBtnBlur(false)
+      alert('Select product Category');
+      return;
+    }
 
     fetch(`https://api.imgbb.com/1/upload?key=${imageHostKey}`, {
       method: "POST",
@@ -50,7 +60,7 @@ const AddProduct = () => {
           data.sellerEmail = user?.email;
           data.available = true;
           data.advertise = false;
-          data.verify = "unverified";
+          data.verify = false;
           data.wishList = false;
           data.report = false;
 
@@ -90,15 +100,11 @@ const AddProduct = () => {
                 navigate('/dashboard/myProducts')
                 setBtnBlur(false)
               }
-              else{
-                toast.error('please provice vails info')
+              else {
                 setBtnBlur(false)
               }
             })
-
-          console.log(data)
         }
-
       })
   };
 
@@ -121,6 +127,7 @@ const AddProduct = () => {
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Category</span></label>
             <select {...register('categoryName')} onChange={(e) => setCategoryName(e.target.value)} className="select select-bordered w-full select-sm">
+              <option disabled selected>select product category</option>
               {
                 categories.map(category => <option key={category._id} >{category.categoryName}</option>)
               }
@@ -162,7 +169,7 @@ const AddProduct = () => {
             <label className="label text-sm font-semibold"><span className="label-text">Purchase Time</span></label>
             <input type="text" {...register('purchaseTime', {
               required: 'add when you buy this product'
-            })} placeholder='10 days ago' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' />
+            })} placeholder='when did you buy' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' />
             {errors.purchaseTime && <p className='text-red-600 text-xs'>*{errors.purchaseTime?.message}</p>}
           </div>
 
@@ -170,7 +177,7 @@ const AddProduct = () => {
             <label className="label text-sm font-semibold"><span className="label-text">Used Time</span></label>
             <input type="text" {...register('usedTime', {
               required: 'add product use time'
-            })} placeholder='10 days' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' />
+            })} placeholder='How long have you been using it?' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' />
             {errors.usedTime && <p className='text-red-600 text-xs'>*{errors.usedTime?.message}</p>}
           </div>
 

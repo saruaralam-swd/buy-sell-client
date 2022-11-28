@@ -3,8 +3,10 @@ import React, { useContext } from 'react';
 import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { CheckBadgeIcon, TrashIcon } from '@heroicons/react/24/solid'
+import useTittle from '../../../hooks/useTittle';
 
 const AllBuyers = () => {
+  useTittle('All Buyers')
   const { user } = useContext(AuthContext);
 
   const { data: buyers = [], isLoading } = useQuery({

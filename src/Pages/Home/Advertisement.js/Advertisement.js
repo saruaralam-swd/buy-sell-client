@@ -20,14 +20,19 @@ const Advertisement = () => {
   }
 
   return (
-    <div className='px-10'>
-      <h2 className="text-2xl my-5 font-semibold">Advertisement</h2>
-      <div className=''>
-        {
-          advertisement.map(product => <AdvertisementCard key={product._id} product={product}></AdvertisementCard>)
-        }
-      </div>
-    </div>
+    <>
+      {
+        advertisement.length > 0 &&
+        <div className='px-10' >
+          <h2 className="text-2xl my-5 font-semibold">Advertisement</h2>
+          <div className=''>
+            {
+              advertisement.map(product => <AdvertisementCard key={product._id} product={product}></AdvertisementCard>)
+            }
+          </div>
+        </div >
+      }
+    </>
   );
 };
 

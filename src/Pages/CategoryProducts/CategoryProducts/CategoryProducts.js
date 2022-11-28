@@ -9,8 +9,7 @@ const CategoryProducts = () => {
   const [product, setProduct] = useState(null);
 
   return (
-    <div>
-      <h2>total product {categoryProducts.length}</h2>
+    <div className='my-10'>
       <div>
         {
           categoryProducts.map(categoryProduct =>

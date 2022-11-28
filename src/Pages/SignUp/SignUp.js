@@ -5,8 +5,11 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../hooks/UseToken';
+import toast from 'react-hot-toast';
+import useTittle from '../../hooks/useTittle';
 
 const SignUp = () => {
+  useTittle('SignUp')
   const { createUser, updateUser } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
   const navigate = useNavigate();
@@ -31,7 +34,7 @@ const SignUp = () => {
         handleProfileUpdate(name, email, role);
       })
       .catch(error => {
-        console.log(error)
+        toast.error(error.message)
       })
   };
 
@@ -45,7 +48,7 @@ const SignUp = () => {
       .then(() => {
         saveUser(name, email, role)
       })
-      .catch(error => { alert(error.message) })
+      .catch(error => { toast.error(error.message) })
   };
 
   // save user info
@@ -62,7 +65,7 @@ const SignUp = () => {
       .then(res => res.json())
       .then(data => {
         if (data.acknowledged) {
-          alert('successfully create user')
+          toast.success('successfully create user')
           setCreatedUserEmail(email)
         }
       })
@@ -128,6 +131,7 @@ const SignUp = () => {
             <button className='mt-2 flex justify-center items-center gap-2 uppercase focus:outline-none text-white text-sm sm:text-base bg-primary hover:bg-[#9333ea]  rounded-2xl py-2 w-full transition duration-150 ease-in'>Sign Up
               <span><BiChevronRightCircle /></span>
             </button>
+            <p>Already have an Account? <Link to='/login' className='text-primary'>Login</Link></p>
           </form>
           <div className='divider'>or</div>
           <div>

@@ -4,9 +4,11 @@ import { AuthContext } from '../Context/AuthProvider';
 import useAdmin from '../hooks/UseAdmin';
 import useBuyer from '../hooks/UseBuyer';
 import useSeller from '../hooks/UseSeller';
+import useTittle from '../hooks/useTittle';
 import Header from '../Pages/Shared/Header/Header';
 
 const DashBoardLayout = () => {
+  useTittle('Dashboard')
   const { user } = useContext(AuthContext);
   const [isAdmin] = useAdmin(user?.email);
   const [isSeller] = useSeller(user?.email)
@@ -17,13 +19,13 @@ const DashBoardLayout = () => {
       <Header></Header>
       <div className="drawer drawer-mobile">
         <input id="dashBoard-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
+        <div className="drawer-content ">
           <Outlet></Outlet>
         </div>
 
-        <div className="drawer-side bg-white z-0">
+        <div className="drawer-side z-0">
           <label htmlFor="dashBoard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80  text-base-content">
+          <ul className="menu p-4 w-80 text-base-content">
             {
               isBuyer && <>
                 <li><Link to='/dashboard/myOrders'>My Orders</Link></li>

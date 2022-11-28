@@ -30,16 +30,8 @@ const ProductOrderModal = ({ product, setProduct }) => {
       .then(productData => {
         console.log(productData);
         if (productData.acknowledged) {
-
-          fetch(`http://localhost:5000/available/${_id}`, {
-            method: 'PUT',
-          })
-            .then(res => res.json())
-            .then(data => {
-              console.log(data)
-              setProduct(null);
-              toast.success(`${productName} product order successful`)
-            })
+          setProduct(null);
+          toast.success(`${productName} product order successful`)
         }
       })
   };

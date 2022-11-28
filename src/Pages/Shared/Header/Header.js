@@ -20,6 +20,7 @@ const Header = () => {
       user?.uid && <li><Link to='/'>Welcome! {user?.displayName}</Link></li>
     }
     <li><Link to='/'>Home</Link></li>
+    <li><Link to='/blog'>Blog</Link></li>
     {
       user?.uid ? <></> :
         <>
