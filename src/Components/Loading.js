@@ -4,7 +4,7 @@ const Loading = () => {
   return (
     <div>
       <div className='h-[500px] flex items-center justify-center'>
-        <progress className="progress w-56"></progress>
+        <progress className="progress w-40"></progress>
       </div>
     </div>
   );

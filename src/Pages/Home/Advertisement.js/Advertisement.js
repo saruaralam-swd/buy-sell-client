@@ -12,7 +12,7 @@ const Advertisement = () => {
   const { data: advertisement = [], isLoading } = useQuery({
     queryKey: ['advertisement'],
     queryFn: async () => {
-      const res = await fetch(`https://used-products-resale-server.vercel.app/advertisement?email=${user?.email}`, {
+      const res = await fetch(`http://localhost:5000/advertisement?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -27,11 +27,11 @@ const Advertisement = () => {
   }
 
   return (
-    <>
+    <div className='my-20'>
       {
         advertisement.length > 0 &&
         <div className='px-10' >
-          <h2 className="text-2xl my-5 font-semibold">Advertisement</h2>
+          <h2 className="text-2xl font-bold text-slate-700 mb-3">Advertisement</h2>
           <div className=''>
             {
               advertisement.map(product => <AdvertisementCard setProduct={setProduct} key={product._id} product={product}></AdvertisementCard>)
@@ -44,7 +44,7 @@ const Advertisement = () => {
           </div>
         </div >
       }
-    </>
+    </div>
   );
 };
 

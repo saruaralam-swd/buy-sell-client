@@ -6,7 +6,7 @@ const UseUserRole = email => {
 
   useEffect(() => {
     if (email) {
-      fetch(`https://used-products-resale-server.vercel.app/user/role/${email}`)
+      fetch(`http://localhost:5000/user/role/${email}`)
         .then(res => res.json())
         .then(data => {
           console.log(data);

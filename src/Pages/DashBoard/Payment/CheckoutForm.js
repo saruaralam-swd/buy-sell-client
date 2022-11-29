@@ -16,7 +16,7 @@ const CheckoutForm = ({ order }) => {
   const elements = useElements();
 
   useEffect(() => {
-    fetch("https://used-products-resale-server.vercel.app/create-payment-intent", {
+    fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const CheckoutForm = ({ order }) => {
       };
 
       // store payment information
-      fetch('https://used-products-resale-server.vercel.app/payments', {
+      fetch('http://localhost:5000/payments', {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
@@ -98,7 +98,7 @@ const CheckoutForm = ({ order }) => {
           console.log(data);
 
           // order paid: true
-          fetch(`https://used-products-resale-server.vercel.app/orderPaid/${_id}`, {
+          fetch(`http://localhost:5000/orderPaid/${_id}`, {
             method: 'PUT',
             headers: {
               authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -109,7 +109,7 @@ const CheckoutForm = ({ order }) => {
               if (data.acknowledged) {
 
                 // product available:false (sold)
-                fetch(`https://used-products-resale-server.vercel.app/productSold/${productId}`, {
+                fetch(`http://localhost:5000/productSold/${productId}`, {
                   method: 'PUT',
                   headers: {
                     authorization: `Bearer ${localStorage.getItem('accessToken')}`

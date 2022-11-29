@@ -12,13 +12,16 @@ const Payment = () => {
   const { productName, price } = order;
 
   return (
-    <div>
-      <h2 className='text-2xl '>Payment for <strong>{productName}</strong></h2>
-      <p>Please pay <strong>TK{price}</strong></p>
-      <div className='w-96 my-12'>
-        <Elements stripe={stripePromise}>
-          <CheckoutForm order={order}></CheckoutForm>
-        </Elements>
+    <div className='p-10 '>
+      <div>
+        <h2 className='text-3xl'>Payment for <strong>{productName}</strong></h2>
+        <p className='text-primary'><strong>TK{price}</strong></p>
+        
+        <div className='w-96 my-12'>
+          <Elements stripe={stripePromise}>
+            <CheckoutForm order={order}></CheckoutForm>
+          </Elements>
+        </div>
       </div>
     </div>
   );

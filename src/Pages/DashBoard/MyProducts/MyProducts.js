@@ -1,15 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
 
-  const { data: products = [], refetch } = useQuery({
+  const { data: products = [], isLoading, refetch } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await fetch(`https://used-products-resale-server.vercel.app/myProducts?email=${user?.email}`, {
+      const res = await fetch(`http://localhost:5000/myProducts?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
         },
@@ -19,8 +21,12 @@ const MyProducts = () => {
     }
   });
 
+  if(isLoading) {
+    return <Loading></Loading>
+  }
+
   const handleAdvertise = id => {
-    fetch(`https://used-products-resale-server.vercel.app/products/${id}?email=${user?.email}`, {
+    fetch(`http://localhost:5000/products/${id}?email=${user?.email}`, {
       method: "PUT",
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -36,9 +42,11 @@ const MyProducts = () => {
   }
 
   const handleProductDelete = (id, produceName) => {
+    
+    
     const permission = window.confirm(`${produceName}, Are your sure your want to delete?`)
     if (permission) {
-      fetch(`https://used-products-resale-server.vercel.app/product/${id}?email=${user?.email}`, {
+      fetch(`http://localhost:5000/product/${id}?email=${user?.email}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -81,11 +89,14 @@ const MyProducts = () => {
                 <td>{product?.resalePrice} Tk</td>
                 <td>
                   {
-                    product?.advertise ? "" : <button onClick={() => handleAdvertise(product._id)} className='btn btn-primary btn-sm'>advertise</button>
+                    product?.advertise === false &&  <button onClick={() => handleAdvertise(product._id)} className='btn btn-primary btn-sm'>advertise</button>
+                  }
+                  {
+                    product?.advertise && <span className='bg-slate-200 rounded-full px-3 py-1'>advertising</span>
                   }
                 </td>
                 <td className='space-x-2'>
-                  <button onClick={() => handleProductDelete(product._id, product?.productName)} className='btn btn-primary btn-sm'>Delete</button>
+                  <button onClick={() => handleProductDelete(product._id, product?.productName)}><TrashIcon className='h-10 w-10 text-red-400' /></button>
                 </td>
               </tr>
             )

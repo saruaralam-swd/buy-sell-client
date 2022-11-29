@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const ProductOrderModal = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
   const { _id, productName, image, resalePrice } = product;
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit } = useForm()
 
   const handleProductOrder = data => {
     data.name = user?.displayName;
@@ -19,7 +20,7 @@ const ProductOrderModal = ({ product, setProduct }) => {
     data.sellerLocation = product?.location;
 
 
-    fetch(`https://used-products-resale-server.vercel.app/order`, {
+    fetch(`http://localhost:5000/order`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -46,7 +47,8 @@ const ProductOrderModal = ({ product, setProduct }) => {
             <div className="modal">
               <div className="modal-box relative">
                 <label htmlFor="product-order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                <h3 className="text-lg font-bold">{productName}</h3>
+                <h3 className="text-lg font-bold">Product Name: {productName}</h3>
+                <h3 className="text-md font-bold text-blue-400">{resalePrice}TK</h3>
 
                 <form onSubmit={handleSubmit(handleProductOrder)} className='mt-6 space-y-3'>
                   <input type="text" defaultValue={user?.displayName} disabled className="input input-bordered w-full" />
@@ -66,7 +68,7 @@ const ProductOrderModal = ({ product, setProduct }) => {
             <div className="modal">
               <div className="modal-box relative">
                 <label htmlFor="product-order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                <h3 className="text-lg font-bold">Please login to buy Product</h3>
+                <h3 className="text-lg font-bold">Please <Link to='/login' className='text-blue-500'>login</Link> to Buy Products</h3>
               </div>
             </div>
           </>

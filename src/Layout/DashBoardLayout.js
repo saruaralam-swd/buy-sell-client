@@ -23,9 +23,12 @@ const DashBoardLayout = () => {
           <Outlet></Outlet>
         </div>
 
-        <div className="drawer-side z-0">
+        <div className="drawer-side">
+          
           <label htmlFor="dashBoard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 text-base-content">
+          <ul className="menu p-4 w-80 bg-base-100 md:bg-base-100/0 text-base-content">
+            <li><Link to='/dashboard'>DashBoard</Link></li>
+
             {
               isBuyer && <>
                 <li><Link to='/dashboard/myOrders'>My Orders</Link></li>

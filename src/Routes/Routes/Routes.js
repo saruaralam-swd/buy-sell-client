@@ -11,6 +11,8 @@ import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/DashBoard/MyProducts/MyProducts";
 import Payment from "../../Pages/DashBoard/Payment/Payment";
 import ReportedProducts from "../../Pages/DashBoard/ReportedProducts/ReportedProducts";
+import UserProfile from "../../Pages/DashBoard/UserProfile/UserProfile";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
@@ -42,8 +44,8 @@ export const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        loader: ({ params }) => fetch(`https://used-products-resale-server.vercel.app/category/${params.id}`),
-        element: <CategoryProducts></CategoryProducts>
+        loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`),
+        element: <PrivateRoute><CategoryProducts></CategoryProducts></PrivateRoute>
       },
     ]
   },
@@ -51,6 +53,10 @@ export const router = createBrowserRouter([
     path: '/dashboard',
     element: <PrivateRoute><DashBoardLayout></DashBoardLayout></PrivateRoute>,
     children: [
+      {
+        path: '/dashboard',
+        element: <UserProfile></UserProfile>
+      },
       {
         path: '/dashboard/myOrders',
         element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
@@ -81,13 +87,13 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/payment/:id',
-        loader: ({params}) => fetch(`https://used-products-resale-server.vercel.app/order/${params.id}`),
+        loader: ({ params }) => fetch(`http://localhost:5000/order/${params.id}`),
         element: <Payment></Payment>
       },
     ]
   },
   {
     path: '*',
-    element: <div>Page Not Found</div>
+    element: <ErrorPage></ErrorPage>
   }
 ]);

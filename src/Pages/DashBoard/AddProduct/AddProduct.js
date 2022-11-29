@@ -17,7 +17,7 @@ const AddProduct = () => {
   const { data: categories = [], isLoading } = useQuery({
     queryKey: [''],
     queryFn: async () => {
-      const res = await fetch('https://used-products-resale-server.vercel.app/categories');
+      const res = await fetch('http://localhost:5000/categories');
       const data = await res.json();
       return data;
     }
@@ -38,6 +38,7 @@ const AddProduct = () => {
     const formData = new FormData()
     formData.append('image', image);
 
+  
 
     console.log('click category: ', category.length);
     if (category.length !== 1) {
@@ -52,6 +53,7 @@ const AddProduct = () => {
     })
       .then(res => res.json())
       .then(imgData => {
+       
         if (imgData.success) {
           data.image = imgData?.data?.url;
           data.categoryName = categoryName;
@@ -84,7 +86,7 @@ const AddProduct = () => {
           }
           data.postTime = date;
 
-          fetch(`https://used-products-resale-server.vercel.app/product?email=${user?.email}`, {
+          fetch(`http://localhost:5000/product?email=${user?.email}`, {
             method: 'POST',
             headers: {
               'content-type': 'application/json',
@@ -121,7 +123,8 @@ const AddProduct = () => {
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Product Image</span></label>
-            <input type="file" {...register('image')} className='' />
+            <input type="file" {...register('image')} className="file-input file-input-sm file-input-bordered file-input-black w-full " />
+            {/* <input type="file"  className='' /> */}
           </div>
 
           <div>
@@ -149,9 +152,10 @@ const AddProduct = () => {
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Product Quality</span></label>
             <select {...register('quality')} className="select select-bordered w-full select-sm">
-              <option>excellent</option>
-              <option>good</option>
-              <option>fair</option>
+              <option>Excellent</option>
+              <option>Good</option>
+              <option>Fair</option>
+              <option>Low</option>
             </select>
           </div>
 
@@ -162,7 +166,7 @@ const AddProduct = () => {
 
           <div>
             <label className="label text-sm font-semibold"><span className="label-text">Add your address</span></label>
-            <input type="text" {...register('location')} className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
+            <input type="text" {...register('location')} placeholder='your address' className='border border-indigo-500 focus:outline-1 focus:outline-indigo-600  w-full rounded-md px-4 py-1' required />
           </div>
 
           <div>
