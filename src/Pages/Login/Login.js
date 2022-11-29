@@ -55,7 +55,7 @@ const Login = () => {
           role: 'bearer',
         };
 
-        fetch('http://localhost:5000/users', {
+        fetch('https://used-products-resale-server.vercel.app/users', {
           method: "POST",
           headers: {
             'content-type': 'application/json',

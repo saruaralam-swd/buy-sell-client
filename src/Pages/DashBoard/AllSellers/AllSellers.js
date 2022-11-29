@@ -12,7 +12,7 @@ const AllSellers = () => {
   const { data: sellers = [], isLoading, refetch } = useQuery({
     queryKey: ['mySellers', user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/allSellers?email=${user?.email}`, {
+      const res = await fetch(`https://used-products-resale-server.vercel.app/allSellers?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -28,7 +28,7 @@ const AllSellers = () => {
 
 
   const handleSellerVerify = (sellerEmail) => {
-    fetch(`http://localhost:5000/verifySeller/${sellerEmail}?email=${user?.email}`, {
+    fetch(`https://used-products-resale-server.vercel.app/verifySeller/${sellerEmail}?email=${user?.email}`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -44,7 +44,7 @@ const AllSellers = () => {
   const handleSellerDelete = id => {
     const permission = window.confirm('Are Your sure you want to delete?')
     if (permission) {
-      fetch(`http://localhost:5000/seller/${id}?email=${user?.email}`, {
+      fetch(`https://used-products-resale-server.vercel.app/seller/${id}?email=${user?.email}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`

@@ -7,7 +7,7 @@ const AdvertisementCard = ({ product, setProduct }) => {
   const { todayDate, month, year, hour, minute, seconds } = postTime;
 
   const handleReportToAdmin = id => {
-    fetch(`http://localhost:5000/productReport/${id}`, {
+    fetch(`https://used-products-resale-server.vercel.app/productReport/${id}`, {
       method: 'PUT',
       headers: {
         authorization: `Bearer ${localStorage.getItem('accessToken')}`

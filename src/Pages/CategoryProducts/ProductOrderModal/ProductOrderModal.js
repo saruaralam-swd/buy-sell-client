@@ -20,7 +20,7 @@ const ProductOrderModal = ({ product, setProduct }) => {
     data.sellerLocation = product?.location;
 
 
-    fetch(`http://localhost:5000/order`, {
+    fetch(`https://used-products-resale-server.vercel.app/order`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

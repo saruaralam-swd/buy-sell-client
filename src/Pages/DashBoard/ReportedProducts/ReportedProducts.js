@@ -13,7 +13,7 @@ const ReportedProducts = () => {
   const { data: reportedProducts = [], isLoading, refetch } = useQuery({
     queryKey: ['reportedProduct', user?.email],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/reportedProduct?email=${user?.email}`, {
+      const res = await fetch(`https://used-products-resale-server.vercel.app/reportedProduct?email=${user?.email}`, {
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
@@ -30,7 +30,7 @@ const ReportedProducts = () => {
   const handleReportProductDelete = id => {
     const permission = window.confirm('Are you sure want to delete this product?')
     if (permission) {
-      fetch(`http://localhost:5000/reportProduct/${id}?email=${user?.email}`, {
+      fetch(`https://used-products-resale-server.vercel.app/reportProduct/${id}?email=${user?.email}`, {
         method: 'DELETE',
         headers: {
           authorization: `Bearer ${localStorage.getItem('accessToken')}`
