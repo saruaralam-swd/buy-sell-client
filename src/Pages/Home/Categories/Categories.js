@@ -1,24 +1,20 @@
 import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
 import Category from './Category';
 
 const Categories = () => {
+  const [categories, setCategories] = useState([]);
 
-  const { data: categories = [], isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const res = await fetch(`https://used-products-resale-server.vercel.app/categories`);
-      const data = await res.json();
-      return data;
-    }
-  });
-
-  if (isLoading) {
-    return <Loading></Loading>
-  }
-
+  useEffect(() => {
+    axios.get('https://used-products-resale-server.vercel.app/categories')
+    .then(data => {
+      const loadData = data.data;
+      setCategories(loadData);
+    })
+  },  []);
 
 
   return (
