@@ -8,6 +8,10 @@ import useSeller from '../hooks/UseSeller';
 import useTittle from '../hooks/useTittle';
 import Header from '../Pages/Shared/Header/Header';
 import { Bars3Icon, Squares2X2Icon, UserCircleIcon } from '@heroicons/react/24/solid'
+import userProfileIcon from '../assets/Dashboard/profile.svg';
+
+import products from '../assets/Dashboard/Seller/product.svg';
+import addProductIcon from '../assets/Dashboard/Seller/add-product.svg';
 
 const DashBoardLayout = () => {
   useTittle('Dashboard')
@@ -40,8 +44,13 @@ const DashBoardLayout = () => {
 
         <div className="drawer-side">
           <label htmlFor="dashBoard-drawer" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-base-100 md:bg-base-100/0 lg:bg-violet-100 text-base-content">
-            <li><Link to='/dashboard'>DashBoard</Link></li>
+          <ul className="menu p-4 w-80 bg-base-100 md:bg-base-100/0 lg:bg-slate-100 text-base-content">
+            <li><Link to='/dashboard'>
+              <img src={userProfileIcon} className='w-8 h-8' alt="" />
+              DashBoard
+            </Link>
+            </li>
+
             {
               isBuyer && <>
                 <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
@@ -51,9 +60,20 @@ const DashBoardLayout = () => {
 
             {
               isSeller && <>
-                <li><Link to='/dashboard/myProducts'>My Products</Link></li>
-                <li><Link to='/dashboard/addProducts'>Add Products</Link></li>
-                <li><Link to='/dashboard/myBuyer'>My Buyer</Link></li>
+                <li><Link to='/dashboard/myProducts'>
+                  <img src={products} className='h-6 w-6 mr-2' alt="" />
+                  My Products </Link>
+                </li>
+
+                <li><Link to='/dashboard/addProducts'>
+                  <img src={addProductIcon} className='w-6 h-6 mr-2' alt="" />
+                  Add Products</Link>
+                </li>
+
+                <li><Link to='/dashboard/myBuyer'>
+                  <img src="" alt="" />
+                  My Buyer</Link>
+                </li>
               </>
             }
 

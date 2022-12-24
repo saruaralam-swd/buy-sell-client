@@ -13,26 +13,27 @@ const UserProfile = () => {
   const [isSeller, isSellerLoading] = useSeller(user?.email)
   const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
 
-  if(isAdminLoading || isSellerLoading || isBuyerLoading) {
+  if (isAdminLoading || isSellerLoading || isBuyerLoading) {
     return <Loading />
   }
 
   return (
-    <div>
-      <div className='flex  gap=10'>
-        <UserCircleIcon className='w-12 h-12 inline-block' />
-        <h2 className='text-3xl font-semibold'>{user?.displayName}</h2>
-        {
-          isAdmin && <h2>Account Type: Admin</h2>
-        }
-        {
-          isSeller && <h2>Account Type: Seller</h2>
-        }
-        {
-          isBuyer && <h2>Account Type: Buyer</h2>
-        }
+    <div className='p-5 md:p-10'>
+      <div className='flex gap-2'>
+        <UserCircleIcon className='w-14 h-14 inline-block' />
+        <div>
+          <h2 className='text-3xl font-semibold'>{user?.displayName}</h2>
+          {
+            isAdmin && <h2 className='text-gray-700 text-sm'>Account Type: Admin</h2>
+          }
+          {
+            isSeller && <h2 className='text-gray-700 text-sm'>Account Type: Seller</h2>
+          }
+          {
+            isBuyer && <h2 className='text-gray-700 text-sm'>Account Type: Buyer</h2>
+          }
+        </div>
       </div>
-      <input type="text" defaultValue={user?.email} readOnly className="mt-5 input input-bordered w-full max-w-xs" />
     </div>
   );
 };
