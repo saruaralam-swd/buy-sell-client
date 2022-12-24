@@ -64,7 +64,7 @@ const MyProducts = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-center">My Products</h2>
+      <h2 className="text-3xl mb-5 font-semibold">My Products</h2>
       <table className="table w-full">
 
         <thead>
@@ -89,14 +89,14 @@ const MyProducts = () => {
                 <td>{product?.resalePrice} Tk</td>
                 <td>
                   {
-                    product?.advertise === false &&  <button onClick={() => handleAdvertise(product._id)} className='btn btn-primary btn-sm'>advertise</button>
+                    product?.advertise === false &&  <button onClick={() => handleAdvertise(product._id)} className='btn-primary rounded-full px-4 py-1'>advertise</button>
                   }
                   {
-                    product?.advertise && <span className='bg-slate-200 rounded-full px-3 py-1'>advertising</span>
+                    product?.advertise && <span className='bg-slate-200 rounded-full px-4 py-1'>advertising</span>
                   }
                 </td>
                 <td className='space-x-2'>
-                  <button onClick={() => handleProductDelete(product._id, product?.productName)}><TrashIcon className='h-10 w-10 text-red-400' /></button>
+                  <button onClick={() => handleProductDelete(product._id, product?.productName)}><TrashIcon className='h-7 w-7 text-red-400' /></button>
                 </td>
               </tr>
             )

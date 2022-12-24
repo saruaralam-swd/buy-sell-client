@@ -18,7 +18,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className='p-5 md:p-10'>
+    <div className=''>
       <div className='flex gap-2'>
         <UserCircleIcon className='w-14 h-14 inline-block' />
         <div>
