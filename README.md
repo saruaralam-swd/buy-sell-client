@@ -22,7 +22,7 @@ Live link : [https://buy-cell--web.web.app/]
 - 
 
 ## Technology: 
-- MERN (MongoDB, ExpressJs, ReactJs, NodeJs), firebase, vercel, Axios, JWT, react-router-dom, 
+- MERN (MongoDB, ExpressJs, ReactJs, NodeJs), firebase, vercel, Axios, JWT, react-router-dom
 
 
 ## css libraries

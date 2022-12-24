@@ -14,13 +14,13 @@ const Categories = () => {
       const loadData = data.data;
       setCategories(loadData);
     })
-  },  []);
+  }, []);
 
 
   return (
     <div className='px-10 my-20'>
       <h2 className="text-2xl font-bold text-slate-700 mb-3">Browse items by category</h2>
-      <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-10'>
+      <div className='grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-10'>
         {
           categories.map(category => <Category key={category._id} category={category}></Category>)
         }

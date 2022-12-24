@@ -1,16 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../../../Components/Loading';
 
 const Category = ({ category }) => {
   const { categoryName, img, _id } = category;
 
   return (
-    <Link to={`/category/${_id}`} className='flex gap-4 border'>
-      <div className='flex items-center gap-2'>
-        <img src={img} className='w-20' alt="product category img" />
-        <h2>{categoryName}</h2>
+    <Link to={`/category/${_id}`} >
+      <div className='w-20 h-20 rounded-full ring-2 ring-slate-200 hover:ring-slate-400 hover:ring- flex items-center justify-center'>
+        <img src={img} className='h-16 w-16 rounded-full' alt="product category img" />
       </div>
     </Link>
   );

@@ -15,7 +15,7 @@ const Header = () => {
       })
   };
 
-  const navMenu = <React.Fragment>
+  const navMenu = <>
     <li className='text-white'><Link to='/'>Home</Link></li>
     <li className='text-white'><Link to='/blog'>Blog</Link></li>
     {
@@ -28,16 +28,16 @@ const Header = () => {
           <li className='text-white'><Link to="/login">Login</Link></li>
         </>
     }
-  </React.Fragment>
+  </>
 
-  const profile = <React.Fragment>
+  const profile = <>
     <li className='text-white'><Link to='/dashboard'>Dashboard</Link></li>
     <li className='text-white'><button onClick={handleLogOut}>Sign out</button></li>
-  </React.Fragment>
+  </>
 
 
   return (
-      <div className="navbar bg-primary backdrop-blur sticky top-0 z-[9999] border-b-2 border-blue-200">
+    <div className="navbar bg-primary/60 sticky top-0 z-[999] backdrop-blur border-b-2 border-blue-200 transition-all duration-500">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -61,7 +61,7 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <UserCircleIcon  className='text-white' />
+                <UserCircleIcon className='text-white' />
               </div>
             </label>
             <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary text-white rounded-box w-52">
@@ -71,9 +71,9 @@ const Header = () => {
         </div>
       }
 
-      <label htmlFor="dashBoard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
+      {/* <label htmlFor="dashBoard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
         <Squares2X2Icon className="h-6 w-6 text-white" />
-      </label>
+      </label> */}
     </div >
   );
 };
