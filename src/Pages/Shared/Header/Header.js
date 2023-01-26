@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo.png'
 import { AuthContext } from '../../../Context/AuthProvider';
-import { Bars3Icon, Squares2X2Icon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { Bars3Icon, UserCircleIcon } from '@heroicons/react/24/solid'
+import dashboardIcon from '../../../assets/Dashboard/dashboard2.svg';
+import { BiLogOut } from "react-icons/bi";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -16,25 +18,16 @@ const Header = () => {
   };
 
   const navMenu = <>
-    <li className='text-white'><Link to='/'>Home</Link></li>
-    <li className='text-white'><Link to='/blog'>Blog</Link></li>
-    {
-      user?.uid && <li className='text-white'><Link to='/dashboard'>Dashboard</Link></li>
-    }
-
-    {
-      user?.uid ? <></> :
-        <>
-          <li className='text-white'><Link to="/login">Login</Link></li>
-        </>
-    }
+    <li className='text-white'><NavLink className={({ isActive }) => isActive ? 'active' : undefined} to='/'>Home</NavLink></li>
+    <li className='text-white'><NavLink to='/blog'>Blog</NavLink></li>
+    {user?.uid && <li className='text-white'><NavLink to='/dashboard'>Dashboard</NavLink></li>}
+    {user?.uid ? <></> : <><li className='text-white'><NavLink to="/login">Login</NavLink></li></>}
   </>
 
   const profile = <>
-    <li className='text-white'><Link to='/dashboard'>Dashboard</Link></li>
-    <li className='text-white'><button onClick={handleLogOut}>Sign out</button></li>
+    <li><NavLink to='/dashboard'> <img src={dashboardIcon} className='w-5 h-5' alt="" /> Dashboard</NavLink> </li>
+    <li><button onClick={handleLogOut}> <BiLogOut className='w-5 h-5' /> Sign out</button></li>
   </>
-
 
   return (
     <div className="navbar bg-violet-500/60 text-black sticky top-0 z-[999] backdrop-blur  transition-all duration-500">
@@ -64,16 +57,12 @@ const Header = () => {
                 <UserCircleIcon className='text-white' />
               </div>
             </label>
-            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary text-white rounded-box w-52">
+            <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box border w-52 bg-white">
               {profile}
             </ul>
           </div>
         </div>
       }
-
-      {/* <label htmlFor="dashBoard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
-        <Squares2X2Icon className="h-6 w-6 text-white" />
-      </label> */}
     </div >
   );
 };

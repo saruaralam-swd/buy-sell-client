@@ -27,7 +27,7 @@ const CategoryProducts = () => {
 
   return (
     <div className='my-10'>
-      <div className='mb-20'>
+      {/* <div className='mb-20'>
         <h2 className="text-2xl text-center uppercase font-semibold mb-5">Select Category</h2>
         <div className='flex justify-center '>
           <div>
@@ -38,7 +38,7 @@ const CategoryProducts = () => {
             </select>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div>
         {

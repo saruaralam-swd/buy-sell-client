@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { UserCircleIcon } from '@heroicons/react/24/solid'
-import { useEffect } from 'react';
 import useAdmin from '../../../hooks/UseAdmin';
 import useSeller from '../../../hooks/UseSeller';
 import useBuyer from '../../../hooks/UseBuyer';
 import Loading from '../../../Components/Loading';
+import { MdEdit } from "react-icons/md";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -18,7 +18,7 @@ const UserProfile = () => {
   }
 
   return (
-    <div className=''>
+    <div className='flex items-center justify-between'>
       <div className='flex gap-2'>
         <UserCircleIcon className='w-14 h-14 inline-block' />
         <div>
@@ -34,6 +34,7 @@ const UserProfile = () => {
           }
         </div>
       </div>
+      <button className="btn btn-primary btn-sm block tooltip tooltip-bottom" title='Profile Edit'><MdEdit className='w-5 h-5 inline-block mr-2' /></button>
     </div>
   );
 };

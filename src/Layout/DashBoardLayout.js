@@ -30,7 +30,7 @@ const DashBoardLayout = () => {
     <div>
       <Header></Header>
 
-      <div className='h-[50px] bg-slate-300 lg:hidden'>
+      <div className='h-[50px] bg-slate-300 md:hidden'>
         <label htmlFor="dashBoard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
           {/* <Squares2X2Icon className="h-6 w-6 text-black mr-2" /> */}
           <img src={dashBoardIcon} className='w-5 h-5 mr-2' alt="" />

@@ -38,9 +38,6 @@ const AddProduct = () => {
     const formData = new FormData()
     formData.append('image', image);
 
-  
-
-    console.log('click category: ', category.length);
     if (category.length !== 1) {
       setBtnBlur(false)
       alert('Select product Category');
