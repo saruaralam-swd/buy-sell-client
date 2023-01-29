@@ -18,24 +18,26 @@ const UserProfile = () => {
   }
 
   return (
-    <div className='flex items-center justify-between'>
-      <div className='flex gap-2'>
-        <UserCircleIcon className='w-14 h-14 inline-block' />
-        <div>
-          <h2 className='text-3xl font-semibold'>{user?.displayName}</h2>
-          {
-            isAdmin && <h2 className='text-gray-700 text-sm'>Account Type: Admin</h2>
-          }
-          {
-            isSeller && <h2 className='text-gray-700 text-sm'>Account Type: Seller</h2>
-          }
-          {
-            isBuyer && <h2 className='text-gray-700 text-sm'>Account Type: Buyer</h2>
-          }
+    <>
+      <div className='flex items-center justify-between'>
+        <div className='flex gap-2'>
+          <UserCircleIcon className='w-14 h-14 inline-block' />
+          <div>
+            <h2 className='text-3xl font-semibold'>{user?.displayName}</h2>
+            {
+              isAdmin && <h2 className='text-gray-700 text-sm'>Account Type: Admin</h2>
+            }
+            {
+              isSeller && <h2 className='text-gray-700 text-sm'>Account Type: Seller</h2>
+            }
+            {
+              isBuyer && <h2 className='text-gray-700 text-sm'>Account Type: Buyer</h2>
+            }
+          </div>
         </div>
+        <button className="btn btn-primary btn-sm block tooltip tooltip-left" data-tip='Edit Profile'><MdEdit className='w-5 h-5 inline-block mr-2' /></button>
       </div>
-      <button className="btn btn-primary btn-sm block tooltip tooltip-bottom" title='Profile Edit'><MdEdit className='w-5 h-5 inline-block mr-2' /></button>
-    </div>
+    </>
   );
 };
 
