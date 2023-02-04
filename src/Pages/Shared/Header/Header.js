@@ -1,11 +1,9 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../../assets/logo.png'
-import logo2 from '../../../assets/logo2.png'
+import logo from '../../../assets/logo2.png'
 import { AuthContext } from '../../../Context/AuthProvider';
-import { Bars3Icon, UserCircleIcon } from '@heroicons/react/24/solid'
-import dashboardIcon from '../../../assets/Dashboard/dashboard2.svg';
 import { BiLogOut } from "react-icons/bi";
+import { MdOutlineDashboard } from "react-icons/md";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -40,7 +38,7 @@ const Header = () => {
       <div className='navbar bg-white sticky top-0 z-[999] border-b px-3'>
         <div className="navbar-start">
           <Link to='/' className='flex items-center'>
-            <img src={logo2} className='w-8' alt="" />
+            <img src={logo} className='w-8' alt="" />
             <p className='font-semibold text-xl'>Buy <span className='text-blue-700'>&</span> Sell</p>
           </Link>
         </div>
@@ -72,7 +70,7 @@ const Header = () => {
 
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-2 p-1 shadow rounded-md border w-52 bg-white">
                   <p className='md:hidden border-b-2'>{dropDownMenu}</p>
-                  <li><NavLink to='/dashboard' className='bg-white text-black hover:bg-blue-600 hover:text-white'> <img src={dashboardIcon} className='w-5 h-5 ' alt="" /> Dashboard</NavLink> </li>
+                  <li><NavLink to='/dashboard' className='bg-white text-black hover:bg-blue-600 hover:text-white'> <MdOutlineDashboard className='w-5 h-5' />  Dashboard</NavLink> </li>
                   <li><button onClick={handleLogOut} className='bg-white text-black hover:bg-blue-600 hover:text-white'> <BiLogOut className='w-5 h-5' /> Sign out</button></li>
                 </ul>
               </div>
