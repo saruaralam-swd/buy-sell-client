@@ -27,7 +27,7 @@ const Advertisement = () => {
   }
 
   return (
-    <div className='my-20'>
+    <div className='my-20 bg-white'>
       {
         advertisement.length > 0 &&
         <div className='px-10' >

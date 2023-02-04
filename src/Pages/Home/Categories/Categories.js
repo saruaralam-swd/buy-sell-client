@@ -12,8 +12,8 @@ const Categories = () => {
   const { categories } = useContext(AuthContext);
 
   return (
-    <div className='my-10 mx-5 bg-white rounded-md'>
-      <h2 className='text-xl font-bold border-b-2 pb-2 p-2'>Browse Categories</h2>
+    <div className='my-10 mx-5 bg-white border rounded-md'>
+      <h2 className='text-xl font-bold border-b p-2'>Browse Categories</h2>
       <Swiper
         style={{
           "--swiper-navigation-size": "12px",

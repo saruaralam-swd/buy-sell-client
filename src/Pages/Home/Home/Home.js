@@ -9,13 +9,13 @@ import UserDocument from '../UserDocument/UserDocument';
 const Home = () => {
   useTittle('Home')
   return (
-    <div className='bg-[#EAEDED]'>
+    <>
       <Banner></Banner>
       <Categories></Categories>
       <UserDocument></UserDocument>
       <Advertisement></Advertisement>
       <Footer></Footer>
-    </div>
+    </>
   );
 };
 
