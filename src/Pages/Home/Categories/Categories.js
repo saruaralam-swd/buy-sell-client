@@ -36,6 +36,7 @@ const Categories = () => {
         spaceBetween={10}
         freeMode={true}
         loop={true}
+        navigation={true}
         keyboard={{
           enabled: true,
         }}
@@ -43,7 +44,6 @@ const Categories = () => {
           delay: 3000,
           disableOnInteraction: false,
         }}
-        navigation={true}
         modules={[Autoplay, Navigation, FreeMode, Keyboard]}
         className="w-full h-[180px] swiper mt-2"
       >
