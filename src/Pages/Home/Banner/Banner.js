@@ -5,34 +5,27 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import img1 from '../../../assets/SlideImage/img1.avif'
-import img2 from '../../../assets/SlideImage/img2.avif'
-import img3 from '../../../assets/SlideImage/img3.avif'
-import img4 from '../../../assets/SlideImage/img4.avif'
-import img5 from '../../../assets/SlideImage/img5.jpg'
+import img2 from '../../../assets/SlideImage/2.jpg'
+import img3 from '../../../assets/SlideImage/3.jpg'
+import img4 from '../../../assets/SlideImage/4.jpg'
 
 const Banner = () => {
   const slides = [
     {
       title: 'About Phone Band Title',
-      image: img1,
-    },
-    {
-      title: 'About Phone Band Title',
       image: img2,
+      text: 'lorem ipsum is dolor'
     },
     {
       title: 'About Phone Band Title',
       image: img3,
+      text: 'lorem ipsum is dolor'
     },
     {
       title: 'About Phone Band Title',
       image: img4,
-    },
-    {
-      title: 'About Phone Band Title',
-      image: img5,
-    },
+      text: 'lorem ipsum is dolor'
+    }
   ];
 
   return (
@@ -49,7 +42,7 @@ const Banner = () => {
           clickable: true,
         }}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay, FreeMode, Keyboard]}
@@ -57,9 +50,18 @@ const Banner = () => {
       >
         {
           slides.map(slide =>
-            <SwiperSlide className=''>
-              <img className='w-full h-full object-cover' src={slide.image} alt="" />
+            <SwiperSlide className='relative'>
+              <img className='w-full h-full object-cover object' src={slide.image} alt="" />
 
+              <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center'>
+                <div className='w-1/2 h-[80%] flex items-center justify-center bg-black/50 text-white text-center rounded-lg'>
+                  <div>
+                    <h2 className="text-4xl font-semibold">{slide.title}</h2>
+                    <p>{slide.text}</p>
+                    <button className='btn btn-sm btn-primary'>Click</button>
+                  </div>
+                </div>
+              </div>
             </SwiperSlide>
           )
         }
