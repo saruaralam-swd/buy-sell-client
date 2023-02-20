@@ -4,6 +4,8 @@ import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
 import ProductOrderModal from '../../CategoryProducts/ProductOrderModal/ProductOrderModal';
 import AdvertisementCard from './AdvertisementCard';
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { FaListUl } from "react-icons/fa";
 
 const Advertisement = () => {
   const { user } = useContext(AuthContext);
@@ -31,7 +33,15 @@ const Advertisement = () => {
       {
         advertisement.length > 0 &&
         <div className='px-10' >
-          <h2 className="text-2xl font-bold text-slate-700 mb-3">Advertisement</h2>
+          <div className='flex items-center justify-between'>
+            <div>{" "}</div>
+            <h2 className="text-2xl text-center font-bold text-slate-700 mb-5">Advertisement</h2>
+            <div className='flex gap-3'>
+              <BsFillGrid3X3GapFill className='h-6 w-6 inline-block' />
+              <FaListUl className='w-6 h-6 inline-block' />
+            </div>
+          </div>
+
           <div className=''>
             {
               advertisement.map(product => <AdvertisementCard setProduct={setProduct} key={product._id} product={product}></AdvertisementCard>)

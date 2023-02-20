@@ -5,26 +5,26 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-import img2 from '../../../assets/SlideImage/2.jpg'
-import img3 from '../../../assets/SlideImage/3.jpg'
-import img4 from '../../../assets/SlideImage/4.jpg'
+import slide2 from '../../../assets/SlideImage/2.jpg'
+import slide3 from '../../../assets/SlideImage/3.jpg'
+import slide4 from '../../../assets/SlideImage/4.jpg'
 
 const Banner = () => {
   const slides = [
     {
-      title: 'About Phone Band Title',
-      image: img2,
-      text: 'lorem ipsum is dolor'
+      title: `Swap Your Old Phone for the Latest Model!`,
+      image: slide2,
+      text: 'Get the best deal on your next phone purchase or sell your old one for a fair price. We offer competitive prices and a secure payment process.'
     },
     {
-      title: 'About Phone Band Title',
-      image: img3,
-      text: 'lorem ipsum is dolor'
+      title: 'Get the Best Deal on Your Next Phone ',
+      image: slide3,
+      text: 'Upgrade your phone and get the latest features without overspending. Buy or sell on our website for a budget-friendly and reliable experience.'
     },
     {
-      title: 'About Phone Band Title',
-      image: img4,
-      text: 'lorem ipsum is dolor'
+      title: 'Buy the Latest Phone or Sell Your Old One',
+      image: slide4,
+      text: 'Trust us for all your phone buying and selling needs - our website offers a safe and reliable platform for all transactions.'
     }
   ];
 
@@ -42,7 +42,7 @@ const Banner = () => {
           clickable: true,
         }}
         autoplay={{
-          delay: 3000,
+          delay: 4000,
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay, FreeMode, Keyboard]}
@@ -54,8 +54,8 @@ const Banner = () => {
               <img className='w-full h-full object-cover object' src={slide.image} alt="" />
 
               <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center'>
-                <div className='w-1/2 h-[80%] flex items-center justify-center bg-black/50 text-white text-center rounded-lg'>
-                  <div>
+                <div className='w-[55%] h-[70%] flex items-center justify-center bg-black/60 text-white text-center p-5 rounded-lg'>
+                  <div className='space-y-5'>
                     <h2 className="text-4xl font-semibold">{slide.title}</h2>
                     <p>{slide.text}</p>
                     <button className='btn btn-sm btn-primary'>Click</button>

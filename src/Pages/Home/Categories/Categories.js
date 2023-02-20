@@ -1,68 +1,30 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, FreeMode, Keyboard, Autoplay } from 'swiper';
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './Categories.css';
+import Category from './Category';
 import { Link } from 'react-router-dom';
 
 const Categories = () => {
   const { categories } = useContext(AuthContext);
 
   return (
-    <div className='my-10 mx-5 bg-white border rounded-md'>
-      <h2 className='text-xl font-bold border-b p-2'>Browse Categories</h2>
-      <Swiper
-        style={{
-          "--swiper-navigation-size": "12px",
-        }}
-        breakpoints={{
-          640: {
-            width: 640,
-            slidesPerView: 3,
-          },
-          768: {
-            width: 640,
-            slidesPerView: 3,
-          },
-          1024: {
-            width: 1024,
-            slidesPerView: 3,
-          },
-        }}
-        slidesPerView={1}
-        spaceBetween={10}
-        freeMode={true}
-        loop={true}
-        navigation={true}
-        keyboard={{
-          enabled: true,
-        }}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        modules={[Autoplay, Navigation, FreeMode, Keyboard]}
-        className="w-full h-[180px] swiper mt-2"
-      >
-        <div>
+    <div className='my-10 mx-5 bg-white'>
+      <h2 className='text-2xl font-bold text-slate-700 mb-5 text-center'>Browse Categories</h2>
+
+      <div className='flex justify-center gap-5'>
+        <div className='flex flex-wrap justify-center gap-5'>
           {
             categories.map(category =>
-              <SwiperSlide className='text-center hover:underline'>
-                <Link to={`/category/${category?._id}`} >
-                  <div>
-                    {/* <img src={category?.img} className='' alt="category img" /> */}
-                    <img className='w-32 h-32 object-cover mx-auto' src='https://media.istockphoto.com/id/1161116588/photo/mobile-phone-top-view-with-white-screen.jpg?s=612x612&w=0&k=20&c=6nGTbnTvQUiq2XXSYuT411pC-5B1SUjhpLhE3eGrNIw=' alt="category img" />
-                    <p>{category?.categoryName}</p>
-                  </div>
-                </Link>
-              </SwiperSlide>
+              <div to={`/category/${category?._id}`} className='hover:bg-blue-300 duration-700 w-32 h-32 border rounded-md flex items-center justify-center'>
+                <img src={category?.img} className='h-16 w-16 rounded-full' alt="category img" />
+              </div>
             )
           }
         </div>
-      </Swiper>
+      </div>
     </div>
 
   );
