@@ -4,8 +4,6 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './Categories.css';
-import Category from './Category';
-import { Link } from 'react-router-dom';
 
 const Categories = () => {
   const { categories } = useContext(AuthContext);
