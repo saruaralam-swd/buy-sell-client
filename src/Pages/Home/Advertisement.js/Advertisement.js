@@ -6,10 +6,12 @@ import ProductOrderModal from '../../CategoryProducts/ProductOrderModal/ProductO
 import AdvertisementCard from './AdvertisementCard';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa";
+import ProductGridView from './ProductGridView';
 
 const Advertisement = () => {
   const { user } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
+  const [productView, setProductView] = useState('');
 
   const { data: advertisement = [], isLoading } = useQuery({
     queryKey: ['advertisement'],
@@ -35,18 +37,30 @@ const Advertisement = () => {
         <div className='px-10' >
           <div className='flex items-center justify-between'>
             <div className='hidden lg:block'>{" "}</div>
-            <h2 className="text-2xl text-center font-bold text-slate-700 mb-5">Advertisement</h2>
+            <h2 className="text-2xl text-center font-bold text-slate-700 mb-10">Advertisement</h2>
             <div className='flex gap-3'>
-              <BsFillGrid3X3GapFill className='h-6 w-6 inline-block' />
-              <FaListUl className='w-6 h-6 inline-block' />
+              <BsFillGrid3X3GapFill onClick={() => setProductView(true)} className='h-6 w-6 inline-block cursor-pointer' />
+              <FaListUl onClick={() => setProductView(false)} className='w-6 h-6 inline-block cursor-pointer' />
             </div>
           </div>
 
-          <div className=''>
+          <div>
             {
-              advertisement.map(product => <AdvertisementCard setProduct={setProduct} key={product._id} product={product}></AdvertisementCard>)
+              productView ?
+                <div className='grid md:grid-cols-4 lg:grid-cols-4 gap-10'>
+                  {
+                    advertisement.map(product => <ProductGridView setProduct={setProduct} key={product._id} product={product}></ProductGridView>)
+                  }
+                </div>
+                :
+                <div>
+                  {
+                    advertisement.map(product => <AdvertisementCard setProduct={setProduct} key={product._id} product={product}></AdvertisementCard>)
+                  }
+                </div>
             }
           </div>
+
           <div>
             {
               product && <ProductOrderModal product={product} setProduct={setProduct}></ProductOrderModal>

@@ -4,6 +4,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './Categories.css';
+import { Link } from 'react-router-dom';
 
 const Categories = () => {
   const { categories } = useContext(AuthContext);
@@ -16,9 +17,9 @@ const Categories = () => {
         <div className='flex flex-wrap justify-center gap-5'>
           {
             categories.map(category =>
-              <div to={`/category/${category?._id}`} className='hover:bg-blue-300 duration-700 w-32 h-32 border rounded-md flex items-center justify-center'>
+              <Link to={`/category/${category?._id}`} className='hover:bg-blue-300 duration-500 cursor-pointer w-32 h-32 border rounded-md flex items-center justify-center'>
                 <img src={category?.img} className='h-16 w-16 rounded-full' alt="category img" />
-              </div>
+              </Link>
             )
           }
         </div>

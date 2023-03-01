@@ -30,7 +30,7 @@ const AdvertisementCard = ({ product, setProduct }) => {
           <div className='space-y-1 md:border-r-2 md:pr-2'>
             <h2 className='text-2xl font-semibold'> {productName} </h2>
             <div className='flex gap-10 font-semibold'>
-              <p className='text-blue-500 font-bold text-2xl'>{resalePrice} TK</p>
+              <p className='text-blue-500 font-bold text-xl'>{resalePrice} TK</p>
               <del>{originalPrice}Tk</del>
             </div>
             <p>{description.length > 100 ? (description.slice(0, 100) + "...") : description}</p>
