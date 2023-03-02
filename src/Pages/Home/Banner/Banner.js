@@ -61,7 +61,7 @@ const Banner = () => {
                   <div className='space-y-5'>
                     <h2 className="text-4xl font-semibold">{slide.title}</h2>
                     <p>{slide.text}</p>
-                    <button className='btn btn-sm btn-primary'>Click</button>
+                    <button className='btn btn-sm btn-primary'>Browse Phones</button>
                   </div>
                 </div>
               </div>
