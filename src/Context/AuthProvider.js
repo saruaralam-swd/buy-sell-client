@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import app from '../firebase/firebase.config';
 import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 export const AuthContext = createContext();
 const auth = getAuth(app)
@@ -9,17 +10,15 @@ const auth = getAuth(app)
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    axios.get('https://used-products-resale-server.vercel.app/categories')
-      .then(data => {
-        const loadData = data.data;
-        setCategories(loadData);
-        setIsLoading(false);
-      })
-  }, []);
+  const { data: categories = [], isLoading: categoriesLoading } = useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
+      const res = await fetch(`https://used-products-resale-server.vercel.app/categories`);
+      const data = await res.json();
+      return data;
+    }
+  });
 
   // authentication start
   const createUser = (email, password) => {
@@ -66,7 +65,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     categories,
-    isLoading,
+    categoriesLoading,
   };
 
   return (

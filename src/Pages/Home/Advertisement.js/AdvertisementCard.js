@@ -36,8 +36,7 @@ const AdvertisementCard = ({ product, setProduct }) => {
             <p>{description.length > 100 ? (description.slice(0, 100) + "...") : description}</p>
             <div>
               <label onClick={() => setProduct(product)} htmlFor="product-order-modal" className="btn btn-primary btn-sm mr-2"> Book Now </label>
-              <button onClick={() => handleReportToAdmin(_id)} className='mt-2 md:mt-0 border rounded-md px-4 py-1 bg-red-300 text-black font-semibold'>Report Product</button>
-              <button className='mt-2 md:mt-0 border rounded-md px-4 py-1 bg-red-300 text-black font-semibold'>quick view</button>
+              {/* <button onClick={() => handleReportToAdmin(_id)} className='mt-2 md:mt-0 border rounded-md px-4 py-1 bg-red-300 text-black font-semibold'>Report Product</button> */}
             </div>
           </div>
 

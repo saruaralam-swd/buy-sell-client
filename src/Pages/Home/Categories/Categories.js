@@ -8,14 +8,14 @@ import { Link } from 'react-router-dom';
 import Loader from '../../../Components/Loader';
 
 const Categories = () => {
-  const { categories, isLoading } = useContext(AuthContext);
+  const { categories, categoriesLoading } = useContext(AuthContext);
 
   return (
     <div className='my-10 mx-5 bg-white'>
       <h2 className='text-2xl font-bold text-slate-700 mb-5 text-center'>Browse Categories</h2>
 
       {
-        isLoading &&
+        categoriesLoading &&
         <>
           <div role="status" className='flex justify-center items-center'>
             <svg className="inline mr-2 w-10  h-10 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">

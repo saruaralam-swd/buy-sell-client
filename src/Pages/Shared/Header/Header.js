@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../../assets/logo2.png'
+import logo from '../../../assets/image/logo.png'
 import { AuthContext } from '../../../Context/AuthProvider';
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
@@ -38,7 +38,7 @@ const Header = () => {
       <div className='navbar bg-white sticky top-0 z-[999] border-b px-3'>
         <div className="navbar-start">
           <Link to='/' className='flex items-center'>
-            <img src={logo} className='w-8' alt="" />
+            <img src={logo} className='w-8 mr-3' alt="" />
             <p className='font-semibold text-xl'>Buy <span className='text-blue-700'>&</span> Sell</p>
           </Link>
         </div>
