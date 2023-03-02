@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import Loading from '../../../Components/Loading';
+import Loader from '../../../Components/Loader';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { CheckBadgeIcon, TrashIcon } from '@heroicons/react/24/solid'
 import useTittle from '../../../hooks/useTittle';
@@ -23,7 +23,7 @@ const AllBuyers = () => {
   })
 
   if (isLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
 

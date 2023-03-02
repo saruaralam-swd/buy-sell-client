@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import Loading from '../../../Components/Loading';
+import Loader from '../../../Components/Loader';
 import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
 import CategoryProduct from './CategoryProduct';
 
@@ -20,7 +20,7 @@ const CategoryProducts = () => {
   });
 
   if (isLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
   console.log(id);

@@ -4,7 +4,7 @@ import { UserCircleIcon } from '@heroicons/react/24/solid'
 import useAdmin from '../../../hooks/UseAdmin';
 import useSeller from '../../../hooks/UseSeller';
 import useBuyer from '../../../hooks/UseBuyer';
-import Loading from '../../../Components/Loading';
+import Loader from '../../../Components/Loader';
 import { MdEdit } from "react-icons/md";
 
 const UserProfile = () => {
@@ -14,7 +14,7 @@ const UserProfile = () => {
   const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
 
   if (isAdminLoading || isSellerLoading || isBuyerLoading) {
-    return <Loading />
+    return <Loader />
   }
 
   return (

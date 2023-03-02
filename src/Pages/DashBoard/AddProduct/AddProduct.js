@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
-import Loading from '../../../Components/Loading';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import Loader from '../../../Components/Loader';
 
 const AddProduct = () => {
   const { user } = useContext(AuthContext);
@@ -24,7 +24,7 @@ const AddProduct = () => {
   })
 
   if (isLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
   const category = categories.filter(c => c.categoryName === categoryName);

@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
-import Loading from '../../../Components/Loading';
+import Loader from '../../../Components/Loader';
 import { AuthContext } from '../../../Context/AuthProvider';
 import ProductOrderModal from '../../CategoryProducts/ProductOrderModal/ProductOrderModal';
 import AdvertisementCard from './AdvertisementCard';
@@ -30,7 +30,7 @@ const Advertisement = () => {
 
 
   if (isLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
   if (isAsc === 'Low Price') {

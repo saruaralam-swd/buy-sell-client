@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../../../Components/Loading';
+import Loader from '../../../Components/Loader';
 import { AuthContext } from '../../../Context/AuthProvider';
 import useTittle from '../../../hooks/useTittle';
 
@@ -23,7 +23,7 @@ const MyOrders = () => {
   });
 
   if (isLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
   return (

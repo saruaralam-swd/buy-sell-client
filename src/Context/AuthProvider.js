@@ -10,13 +10,15 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios.get('https://used-products-resale-server.vercel.app/categories')
-    .then(data => {
-      const loadData = data.data;
-      setCategories(loadData);
-    })
+      .then(data => {
+        const loadData = data.data;
+        setCategories(loadData);
+        setIsLoading(false);
+      })
   }, []);
 
   // authentication start
@@ -64,6 +66,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     categories,
+    isLoading,
   };
 
   return (

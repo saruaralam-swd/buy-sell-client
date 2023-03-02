@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import Loading from '../../../Components/Loading';
+import Loader from '../../../Components/Loader';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { TrashIcon } from '@heroicons/react/24/solid'
 
@@ -22,7 +22,7 @@ const MyProducts = () => {
   });
 
   if(isLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
   const handleAdvertise = id => {

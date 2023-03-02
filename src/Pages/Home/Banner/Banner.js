@@ -12,16 +12,19 @@ import slide4 from '../../../assets/SlideImage/4.jpg'
 const Banner = () => {
   const slides = [
     {
+      _id: 1,
       title: `Swap Your Old Phone for the Latest Model!`,
       image: slide2,
       text: 'Get the best deal on your next phone purchase or sell your old one for a fair price. We offer competitive prices and a secure payment process.'
     },
     {
+      _id: 2,
       title: 'Get the Best Deal on Your Next Phone ',
       image: slide3,
       text: 'Upgrade your phone and get the latest features without overspending. Buy or sell on our website for a budget-friendly and reliable experience.'
     },
     {
+      _id: 3,
       title: 'Buy the Latest Phone or Sell Your Old One',
       image: slide4,
       text: 'Trust us for all your phone buying and selling needs - our website offers a safe and reliable platform for all transactions.'
@@ -50,7 +53,7 @@ const Banner = () => {
       >
         {
           slides.map(slide =>
-            <SwiperSlide className='relative'>
+            <SwiperSlide className='relative' key={slide._id}>
               <img className='w-full h-full object-cover object' src={slide.image} alt="" />
 
               <div className='w-full h-full absolute top-0 left-0 flex items-center justify-center'>

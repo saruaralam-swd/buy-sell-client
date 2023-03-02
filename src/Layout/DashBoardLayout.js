@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Loading from '../Components/Loading';
 import { AuthContext } from '../Context/AuthProvider';
 import useAdmin from '../hooks/UseAdmin';
 import useBuyer from '../hooks/UseBuyer';
@@ -14,6 +13,7 @@ import profile from '../assets/Dashboard/img.png'
 import products from '../assets/Dashboard/Seller/product.svg';
 import addProductIcon from '../assets/Dashboard/Seller/add-product.svg';
 import buyersIcon from '../assets/Dashboard/Seller/buyers.svg';
+import Loader from '../Components/Loader';
 
 const DashBoardLayout = () => {
   useTittle('Dashboard')
@@ -23,7 +23,7 @@ const DashBoardLayout = () => {
   const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
 
   if (isAdminLoading || isSellerLoading || isBuyerLoading) {
-    return <Loading></Loading>
+    return <Loader></Loader>
   }
 
   return (
