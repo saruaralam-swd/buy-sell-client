@@ -20,6 +20,15 @@ const AuthProvider = ({ children }) => {
     }
   });
 
+  const {data: allPhones = [], isLoading: allPhonesLoading} = useQuery({
+    queryKey: ['allProducts'],
+    queryFn: async () => {
+      const res = await fetch('http://localhost:5000/allProducts');
+      const data  = await res.json();
+      return data;
+    }
+  });
+
   // authentication start
   const createUser = (email, password) => {
     setLoading(true);
@@ -64,8 +73,8 @@ const AuthProvider = ({ children }) => {
     updateUser,
     signIn,
     logOut,
-    categories,
-    categoriesLoading,
+    categories, categoriesLoading,
+    allPhones, allPhonesLoading
   };
 
   return (

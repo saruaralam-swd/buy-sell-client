@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import CategoryLayout from "../../Layout/CategoryLayout";
 import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import AllProducts from "../../Pages/CategoryProducts/CategoryProducts/AllProducts";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts/CategoryProducts";
 import AddProduct from "../../Pages/DashBoard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/DashBoard/AllBuyers/AllBuyers";
@@ -47,10 +49,20 @@ export const router = createBrowserRouter([
         element: <SignUp></SignUp>
       },
       {
-        path: '/category/:id',
-        loader: ({ params }) => fetch(`https://used-products-resale-server.vercel.app/category/${params.id}`),
-        element: <CategoryProducts></CategoryProducts>
-      },
+        path: '/category',
+        element: <CategoryLayout />,
+        children: [
+          {
+            path: '/category',
+            element: <AllProducts />
+          },
+          {
+            path: '/category/:id',
+            loader: ({ params }) => fetch(`https://used-products-resale-server.vercel.app/category/${params.id}`),
+            element: <CategoryProducts></CategoryProducts>
+          }
+        ]
+      }
     ]
   },
   {

@@ -18,7 +18,7 @@ const Header = () => {
 
   const navMenu = <>
     <li><NavLink to='/home'>Home</NavLink></li>
-    <li><NavLink to='/phone'>Phones</NavLink></li>
+    <li><NavLink to='/category'>Phones</NavLink></li>
     <li><NavLink to='/blog'>Blog</NavLink></li>
     <li><NavLink to='/about'>About</NavLink></li>
     <li><NavLink to='/contact'>Contact</NavLink></li>
