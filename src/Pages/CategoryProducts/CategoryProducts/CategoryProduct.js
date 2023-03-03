@@ -27,7 +27,7 @@ const CategoryProduct = ({ categoryProduct, setProduct }) => {
   return (
     <div className='px-5'>
       <div className='mb-10'>
-        <div className='md:p-7 border border-slate-100 shadow-lg  rounded-lg grid md:grid-cols-4 gap-5'>
+        <div className='md:p- border border-slate-100 shadow-lg  rounded-lg grid md:grid-cols-4 gap-5'>
           <img src={image} className='lg:h-[280px] lg:w-[320px] mx-auto md:mx-0 col-span-4 md:col-span-2 lg:col-span-1' alt="" />
 
           <div className='col-span-4 md:col-span-2 lg:col-span-3 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-10 pb-10 p-5'>
@@ -61,7 +61,7 @@ const CategoryProduct = ({ categoryProduct, setProduct }) => {
               <div className='flex'>
                 <UserCircleIcon className='h-12 w-12 inline-block mr-2' />
                 <div>
-                  <p> <span className='font-semibold text-md'>{sellerName}</span> {verify && <CheckBadgeIcon className='h-6 w-6 text-green-500 inline-block' />}</p>
+                  <p> <span className='font-semibold text-md'>{sellerName}</span> {verify && <CheckBadgeIcon className='h-4 w-4 text-indigo-600 inline-block' />}</p>
                   <p className='text-xs'>Post Data: {todayDate > 0 && `${todayDate}-${month}-${year}`} {`${hour} ${minute}m ${seconds}s`}</p>
                 </div>
               </div>

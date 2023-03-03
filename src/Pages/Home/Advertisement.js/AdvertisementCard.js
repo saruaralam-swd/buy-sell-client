@@ -44,12 +44,12 @@ const AdvertisementCard = ({ product, setProduct }) => {
             <div className='flex'>
               <UserCircleIcon className='h-12 w-12 inline-block mr-2' />
               <div>
-                <p> <span className='font-semibold text-md'>{sellerName}</span> {verify && <CheckBadgeIcon className='h-6 w-6 text-indigo-600 inline-block' />}</p>
+                <p> <span className='font-semibold text-md'>{sellerName}</span> {verify && <CheckBadgeIcon className='h-4 w-4 text-indigo-600 inline-block' />}</p>
                 <p className='text-xs'>Post Data: {todayDate > 0 && `${todayDate}-${month}-${year}`} {`${hour} ${minute}h ${seconds}s`}</p>
               </div>
             </div>
-            <p> <PhoneIcon className='h-4 w-4 inline-block mr-2' /> {phoneNumber}</p>
-            <p> <MapPinIcon className='h-4 w-4 inline-block mr-2' /> {location}</p>
+            <p className='ml-3'><PhoneIcon className='h-4 w-4 inline-block mr-2' /> {phoneNumber}</p>
+            <p className='ml-3'><MapPinIcon className='h-4 w-4 inline-block mr-2' /> {location}</p>
           </div>
         </div>
       </div>

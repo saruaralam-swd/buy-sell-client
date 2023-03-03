@@ -52,8 +52,8 @@ const Advertisement = () => {
 
               <img src={sortImg} alt="" />
 
-              <BsFillGrid3X3GapFill onClick={() => setProductView(true)} className='h-6 w-6 inline-block cursor-pointer' />
-              <FaListUl onClick={() => setProductView(false)} className='w-6 h-6 inline-block cursor-pointer' />
+              <BsFillGrid3X3GapFill onClick={() => setProductView(true)} className='h-5 w-5 inline-block cursor-pointer' />
+              <FaListUl onClick={() => setProductView(false)} className='w-5 h-5 inline-block cursor-pointer' />
             </div>
           </div>
 
