@@ -6,21 +6,29 @@ import CategoryProduct from './CategoryProduct';
 
 const CategoryProducts = () => {
   const id = useParams();
-  const { allPhones } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
-  
+
+  const { allPhones } = useContext(AuthContext);
   const categoryProducts = (allPhones.filter(phone => phone?.categoryId === id.id));
 
   return (
     <div>
       <div>
         {
-          categoryProducts.map(categoryProduct =>
-            <CategoryProduct
-              key={categoryProduct._id}
-              setProduct={setProduct}
-              categoryProduct={categoryProduct}
-            > </CategoryProduct>)
+          id.id ?
+            categoryProducts.map(categoryProduct =>
+              <CategoryProduct
+                key={categoryProduct._id}
+                setProduct={setProduct}
+                categoryProduct={categoryProduct}>
+              </CategoryProduct>)
+            :
+            allPhones.map(phone =>
+              <CategoryProduct
+                key={phone._id}
+                categoryProduct={phone}
+                setProduct={setProduct}>
+              </CategoryProduct>)
         }
       </div>
       {

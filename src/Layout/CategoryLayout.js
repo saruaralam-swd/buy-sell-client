@@ -4,7 +4,7 @@ import { AuthContext } from '../Context/AuthProvider';
 import logo from '../assets/image/logo.png'
 
 const CategoryLayout = () => {
-  const { categories, categoriesLoading, allPhones } = useContext(AuthContext);
+  const { categories, categoriesLoading } = useContext(AuthContext);
 
   return (
     <div>
