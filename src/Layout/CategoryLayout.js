@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
-import logo from '../assets/image/logo.png'
+import logo from '../assets/image/logo.png';
+import { BiCategory } from "react-icons/bi";
 
 const CategoryLayout = () => {
   const { categories, categoriesLoading } = useContext(AuthContext);
@@ -11,10 +12,10 @@ const CategoryLayout = () => {
       <div className="text-right lg:hidden">
         <label
           htmlFor="category"
-          className="drawer-button  hover:bg-green-100 rounded-md inline-block tooltip tooltip-left"
-          data-tip="Product Categories"
+          className="drawer-button  hover:bg-blue-100  rounded-md inline-block tooltip tooltip-left mr-5 mt-2"
+          data-tip="Phone Categories"
         >
-          <img src={logo} className="w-10 cursor-pointer" alt="" />
+          <BiCategory className='w-7 h-7 cursor-pointer' />
         </label>
       </div>
 

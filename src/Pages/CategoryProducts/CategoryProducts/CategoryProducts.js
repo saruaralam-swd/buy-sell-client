@@ -23,7 +23,7 @@ const CategoryProducts = () => {
                 categoryProduct={categoryProduct}>
               </CategoryProduct>)
               :
-              <h2 className="flex items-center justify-center h-screen text-5xl">No Phone Found</h2>
+              <h2 className="flex items-center justify-center h-screen text-4xl text-gray-400">No Phone Found</h2>
             :
             allPhones.length ?
               allPhones.map(phone =>
@@ -33,7 +33,7 @@ const CategoryProducts = () => {
                   setProduct={setProduct}>
                 </CategoryProduct>)
               :
-              <h2 className="flex items-center justify-center h-screen text-5xl">No Phone Found</h2>
+              <h2 className="flex items-center justify-center h-screen text-4xl text-gray-400">No Phone Found</h2>
         }
       </div>
       {
