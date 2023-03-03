@@ -16,19 +16,24 @@ const CategoryProducts = () => {
       <div>
         {
           id.id ?
-            categoryProducts.map(categoryProduct =>
+            categoryProducts.length ? categoryProducts.map(categoryProduct =>
               <CategoryProduct
                 key={categoryProduct._id}
                 setProduct={setProduct}
                 categoryProduct={categoryProduct}>
               </CategoryProduct>)
+              :
+              <h2 className="flex items-center justify-center h-screen text-5xl">No Phone Found</h2>
             :
-            allPhones.map(phone =>
-              <CategoryProduct
-                key={phone._id}
-                categoryProduct={phone}
-                setProduct={setProduct}>
-              </CategoryProduct>)
+            allPhones.length ?
+              allPhones.map(phone =>
+                <CategoryProduct
+                  key={phone._id}
+                  categoryProduct={phone}
+                  setProduct={setProduct}>
+                </CategoryProduct>)
+              :
+              <h2 className="flex items-center justify-center h-screen text-5xl">No Phone Found</h2>
         }
       </div>
       {

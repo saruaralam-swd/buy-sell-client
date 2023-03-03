@@ -32,14 +32,14 @@ const CategoryLayout = () => {
               <h2 className='font-semibold pl-4 uppercase'>Shop By Categories</h2>
             </div>
 
-            <NavLink to='/category' className={({ isActive }) => isActive ? 'flex justify-between rounded-md px-2 mb-2 bg-[#c9f391]' : 'flex justify-between rounded-md px-2 mb-2 hover:bg-slate-200'}>
+            <NavLink to='/category' className={({ isActive }) => isActive ? 'flex justify-between rounded-md px-2 mb-2 bg-blue-300' : 'flex justify-between rounded-md px-2 mb-2 hover:bg-slate-200'}>
               <span>All Phones</span>
             </NavLink>
 
             {
               !categoriesLoading &&
               categories.map(category =>
-                <NavLink to={`/category/${category?._id}`} key={category._id} className={({ isActive }) => isActive ? 'flex justify-between rounded-md px-2 mb-2 bg-[#c9f391]' : 'flex justify-between rounded-md px-2 mb-2 hover:bg-slate-200'}>
+                <NavLink to={`/category/${category?._id}`} key={category._id} className={({ isActive }) => isActive ? 'flex justify-between rounded-md px-2 mb-2 bg-blue-300' : 'flex justify-between rounded-md px-2 mb-2 hover:bg-slate-200'}>
                   <span>{category?.categoryName}</span>
                 </NavLink>
               )
@@ -48,7 +48,7 @@ const CategoryLayout = () => {
         </div>
       </div>
     </div>
-  );
+  );  
 };
 
 export default CategoryLayout;

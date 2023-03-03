@@ -25,27 +25,27 @@ import SellerRoute from "../SellerRoute/SellerRoute";
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Main></Main>,
+    element: <Main />,
     children: [
       {
         path: '/',
-        element: <Home></Home>
+        element: <Home />
       },
       {
         path: '/home',
-        element: <Home></Home>
+        element: <Home />
       },
       {
         path: '/blog',
-        element: <Blog></Blog>
+        element: <Blog />
       },
       {
         path: '/login',
-        element: <Login></Login>
+        element: <Login />
       },
       {
         path: '/signup',
-        element: <SignUp></SignUp>
+        element: <SignUp />
       },
       {
         path: '/category',
