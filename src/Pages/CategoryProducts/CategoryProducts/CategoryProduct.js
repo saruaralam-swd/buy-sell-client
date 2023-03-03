@@ -25,7 +25,7 @@ const CategoryProduct = ({ categoryProduct, setProduct }) => {
   };
 
   return (
-    <div className='px-5 md:px-10'>
+    <div className='px-5'>
       <div className='mb-10'>
         <div className='md:p-7 border border-slate-100 shadow-lg  rounded-lg grid md:grid-cols-4 gap-5'>
           <img src={image} className='lg:h-[280px] lg:w-[320px] mx-auto md:mx-0 col-span-4 md:col-span-2 lg:col-span-1' alt="" />

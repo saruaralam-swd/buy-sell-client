@@ -1,29 +1,18 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
-import Loader from '../../../Components/Loader';
+import React, { useContext, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
 import CategoryProduct from './CategoryProduct';
 
 const CategoryProducts = () => {
-  const categoryProducts = useLoaderData();
+  const id = useParams();
+  const { allPhones } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
-
-  const { data: categories = [], isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: async () => {
-      const res = await fetch(`https://used-products-resale-server.vercel.app/categories`);
-      const data = await res.json();
-      return data;
-    }
-  });
-
-  if (isLoading) {
-    return <Loader></Loader>
-  }
+  
+  const categoryProducts = (allPhones.filter(phone => phone?.categoryId === id.id));
 
   return (
-    <div className='my-10'>
+    <div>
       <div>
         {
           categoryProducts.map(categoryProduct =>

@@ -58,7 +58,6 @@ export const router = createBrowserRouter([
           },
           {
             path: '/category/:id',
-            loader: ({ params }) => fetch(`https://used-products-resale-server.vercel.app/category/${params.id}`),
             element: <CategoryProducts></CategoryProducts>
           }
         ]
