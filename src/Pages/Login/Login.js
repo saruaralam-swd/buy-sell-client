@@ -11,11 +11,9 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 const Login = () => {
   useTittle('Login')
-
   const { signIn, googleLogin } = useContext(AuthContext);
   const { register, handleSubmit, formState: { errors } } = useForm()
   const googleProvider = new GoogleAuthProvider();
-
 
   const location = useLocation();
   const navigate = useNavigate()
@@ -30,6 +28,7 @@ const Login = () => {
     }
   }, [token])
 
+  // email & password login
   const handleLogin = data => {
     const email = (data?.email)
     const password = (data?.password)
@@ -42,8 +41,8 @@ const Login = () => {
       .catch(error => { toast.error(error.message) })
   };
 
+  // google login
   const handleGoogleLogin = (e) => {
-
     googleLogin(googleProvider)
       .then(result => {
         const user = result.user;
@@ -76,7 +75,6 @@ const Login = () => {
         toast.error(error.message)
       })
   };
-
 
   return (
     <div className='bg-gray-100'>
@@ -120,6 +118,7 @@ const Login = () => {
 
             <p className='mt-2'>New to Buy & Resale? <Link to='/signup' className='text-primary'>Create new Account</Link></p>
           </form>
+
           <div className='divider'>or</div>
 
           <button onClick={handleGoogleLogin} className='flex gap-10 btn btn-outline btn-xs btn-primary w-full rounded-md btn-md'>
