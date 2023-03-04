@@ -6,14 +6,18 @@ import CategoryProduct from './CategoryProduct';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa";
 import sortImg from '../../../assets/image/sort.png'
+import ProductListView from '../../Home/Advertisement.js/ProductListView';
+import ProductGridView from '../../Home/Advertisement.js/ProductGridView';
 
 const CategoryProducts = () => {
   const id = useParams();
   const [product, setProduct] = useState(null);
-  const { allPhones } = useContext(AuthContext);
-  const categoryProducts = (allPhones.filter(phone => phone?.categoryId === id.id));
   const [isAsc, setIsAsc] = useState('');
-  const [productsView, setProductsView] = useState(true);
+  const [productView, setProductView] = useState(true);
+
+  const { allPhones } = useContext(AuthContext);
+  const categoryProducts = allPhones.filter(phone => phone?.categoryId === id.id);
+
 
   if (isAsc === 'Low Price') {
     categoryProducts.sort(function (a, b) { return a.resalePrice - b.resalePrice });
@@ -25,8 +29,8 @@ const CategoryProducts = () => {
   }
 
   return (
-    <div>
-      <div className='flex items-center justify-end gap-3 px-5 my-5'>
+    <div className='px-4'>
+      <div className='flex items-center justify-end gap-3 my-4'>
         <div className='flex items-center'>
           <select onChange={(e) => setIsAsc(e.target.value)} className="select select-bordered select-sm w-56 focus:outline-none">
             <option disabled selected>-- Price --</option>
@@ -36,28 +40,23 @@ const CategoryProducts = () => {
           <img src={sortImg} alt="" />
         </div>
 
-        <BsFillGrid3X3GapFill onClick={() => setProductsView(true)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
-        <FaListUl onClick={() => setProductsView(false)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
+        <BsFillGrid3X3GapFill onClick={() => setProductView(false)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
+        <FaListUl onClick={() => setProductView(true)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
       </div>
 
-      <div>
-        {
-          id.id ?
-            categoryProducts.map(categoryProduct =>
-              <CategoryProduct
-                key={categoryProduct._id}
-                setProduct={setProduct}
-                categoryProduct={categoryProduct}>
-              </CategoryProduct>)
-            :
-            allPhones.map(phone =>
-              <CategoryProduct
-                key={phone._id}
-                categoryProduct={phone}
-                setProduct={setProduct}>
-              </CategoryProduct>)
-        }
-      </div>
+      {categoryProducts.length > 0 ?
+        productView ?
+          <div>
+            {categoryProducts.map(product => <ProductListView setProduct={setProduct} key={product._id} product={product}></ProductListView>)}
+          </div>
+          :
+          <div className='grid md:grid-cols-3 gap-10'>
+            {categoryProducts.map(product => <ProductGridView setProduct={setProduct} key={product._id} product={product}></ProductGridView>)}
+          </div>
+        :
+        <h2>Phone Not Found</h2>
+      }
+
       {
         product && <ProductOrderModal product={product} setProduct={setProduct}></ProductOrderModal>
       }

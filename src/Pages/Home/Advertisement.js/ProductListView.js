@@ -1,12 +1,11 @@
 import React from 'react';
-import toast from 'react-hot-toast';
-import { UserCircleIcon, PhoneIcon, MapPinIcon, CheckBadgeIcon } from '@heroicons/react/24/solid'
+import { UserCircleIcon, PhoneIcon, MapPinIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
 
-const AdvertisementCard = ({ product, setProduct }) => {
+const ProductListView = ({ product, setProduct }) => {
   const { _id, verify, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
   const { todayDate, month, year, hour, minute, seconds } = postTime;
 
-  // const handleReportToAdmin = id => {
+    // const handleReportToAdmin = id => {
   //   fetch(`https://used-products-resale-server.vercel.app/productReport/${id}`, {
   //     method: 'PUT',
   //     headers: {
@@ -57,4 +56,4 @@ const AdvertisementCard = ({ product, setProduct }) => {
   );
 };
 
-export default AdvertisementCard;
+export default ProductListView;

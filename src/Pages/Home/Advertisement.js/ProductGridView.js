@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductGridView = ({ product, setProduct, setSellerInfo }) => {
+const ProductGridView = ({ product, setProduct }) => {
   const { _id, verify, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
 
   return (
