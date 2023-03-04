@@ -15,11 +15,11 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [signInLoading, setSignInLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
-  
+
   const location = useLocation();
   const navigate = useNavigate()
   const from = location.state?.from?.pathname || '/';
-  
+
   const [loginUserEmail, setLoginUserEmail] = useState(null);
   const [token] = useToken(loginUserEmail);
 
@@ -37,14 +37,14 @@ const Login = () => {
     const password = (data?.password)
 
     signIn(email, password)
-    .then(result => {
-      const user = result.user;
+      .then(result => {
+        const user = result.user;
         setLoginUserEmail(user?.email)
       })
-      .catch(error => { 
+      .catch(error => {
         toast.error(error.message)
         setSignInLoading(false);
-       })
+      })
   };
 
   const handleGoogleSignIn = (e) => {
@@ -82,60 +82,59 @@ const Login = () => {
   };
 
   return (
-      <div className='flex justify-center items-center bg-[#E5E7EB] pb-14'>
-        <div className='w-[80%] md:w-[40%] lg:w-[30%] p-7 border bg-white text-black rounded-md my-10'>
-          <Link to='/' className=''>
-            <img src={logo} className='w-[60px] mb-2 mx-auto' alt="" />
-          </Link>
+    <div className='flex justify-center items-center bg-[#E5E7EB] pb-14'>
+      <div className='w-[80%] md:w-[40%] lg:w-[30%] p-7 border bg-white text-black rounded-md my-10'>
+        <Link to='/' className=''>
+          <img src={logo} className='w-[60px] mb-2 mx-auto' alt="" />
+        </Link>
 
-          <h2 className='text-2xl font-semibold text-center mb-3'>Login To Your Account</h2>
-          <p className="text-sm text-center">Enter your credentials to access your account</p>
+        <h2 className='text-2xl font-semibold text-center mb-3'>Login To Your Account</h2>
+        <p className="text-sm text-center">Enter your credentials to access your account</p>
 
-          <form onSubmit={handleSubmit(handleLogin)}>
-            <div className="form-control w-full">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input type='text'
-                {...register("email", {
-                  required: "Email Address is required"
-                })}
-                className="input input-bordered w-full focus:outline-none focus:border focus:border-[#6a9333]" />
-              {errors.email && <p className='text-red-600 text-sm'>*{errors.email?.message}</p>}
-            </div>
+        <form onSubmit={handleSubmit(handleLogin)}>
+          <div className="form-control w-full">
+            <label className="label">
+              <span className="label-text">Email</span>
+            </label>
+            <input type='text'
+              {...register("email", {
+                required: "Email Address is required"
+              })}
+              className="input input-bordered w-full focus:outline-none focus:border focus:border-[#6a9333]" />
+            {errors.email && <p className='text-red-600 text-sm'>*{errors.email?.message}</p>}
+          </div>
 
-            <div className="form-control w-full ">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input type='password'
-                {...register("password", {
-                  required: "Password is required",
-                  minLength: {
-                    value: 6,
-                    message: 'Password must be 6 characters or longer'
-                  }
-                })}
-                className="input input-bordered w-full focus:outline-none focus:border focus:border-[#6a9333]" />
-              {errors.password && <p className='text-red-600 text-sm'>*{errors.password?.message}</p>}
+          <div className="form-control w-full ">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <input type='password'
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: 'Password must be 6 characters or longer'
+                }
+              })}
+              className="input input-bordered w-full focus:outline-none focus:border focus:border-[#6a9333]" />
+            {errors.password && <p className='text-red-600 text-sm'>*{errors.password?.message}</p>}
 
-              <label className="label">
-                <button> <span className="label-text">Forget Password?</span></button>
-              </label>
-            </div>
-            <button className={signInLoading ? ' bg-blue-600 cursor-not-allowed text-white duration-300 w-full h-10 rounded-md' : 'bg-blue-700 hover:bg-blue-800 text-white duration-300 w-full h-10 rounded-md'}>{signInLoading ? 'Login...' : 'Login'}</button>
-          </form>
+            <span className="my-2 cursor-pointer inline-block hover:underline">Forget Password?</span>
 
-          <p className='my-3 text-sm text-center'>New to Buy & Resale? <Link className='hover:underline' to="/signup">Create an Account</Link></p>
-          
-          <div className="divider">OR</div>
+          </div>
+          <button className={signInLoading ? ' bg-blue-600 cursor-not-allowed text-white duration-300 w-full h-10 rounded-md' : 'bg-blue-700 hover:bg-blue-800 text-white duration-300 w-full h-10 rounded-md'}>{signInLoading ? 'Login...' : 'Login'}</button>
+        </form>
 
-          <button onClick={handleGoogleSignIn} className='bg-slate-700 hover:bg-slate-800 duration-300 w-full h-10 rounded-md'>
-            <span className='text-white'>Continue with</span>
-            <FcGoogle className='h-6 w-6 ml-5 cursor-pointer inline-block  ' />
-          </button>
-        </div>
+        <p className='my-3 text-sm text-center'>New to Buy & Resale? <Link className='hover:underline' to="/signup">Create an Account</Link></p>
+
+        <div className="divider">OR</div>
+
+        <button onClick={handleGoogleSignIn} className='bg-slate-700 hover:bg-slate-800 duration-300 w-full h-10 rounded-md'>
+          <span className='text-white'>Continue with</span>
+          <FcGoogle className='h-6 w-6 ml-5 cursor-pointer inline-block  ' />
+        </button>
       </div>
+    </div>
   );
 };
 
