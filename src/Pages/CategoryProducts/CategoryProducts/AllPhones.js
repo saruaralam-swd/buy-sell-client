@@ -1,30 +1,30 @@
 import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
-import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa";
 import sortImg from '../../../assets/image/sort.png'
 import ProductListView from './ProductListView';
 import ProductGridView from './ProductGridView';
+import ProductOrderModal from '../ProductOrderModal/ProductOrderModal';
+import Loader from '../../../Components/Loader';
+import useBuyer from '../../../hooks/UseBuyer';
 
-const CategoryProducts = () => {
-  const id = useParams();
+const AllPhones = () => {
+  const { user, allPhones, allPhonesLoading } = useContext(AuthContext);
   const [product, setProduct] = useState(null);
   const [isAsc, setIsAsc] = useState('');
   const [productView, setProductView] = useState(true);
-
-  const { allPhones } = useContext(AuthContext);
-  const categoryProducts = allPhones.filter(phone => phone?.categoryId === id.id);
-
+  const [isBuyer] = useBuyer(user?.email);
 
   if (isAsc === 'Low Price') {
-    categoryProducts.sort(function (a, b) { return a.resalePrice - b.resalePrice });
     allPhones.sort(function (a, b) { return a.resalePrice - b.resalePrice });
   }
   if (isAsc === 'High Price') {
-    categoryProducts.sort(function (a, b) { return b.resalePrice - a.resalePrice });
     allPhones.sort(function (a, b) { return b.resalePrice - a.resalePrice });
+  }
+
+  if (allPhonesLoading) {
+    return <Loader />
   }
 
   return (
@@ -39,21 +39,17 @@ const CategoryProducts = () => {
           <img src={sortImg} alt="" />
         </div>
 
-        <BsFillGrid3X3GapFill onClick={() => setProductView(false)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
-        <FaListUl onClick={() => setProductView(true)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
+        <BsFillGrid3X3GapFill title='Grid View' onClick={() => setProductView(false)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
+        <FaListUl title='List View' onClick={() => setProductView(true)} className='w-5 h-5 font-semibold cursor-pointer inline-block' />
       </div>
 
-      {categoryProducts.length > 0 ?
+      {
         productView ?
-          <div>
-            {categoryProducts.map(product => <ProductListView setProduct={setProduct} key={product._id} product={product}></ProductListView>)}
-          </div>
+          allPhones.map(product => <ProductListView setProduct={setProduct} key={product._id} product={product}></ProductListView>)
           :
           <div className='grid md:grid-cols-3 gap-10'>
-            {categoryProducts.map(product => <ProductGridView setProduct={setProduct} key={product._id} product={product}></ProductGridView>)}
+            {allPhones.map(product => <ProductGridView setProduct={setProduct} key={product._id} product={product}></ProductGridView>)}
           </div>
-        :
-        <h2 className="text-center h-[600px] flex items-center justify-center text-3xl">Phone Not Found</h2>
       }
 
       {
@@ -63,4 +59,4 @@ const CategoryProducts = () => {
   );
 };
 
-export default CategoryProducts;
+export default AllPhones;

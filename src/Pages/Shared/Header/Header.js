@@ -20,8 +20,8 @@ const Header = () => {
     <li><NavLink to='/home'>Home</NavLink></li>
     <li><NavLink to='/category'>Phones</NavLink></li>
     <li><NavLink to='/blog'>Blog</NavLink></li>
-    <li><NavLink to='/about'>About</NavLink></li>
-    <li><NavLink to='/contact'>Contact</NavLink></li>
+    {/* <li><NavLink to='/about'>About</NavLink></li> */}
+    {/* <li><NavLink to='/contact'>Contact</NavLink></li> */}
   </>;
 
   const dropDownMenu = <>

@@ -2,12 +2,11 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import ProductOrderModal from '../../CategoryProducts/ProductOrderModal/ProductOrderModal';
-import AdvertisementCard from './AdvertisementCard';
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa";
-import ProductGridView from './ProductGridView';
 import sortImg from '../../../assets/image/sort.png';
-import ProductListView from './ProductListView';
+import ProductGridView from '../../CategoryProducts/CategoryProducts/ProductGridView';
+import ProductListView from '../../CategoryProducts/CategoryProducts/ProductListView';
 
 const Advertisement = () => {
   const { user } = useContext(AuthContext);

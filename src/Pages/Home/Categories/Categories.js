@@ -5,7 +5,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './Categories.css';
 import { Link } from 'react-router-dom';
-import Loader from '../../../Components/Loader';
 
 const Categories = () => {
   const { categories, categoriesLoading } = useContext(AuthContext);

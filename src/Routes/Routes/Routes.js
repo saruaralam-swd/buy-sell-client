@@ -3,6 +3,7 @@ import CategoryLayout from "../../Layout/CategoryLayout";
 import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
 import Blog from "../../Pages/Blog/Blog";
+import AllPhones from "../../Pages/CategoryProducts/CategoryProducts/AllPhones";
 import CategoryProducts from "../../Pages/CategoryProducts/CategoryProducts/CategoryProducts";
 import AddProduct from "../../Pages/DashBoard/AddProduct/AddProduct";
 import AllBuyers from "../../Pages/DashBoard/AllBuyers/AllBuyers";
@@ -53,7 +54,7 @@ export const router = createBrowserRouter([
         children: [
           {
             path: '/category',
-            element: <CategoryProducts />
+            element: <AllPhones />
           },
           {
             path: '/category/:id',

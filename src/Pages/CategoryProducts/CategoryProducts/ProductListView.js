@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { UserCircleIcon, PhoneIcon, MapPinIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
+import { AuthContext } from '../../../Context/AuthProvider';
+import useBuyer from '../../../hooks/UseBuyer';
+import useAdmin from '../../../hooks/UseAdmin';
+import useSeller from '../../../hooks/UseSeller';
+import { toast } from 'react-hot-toast';
 
 const ProductListView = ({ product, setProduct }) => {
+  const { user } = useContext(AuthContext);
   const { _id, verify, productName, image, originalPrice, resalePrice, sellerName, location, description, phoneNumber, quality, purchaseTime, usedTime, available, advertise, postTime, } = product;
   const { todayDate, month, year, hour, minute, seconds } = postTime;
+  const [isBuyer] = useBuyer(user?.email);
+  const [isAdmin] = useAdmin(user?.email);
+  const [isSeller] = useSeller(user?.email);
 
-    // const handleReportToAdmin = id => {
+  // const handleReportToAdmin = id => {
   //   fetch(`https://used-products-resale-server.vercel.app/productReport/${id}`, {
   //     method: 'PUT',
   //     headers: {
@@ -34,7 +43,7 @@ const ProductListView = ({ product, setProduct }) => {
             </div>
             <p>{description.length > 100 ? (description.slice(0, 100) + "...") : description}</p>
             <div>
-              <label onClick={() => setProduct(product)} htmlFor="product-order-modal" className="btn btn-primary btn-sm mr-2"> Book Now </label>
+              <label onClick={() => setProduct(product)} htmlFor={isBuyer || !user ? 'product-order-modal' : 'xyz'} className={isAdmin || isSeller ? "btn bg-slate-600 disabled hover:cursor-not-allowed btn-sm mr-2" : "btn btn-primary btn-sm mr-2"}> Book Now </label>
               {/* <button onClick={() => handleReportToAdmin(_id)} className='mt-2 md:mt-0 border rounded-md px-4 py-1 bg-red-300 text-black font-semibold'>Report Product</button> */}
             </div>
           </div>
