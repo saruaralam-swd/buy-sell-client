@@ -6,6 +6,7 @@ import useSeller from '../../../hooks/UseSeller';
 import useBuyer from '../../../hooks/UseBuyer';
 import Loader from '../../../Components/Loader';
 import { MdEdit } from "react-icons/md";
+import { Link } from 'react-router-dom';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);

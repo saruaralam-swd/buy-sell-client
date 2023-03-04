@@ -14,10 +14,13 @@ import products from '../assets/Dashboard/Seller/product.svg';
 import addProductIcon from '../assets/Dashboard/Seller/add-product.svg';
 import buyersIcon from '../assets/Dashboard/Seller/buyers.svg';
 import Loader from '../Components/Loader';
+import { BiLogOut, BiUserCircle } from "react-icons/bi";
+import { MdPeopleAlt, MdReport } from "react-icons/md";
+
 
 const DashBoardLayout = () => {
   useTittle('Dashboard')
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const [isSeller, isSellerLoading] = useSeller(user?.email)
   const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
@@ -26,9 +29,19 @@ const DashBoardLayout = () => {
     return <Loader></Loader>
   }
 
+  const handleLogOut = () => {
+    logOut()
+      .then(() => { })
+      .catch(err => {
+        console.log(err.message);
+      })
+  };
+
   return (
     <div>
-      <Header></Header>
+      <div className={isAdmin && 'hidden'}>
+        <Header></Header>
+      </div>
 
       <div className='h-[50px] bg-slate-300 md:hidden flex justify-end'>
         <label htmlFor="dashBoard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
@@ -62,7 +75,7 @@ const DashBoardLayout = () => {
 
 
             <li><Link to='/dashboard'>
-              <img src={userProfileIcon} className='w-8 h-8' alt="" />
+              <BiUserCircle className='h-5 w-5' />
               DashBoard
             </Link>
             </li>
@@ -101,11 +114,16 @@ const DashBoardLayout = () => {
 
             {
               isAdmin && <>
-                <li><Link to='/dashboard/allSeller'>All Seller</Link></li>
-                <li><Link to='/dashboard/allBuyer'>All Buyer</Link></li>
-                <li><Link to='/dashboard/reportedProducts'>Reported products</Link></li>
+                <li><Link to='/dashboard/allSeller'><MdPeopleAlt className='h-5 w-5' /> All Seller</Link></li>
+                <li><Link to='/dashboard/allBuyer'><MdPeopleAlt className='h-5 w-5' /> All Buyer</Link></li>
+                <li><Link to='/dashboard/reportedProducts'><MdReport className='h-5 w-5' />Reported products</Link></li>
               </>
             }
+
+            <li>
+              <button onClick={handleLogOut} className=' text-black hover:bg-blue-600 hover:text-white'> <BiLogOut className='w-5 h-5' /> Sign out</button>
+            </li>
+
           </ul>
         </div>
       </div>
