@@ -121,8 +121,8 @@ const SignUp = () => {
 
   return (
     <div className='bg-[#E5E7EB] w-full'>
-      <div className='flex justify-center py-20'>
-        <div className='w-[80%] md:w-[40%] lg:w-[30%] bg-white shadow-md p-7 rounded-2xl'>
+      <div className='flex justify-center py-10'>
+        <div className='w-[80%] md:w-[40%] lg:w-[30%] bg-white shadow-md p-7 rounded-md'>
           <Link to='/' className=''>
             <img src={logo} className='w-[60px] mb-2 mx-auto' alt="" />
           </Link>
@@ -177,7 +177,6 @@ const SignUp = () => {
                   className='pl-10 border text-sm placeholder-gray-500   rounded-md border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 ' />
               </div>
               {errors.password && <p className='text-red-600 text-xs'>*{errors.password?.message}</p>}
-              <Link className='flex mt-2 justify-end text-primary hover:underline'>Forget Password</Link>
             </div>
 
             <button className={signInLoading ? ' bg-blue-600 cursor-not-allowed text-white duration-300 w-full h-10 rounded-md' : 'bg-blue-700 hover:bg-blue-800 text-white duration-300 w-full h-10 rounded-md'}>{signInLoading ? 'Sign Up...' : 'Sign Up'}</button>

@@ -8,7 +8,8 @@ import useTittle from '../../hooks/useTittle';
 import { GoogleAuthProvider } from 'firebase/auth';
 import logo from '../../assets/image/logo.png';
 import { FcGoogle } from "react-icons/fc";
-import { BiLockAlt, BiChevronRightCircle, BiUser, BiMailSend, } from "react-icons/bi";
+import { BiLockAlt, BiUser, BiMailSend, } from "react-icons/bi";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Login = () => {
   useTittle('Login')
@@ -16,6 +17,7 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const [signInLoading, setSignInLoading] = useState(false);
   const googleProvider = new GoogleAuthProvider();
+  const [toggle, setToggle] = useState(false);
 
   const location = useLocation();
   const navigate = useNavigate()
@@ -105,24 +107,27 @@ const Login = () => {
             {errors.email && <p className='text-red-600 text-sm'>*{errors.email?.message}</p>}
           </div>
 
-          <div className="form-control w-full ">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input type='password'
-              {...register("password", {
-                required: "Password is required",
-                minLength: {
-                  value: 6,
-                  message: 'Password must be 6 characters or longer'
-                }
-              })}
-              className="input input-bordered w-full focus:outline-none focus:border focus:border-[#6a9333]" />
+          <div className='my-4'>
+            <label htmlFor="password" className='text-sm tracking-wide text-gray-600'>Password:</label>
+            <div className='relative'>
+              <div className='inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400 '> <BiLockAlt /> </div>
+              <input type={toggle ? "text" : "password"}
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be 6 characters or longer'
+                  }
+                })}
+                className='pl-10 border text-sm placeholder-gray-500   rounded-md border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 ' />
+              <div onClick={() => setToggle(!toggle)} className='inline-flex items-center justify-center absolute right-0 top-0 h-full w-10 text-gray-400 cursor-pointer'> {toggle ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}  </div>
+            </div>
             {errors.password && <p className='text-red-600 text-sm'>*{errors.password?.message}</p>}
-
-            <span className="my-2 cursor-pointer inline-block hover:underline">Forget Password?</span>
-
           </div>
+
+
+          <p className='mb-4 tex'>Forget Password?</p>
+
           <button className={signInLoading ? ' bg-blue-600 cursor-not-allowed text-white duration-300 w-full h-10 rounded-md' : 'bg-blue-700 hover:bg-blue-800 text-white duration-300 w-full h-10 rounded-md'}>{signInLoading ? 'Login...' : 'Login'}</button>
         </form>
 
