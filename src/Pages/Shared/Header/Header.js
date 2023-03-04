@@ -28,8 +28,8 @@ const Header = () => {
     <li><NavLink to='/home' className='bg-white text-black hover:bg-blue-600 hover:text-white'>Home</NavLink></li>
     <li><NavLink to='/phone' className='bg-white text-black hover:bg-blue-600 hover:text-white'>Phones</NavLink></li>
     <li><NavLink to='/blog' className='bg-white text-black hover:bg-blue-600 hover:text-white'>Blog</NavLink></li>
-    <li><NavLink to='/about' className='bg-white text-black hover:bg-blue-600 hover:text-white'>About</NavLink></li>
-    <li><NavLink to='/contact' className='bg-white text-black hover:bg-blue-600 hover:text-white'>Contact</NavLink></li>
+    {/* <li><NavLink to='/about' className='bg-white text-black hover:bg-blue-600 hover:text-white'>About</NavLink></li> */}
+    {/* <li><NavLink to='/contact' className='bg-white text-black hover:bg-blue-600 hover:text-white'>Contact</NavLink></li> */}
   </>;
 
 
