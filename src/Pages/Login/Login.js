@@ -8,6 +8,7 @@ import useTittle from '../../hooks/useTittle';
 import { GoogleAuthProvider } from 'firebase/auth';
 import logo from '../../assets/image/logo.png';
 import { FcGoogle } from "react-icons/fc";
+import { BiLockAlt, BiChevronRightCircle, BiUser, BiMailSend, } from "react-icons/bi";
 
 const Login = () => {
   useTittle('Login')
@@ -89,18 +90,18 @@ const Login = () => {
         </Link>
 
         <h2 className='text-2xl font-semibold text-center mb-3'>Login To Your Account</h2>
-        <p className="text-sm text-center">Enter your credentials to access your account</p>
 
         <form onSubmit={handleSubmit(handleLogin)}>
-          <div className="form-control w-full">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
-            <input type='text'
-              {...register("email", {
-                required: "Email Address is required"
-              })}
-              className="input input-bordered w-full focus:outline-none focus:border focus:border-[#6a9333]" />
+          <div className='mb-4'>
+            <label htmlFor="email" className=' text-sm tracking-wide text-gray-600'>E-Mail Address:</label>
+            <div className='relative'>
+              <div className='inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400 '> <BiMailSend /> </div>
+              <input type="email"
+                {...register("email", {
+                  required: "Email Address is required"
+                })}
+                className='pl-10 border text-sm placeholder-gray-500   rounded-md border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 ' />
+            </div>
             {errors.email && <p className='text-red-600 text-sm'>*{errors.email?.message}</p>}
           </div>
 
