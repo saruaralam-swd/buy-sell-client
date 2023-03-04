@@ -8,7 +8,8 @@ import toast from 'react-hot-toast';
 import useTittle from '../../hooks/useTittle';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { FcGoogle } from "react-icons/fc";
-import logo from '../../assets/image/logo.png'
+import logo from '../../assets/image/logo.png';
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const SignUp = () => {
   useTittle('SignUp')
@@ -17,6 +18,8 @@ const SignUp = () => {
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
   const [signInLoading, setSignInLoading] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
 
   const [createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
@@ -169,12 +172,13 @@ const SignUp = () => {
               <label htmlFor="password" className='text-sm tracking-wide text-gray-600'>Password:</label>
               <div className='relative'>
                 <div className='inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400 '> <BiLockAlt /> </div>
-                <input type="password"
+                <input type={toggle ? "text" : "password"}
                   {...register("password", {
                     required: "Password is required",
                     minLength: { value: 6, message: "password must be 6 character" }
                   })}
                   className='pl-10 border text-sm placeholder-gray-500   rounded-md border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400 ' />
+                  <div onClick={() => setToggle(!toggle)} className='inline-flex items-center justify-center absolute right-0 top-0 h-full w-10 text-gray-400 cursor-pointer'> {toggle ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}  </div>
               </div>
               {errors.password && <p className='text-red-600 text-xs'>*{errors.password?.message}</p>}
             </div>
