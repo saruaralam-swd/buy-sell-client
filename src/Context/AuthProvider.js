@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
   const {data: allPhones = [], isLoading: allPhonesLoading} = useQuery({
     queryKey: ['allProducts'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/allProducts');
+      const res = await fetch('https://used-products-resale-server.vercel.app/allProducts');
       const data  = await res.json();
       return data;
     }
