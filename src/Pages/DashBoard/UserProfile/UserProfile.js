@@ -6,7 +6,8 @@ import useSeller from '../../../hooks/UseSeller';
 import useBuyer from '../../../hooks/UseBuyer';
 import Loader from '../../../Components/Loader';
 import { MdEdit } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import ProfileEditModal from '../../DashBoard/ProfileEditModal/ProfileEditModal';
+
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -36,8 +37,13 @@ const UserProfile = () => {
             }
           </div>
         </div>
-        <button className="btn btn-primary btn-sm block tooltip tooltip-left" data-tip='Edit Profile'><MdEdit className='w-5 h-5 inline-block mr-2' /></button>
+
+        <label htmlFor="profile-Edit-Modal" className="bg-primary hover:bg-blue-800 btn btn-sm flex justify-center">
+          <MdEdit className='w-5 h-5 inline-block mr-2' />
+        </label>
+
       </div>
+      {user && <ProfileEditModal />}
     </>
   );
 };
