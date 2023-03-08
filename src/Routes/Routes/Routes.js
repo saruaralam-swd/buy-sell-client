@@ -11,6 +11,7 @@ import AllSellers from "../../Pages/DashBoard/AllSellers/AllSellers";
 import MyBuyers from "../../Pages/DashBoard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/DashBoard/MyProducts/MyProducts";
+import MyWishList from "../../Pages/DashBoard/MyWishList/MyWishList";
 import Payment from "../../Pages/DashBoard/Payment/Payment";
 import ReportedProducts from "../../Pages/DashBoard/ReportedProducts/ReportedProducts";
 import UserProfile from "../../Pages/DashBoard/UserProfile/UserProfile";
@@ -105,6 +106,10 @@ export const router = createBrowserRouter([
         loader: ({ params }) => fetch(`https://used-products-resale-server.vercel.app/order/${params.id}`),
         element: <Payment></Payment>
       },
+      {
+        path: '/dashboard/myWishList',
+        element: <BuyerRoute><MyWishList /></BuyerRoute>
+      }
     ]
   },
   {

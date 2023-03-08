@@ -35,7 +35,7 @@ const Header = () => {
 
   return (
     <>
-      <div className='navbar bg-white sticky top-0 z-[999] border-b px-3'>
+      <div className='navbar bg-white/80 backdrop-blur sticky top-0 z-[999] border-b px-3'>
         <div className="navbar-start">
           <Link to='/' className='flex items-center'>
             <img src={logo} className='w-8 mr-3' alt="" />

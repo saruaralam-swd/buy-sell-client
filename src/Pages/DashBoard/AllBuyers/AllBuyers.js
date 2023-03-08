@@ -46,7 +46,7 @@ const AllBuyers = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-center">All Buyers</h2>
+      <h2 className="text-3xl mb-5 font-semibold">All Buyers</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
 

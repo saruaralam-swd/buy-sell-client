@@ -42,8 +42,6 @@ const MyProducts = () => {
   }
 
   const handleProductDelete = (id, produceName) => {
-    
-    
     const permission = window.confirm(`${produceName}, Are your sure your want to delete?`)
     if (permission) {
       fetch(`https://used-products-resale-server.vercel.app/product/${id}?email=${user?.email}`, {
@@ -60,7 +58,7 @@ const MyProducts = () => {
           }
         })
     }
-  }
+  };
 
   return (
     <div>

@@ -6,16 +6,16 @@ import useBuyer from '../hooks/UseBuyer';
 import useSeller from '../hooks/UseSeller';
 import useTittle from '../hooks/useTittle';
 import Header from '../Pages/Shared/Header/Header';
-import { Bars3Icon, Squares2X2Icon, UserCircleIcon } from '@heroicons/react/24/solid'
 import dashBoardIcon from '../assets/Dashboard/dashboard2.svg';
-import userProfileIcon from '../assets/Dashboard/profile.svg';
 import profile from '../assets/Dashboard/img.png'
-import products from '../assets/Dashboard/Seller/product.svg';
-import addProductIcon from '../assets/Dashboard/Seller/add-product.svg';
 import buyersIcon from '../assets/Dashboard/Seller/buyers.svg';
 import Loader from '../Components/Loader';
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
 import { MdPeopleAlt, MdReport } from "react-icons/md";
+import { AiOutlineHeart, AiOutlineUnorderedList, } from "react-icons/ai";
+import { GoTasklist } from "react-icons/go";
+import { TbPlaylistAdd } from "react-icons/tb";
+import { FiUsers } from "react-icons/fi";
 
 
 const DashBoardLayout = () => {
@@ -82,8 +82,8 @@ const DashBoardLayout = () => {
 
             {
               isBuyer && <>
-                <li><Link to='/dashboard/myOrders'>My Orders</Link></li>
-                <li><Link to='/dashboard/myWishList'>Wish list</Link></li>
+                <li><Link to='/dashboard/myOrders'> <AiOutlineUnorderedList /> My Orders</Link></li>
+                <li><Link to='/dashboard/myWishList'><AiOutlineHeart /> My Wishlist</Link></li>
               </>
             }
 
@@ -91,21 +91,21 @@ const DashBoardLayout = () => {
               isSeller && <>
                 <li>
                   <Link to='/dashboard/myProducts'>
-                    <img src={products} className='h-6 w-6' alt="" />
+                    <GoTasklist />
                     My Products
                   </Link>
                 </li>
 
                 <li>
                   <Link to='/dashboard/addProducts'>
-                    <img src={addProductIcon} className='w-6 h-6' alt="" />
+                    <TbPlaylistAdd />
                     Add Products
                   </Link>
                 </li>
 
                 <li>
                   <Link to='/dashboard/myBuyer'>
-                    <img src={buyersIcon} className='w-6 h-6' alt="" />
+                    <FiUsers />
                     My Buyer
                   </Link>
                 </li>

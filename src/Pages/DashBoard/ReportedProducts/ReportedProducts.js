@@ -46,7 +46,7 @@ const ReportedProducts = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-center">All Reported Products</h2>
+      <h2 className="text-3xl mb-5 font-semibold">All Reported Products</h2>
 
       <div className="overflow-x-auto">
         <table className="table w-full">
