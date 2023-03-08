@@ -28,8 +28,6 @@ const AddProduct = () => {
   }
 
   const category = categories.filter(c => c.categoryName === categoryName);
-  console.log('loading time: ', category.length);
-
   const imageHostKey = process.env.REACT_APP_imageBb_Key;
 
   const handleAddProduct = data => {

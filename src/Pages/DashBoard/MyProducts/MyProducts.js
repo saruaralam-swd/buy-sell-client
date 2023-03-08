@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import Loader from '../../../Components/Loader';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { TrashIcon } from '@heroicons/react/24/solid'
+import { Link } from 'react-router-dom';
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
@@ -73,9 +74,11 @@ const MyProducts = () => {
             <th>status</th>
             <th>Price</th>
             <th>advertise</th>
+            <th>Update</th>
             <th>Delete</th>
           </tr>
         </thead>
+
         <tbody>
           {
             products?.map((product, index) =>
@@ -92,6 +95,9 @@ const MyProducts = () => {
                   {
                     product?.advertise && <span className='bg-slate-200 rounded-full px-4 py-1'>advertising</span>
                   }
+                </td>
+                <td>
+                  <Link to={`/dashboard/productEdit/${product?._id}`} className='btn btn-primary btn-sm'>edit</Link>
                 </td>
                 <td className='space-x-2'>
                   <button onClick={() => handleProductDelete(product._id, product?.productName)}><TrashIcon className='h-7 w-7 text-red-400' /></button>

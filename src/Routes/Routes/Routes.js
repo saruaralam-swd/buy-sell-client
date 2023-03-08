@@ -11,6 +11,7 @@ import AllSellers from "../../Pages/DashBoard/AllSellers/AllSellers";
 import MyBuyers from "../../Pages/DashBoard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../../Pages/DashBoard/MyProducts/MyProducts";
+import ProductEdit from "../../Pages/DashBoard/MyProducts/ProductEdit";
 import MyWishList from "../../Pages/DashBoard/MyWishList/MyWishList";
 import Payment from "../../Pages/DashBoard/Payment/Payment";
 import ReportedProducts from "../../Pages/DashBoard/ReportedProducts/ReportedProducts";
@@ -109,7 +110,11 @@ export const router = createBrowserRouter([
       {
         path: '/dashboard/myWishList',
         element: <BuyerRoute><MyWishList /></BuyerRoute>
-      }
+      },
+      {
+        path: '/dashboard/productEdit/:id',
+        element: <SellerRoute><ProductEdit /></SellerRoute>
+      },
     ]
   },
   {
