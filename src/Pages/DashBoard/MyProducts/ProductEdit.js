@@ -7,7 +7,7 @@ const ProductEdit = () => {
   const { allPhones } = useContext(AuthContext);
   const phone = allPhones.find(phone => phone._id === id.id);
   const { productName } = phone;
-
+  
   return (
     <div>
       <h2 className="text-3xl text-center font-semibold  mb-5 underline">{productName}</h2>
