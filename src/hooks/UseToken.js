@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useToken = (email) => {
 
   const [token, setToken] = useState('');
-  
+
   useEffect(() => {
     if (email) {
       fetch(`https://used-products-resale-server.vercel.app/jwt?email=${email}`)

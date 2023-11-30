@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import Aside from "../../Components/Aside";
 import CategoryLayout from "../../Layout/CategoryLayout";
 import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
@@ -27,98 +28,145 @@ import SellerRoute from "../SellerRoute/SellerRoute";
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main />,
     children: [
       {
-        path: '/',
-        element: <Home />
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/home',
-        element: <Home />
+        path: "/home",
+        element: <Home />,
       },
       {
-        path: '/blog',
-        element: <Blog />
+        path: "/blog",
+        element: <Blog />,
       },
       {
-        path: '/login',
-        element: <Login />
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/signup',
-        element: <SignUp />
+        path: "/signup",
+        element: <SignUp />,
       },
       {
-        path: '/category',
+        path: "/category",
         element: <CategoryLayout />,
         children: [
           {
-            path: '/category',
-            element: <AllPhones />
+            path: "/category",
+            element: <AllPhones />,
           },
           {
-            path: '/category/:id',
-            element: <CategoryProducts />
-          }
-        ]
-      }
-    ]
+            path: "/category/:id",
+            element: <CategoryProducts />,
+          },
+        ],
+      },
+    ],
   },
   {
-    path: '/dashboard',
-    element: <PrivateRoute><DashBoardLayout /></PrivateRoute>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: '/dashboard',
-        element: <UserProfile />
+        path: "/dashboard",
+        element: <UserProfile />,
       },
       {
-        path: '/dashboard/myOrders',
-        element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
+        path: "/dashboard/myOrders",
+        element: (
+          <BuyerRoute>
+            <MyOrders></MyOrders>
+          </BuyerRoute>
+        ),
       },
       {
-        path: '/dashboard/myProducts',
-        element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
+        path: "/dashboard/myProducts",
+        element: (
+          <SellerRoute>
+            <MyProducts></MyProducts>
+          </SellerRoute>
+        ),
       },
       {
-        path: '/dashboard/addProducts',
-        element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
+        path: "/dashboard/addProducts",
+        element: (
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
       },
       {
-        path: '/dashboard/myBuyer',
-        element: <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
+        path: "/dashboard/myBuyer",
+        element: (
+          <SellerRoute>
+            <MyBuyers></MyBuyers>
+          </SellerRoute>
+        ),
       },
       {
-        path: '/dashboard/allSeller',
-        element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
+        path: "/dashboard/allSeller",
+        element: (
+          <AdminRoute>
+            <AllSellers></AllSellers>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/allBuyer',
-        element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
+        path: "/dashboard/allBuyer",
+        element: (
+          <AdminRoute>
+            <AllBuyers></AllBuyers>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/reportedProducts',
-        element: <AdminRoute><ReportedProducts></ReportedProducts></AdminRoute>
+        path: "/dashboard/reportedProducts",
+        element: (
+          <AdminRoute>
+            <ReportedProducts></ReportedProducts>
+          </AdminRoute>
+        ),
       },
       {
-        path: '/dashboard/payment/:id',
-        loader: ({ params }) => fetch(`https://used-products-resale-server.vercel.app/order/${params.id}`),
-        element: <Payment></Payment>
+        path: "/dashboard/payment/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://used-products-resale-server.vercel.app/order/${params.id}`
+          ),
+        element: <Payment></Payment>,
       },
       {
-        path: '/dashboard/myWishList',
-        element: <BuyerRoute><MyWishList /></BuyerRoute>
+        path: "/dashboard/myWishList",
+        element: (
+          <BuyerRoute>
+            <MyWishList />
+          </BuyerRoute>
+        ),
       },
       {
-        path: '/dashboard/productEdit/:id',
-        element: <SellerRoute><ProductEdit /></SellerRoute>
+        path: "/dashboard/productEdit/:id",
+        element: (
+          <SellerRoute>
+            <ProductEdit />
+          </SellerRoute>
+        ),
       },
-    ]
+    ],
   },
+  // {
+  //   path: "/side",
+  //   element: <Aside />,
+  // },
   {
-    path: '*',
-    element: <ErrorPage></ErrorPage>
-  }
+    path: "*",
+    element: <ErrorPage></ErrorPage>,
+  },
 ]);
