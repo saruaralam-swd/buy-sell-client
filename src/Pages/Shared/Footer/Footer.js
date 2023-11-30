@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../../assets/image/logo.png';
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../../assets/image/logo.png";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-900 pt-4 border-t border-gray-200 dark:border-gray-800">
+    <div className="bg-gray-900 pt-4 border-t border-gray-200">
       <footer className="p-4 sm:p-6 max-w-7xl mx-auto">
         <div className="md:flex md:justify-between">
-          <div className="mb-6 md:mb-0">
+          <div className="md:w-2/3 mb-6 md:mb-0">
             <Link to="/" className="flex items-center">
               <img
                 src={logo}
@@ -20,7 +20,13 @@ const Footer = () => {
                 <span className="">Sell</span>
               </div>
             </Link>
+            <p className="mt-4 text-white">
+              Welcome to Buy and Sell, Our platform provides a user-friendly
+              space for individuals to effortlessly sell their old devices and
+              explore a diverse range of options to buy the latest smartphones.
+            </p>
           </div>
+
           <div className="grid grid-cols-2 gap-10">
             <div>
               <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">

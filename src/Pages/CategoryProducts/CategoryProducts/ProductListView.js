@@ -36,24 +36,9 @@ const ProductListView = ({ product, setProduct }) => {
   const [isAdmin] = useAdmin(user?.email);
   const [isSeller] = useSeller(user?.email);
 
-  // const handleReportToAdmin = id => {
-  //   fetch(`https://used-products-resale-server.vercel.app/productReport/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       authorization: `Bearer ${localStorage.getItem('accessToken')}`
-  //     }
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data.acknowledged) {
-  //         toast.success('Report get successful')
-  //       }
-  //     })
-  // };
-
   return (
     <div className="mb-10">
-      <div className="md:p-7 border border-slate-100 shadow-lg rounded-lg grid md:grid-cols-4 gap-5">
+      <div className="grid md:grid-cols-4 gap-5 md:p-7 rounded-lg border border-slate-300 hover:shadow-xl transition-shadow">
         <img
           src={image}
           className="md:h-[280px] lg:h-[200px]  col-span-4 md:col-span-2 lg:col-span-1"
@@ -124,3 +109,18 @@ const ProductListView = ({ product, setProduct }) => {
 };
 
 export default ProductListView;
+
+// const handleReportToAdmin = id => {
+//   fetch(`https://used-products-resale-server.vercel.app/productReport/${id}`, {
+//     method: 'PUT',
+//     headers: {
+//       authorization: `Bearer ${localStorage.getItem('accessToken')}`
+//     }
+//   })
+//     .then(res => res.json())
+//     .then(data => {
+//       if (data.acknowledged) {
+//         toast.success('Report get successful')
+//       }
+//     })
+// };
