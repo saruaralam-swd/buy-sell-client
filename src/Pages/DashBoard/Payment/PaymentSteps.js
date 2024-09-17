@@ -1,5 +1,5 @@
 // Payment Component
- /* import { Elements } from '@stripe/react-stripe-js';
+/* import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import React from 'react';
 import { useNavigation } from 'react-day-picker';
@@ -34,7 +34,6 @@ const Payment = () => {
 export default Payment; */
 
 // -----------------
-
 
 /* 
 

@@ -19,22 +19,22 @@ const Header = () => {
   const navMenu = (
     <>
       <li>
-        <NavLink to="/home">Home</NavLink>
+        <Link to="/home">Home</Link>
       </li>
       <li>
-        <NavLink to="/category">Phones</NavLink>
+        <Link to="/category">All Phones</Link>
       </li>
       <li>
-        <NavLink to="/blog">Blog</NavLink>
+        <Link to="/blog">Blog</Link>
       </li>
       {/* <li>
-        <NavLink to="/side">sidebar</NavLink>
+        <Link to="/side">sidebar</Link>
       </li> */}
       {/* <li>
-        <NavLink to="/about">About</NavLink>
+        <Link to="/about">About</Link>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <Link to="/contact">Contact</Link>
       </li> */}
     </>
   );

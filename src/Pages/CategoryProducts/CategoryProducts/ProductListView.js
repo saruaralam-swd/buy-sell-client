@@ -9,12 +9,10 @@ import { AuthContext } from "../../../Context/AuthProvider";
 import useBuyer from "../../../hooks/UseBuyer";
 import useAdmin from "../../../hooks/UseAdmin";
 import useSeller from "../../../hooks/UseSeller";
-import { toast } from "react-hot-toast";
 
 const ProductListView = ({ product, setProduct }) => {
   const { user } = useContext(AuthContext);
   const {
-    _id,
     verify,
     productName,
     image,
@@ -24,11 +22,6 @@ const ProductListView = ({ product, setProduct }) => {
     location,
     description,
     phoneNumber,
-    quality,
-    purchaseTime,
-    usedTime,
-    available,
-    advertise,
     postTime,
   } = product;
   const { todayDate, month, year, hour, minute, seconds } = postTime;
@@ -72,7 +65,6 @@ const ProductListView = ({ product, setProduct }) => {
                 {" "}
                 Book Now{" "}
               </label>
-              {/* <button onClick={() => handleReportToAdmin(_id)} className='mt-2 md:mt-0 border rounded-md px-4 py-1 bg-red-300 text-black font-semibold'>Report Product</button> */}
             </div>
           </div>
 

@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import Aside from "../../Components/Aside";
 import CategoryLayout from "../../Layout/CategoryLayout";
 import DashBoardLayout from "../../Layout/DashBoardLayout";
 import Main from "../../Layout/Main";
@@ -25,6 +24,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import Aside from "../../Components/Aside";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +51,10 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
+      // {
+      //   path: "/side",
+      //   element: <Aside />,
+      // },
       {
         path: "/category",
         element: <CategoryLayout />,

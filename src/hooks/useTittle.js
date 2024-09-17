@@ -1,9 +1,9 @@
-const { useEffect } = require("react")
+const { useEffect } = require("react");
 
-const useTittle = title => {
+const useTittle = (title) => {
   useEffect(() => {
-    document.title = `${title} - Buy & Sell`
+    document.title = `${title} - Buy & Sell`;
   }, [title]);
-}
+};
 
 export default useTittle;
