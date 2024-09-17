@@ -12,7 +12,7 @@ const ProductGridView = ({ product, setProduct }) => {
   const [isSeller] = useSeller(user?.email);
 
   return (
-    <div className="border rounded-lg border-slate-100 shadow-lg hover:shadow-2xl duration-500">
+    <div className="border rounded-lg border-[#abb6c0] shadow-lg hover:shadow-2xl duration-500">
       <img
         className="md:h-[280px] lg:h-[200px] mx-auto my-5"
         src={image}
@@ -35,8 +35,7 @@ const ProductGridView = ({ product, setProduct }) => {
               : "btn btn-primary btn-sm mr-2"
           }
         >
-          {" "}
-          Book Now{" "}
+          Buy Now
         </label>
       </div>
     </div>

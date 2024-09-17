@@ -1,50 +1,89 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../Context/AuthProvider';
-import { UserCircleIcon } from '@heroicons/react/24/solid'
-import useAdmin from '../../../hooks/UseAdmin';
-import useSeller from '../../../hooks/UseSeller';
-import useBuyer from '../../../hooks/UseBuyer';
-import Loader from '../../../Components/Loader';
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../../Context/AuthProvider";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
+import useAdmin from "../../../hooks/UseAdmin";
+import useSeller from "../../../hooks/UseSeller";
+import useBuyer from "../../../hooks/UseBuyer";
+import Loader from "../../../Components/Loader";
 import { MdEdit } from "react-icons/md";
-import ProfileEditModal from '../../DashBoard/ProfileEditModal/ProfileEditModal';
-
+import ProfileEditModal from "../../DashBoard/ProfileEditModal/ProfileEditModal";
+import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
-  const [isSeller, isSellerLoading] = useSeller(user?.email)
+  const [isSeller, isSellerLoading] = useSeller(user?.email);
   const [isBuyer, isBuyerLoading] = useBuyer(user?.email);
   const [openModal, setOpenModal] = useState(false);
 
   if (isAdminLoading || isSellerLoading || isBuyerLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
     <>
-      <div className='flex items-center justify-between'>
-        <div className='flex gap-2'>
-          <UserCircleIcon className='w-14 h-14 inline-block' />
-          <div>
-            <h2 className='text-3xl font-semibold'>{user?.displayName}</h2>
-            {
-              isAdmin && <h2 className='text-gray-700 text-sm'>Account Type: Admin</h2>
-            }
-            {
-              isSeller && <h2 className='text-gray-700 text-sm'>Account Type: Seller</h2>
-            }
-            {
-              isBuyer && <h2 className='text-gray-700 text-sm'>Account Type: Buyer</h2>
-            }
-          </div>
-        </div>
-
-        <label onClick={() => setOpenModal(true)} htmlFor="profile-Edit-Modal" className="bg-primary hover:bg-blue-800 btn btn-sm flex justify-center">
-          <MdEdit className='w-5 h-5 inline-block mr-2' />
+      <div className="flex items-center justify-between">
+        <label
+          onClick={() => setOpenModal(true)}
+          htmlFor="profile-Edit-Modal"
+          className="bg-[#9acd5e] hover:bg-[#80b248] py-1 px-2 text-center duration-300 rounded-md"
+        >
+          Edit Profile
         </label>
-
       </div>
       {openModal && <ProfileEditModal setOpenModal={setOpenModal} />}
+
+      <div className="">
+        <h2 className="text-center md:text-2xl font-bold mb-4 p-0 md:p-10">
+          My Profile
+        </h2>
+        <div className="flex flex-col md:flex-row items-start">
+          <div className="mr-10 flex flex-col justify-center px-20 mx-auto md:mx-0">
+            <img
+              className="mb-1 h-32 w-32 mx-auto rounded-full shadow-lg"
+              src={
+                user?.photoURL ||
+                "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
+              }
+              alt=""
+            />
+
+            {isAdmin && <p className="text-center mt-1"> Admin</p>}
+            {isSeller && <p className="text-center mt-1"> Seller</p>}
+            {isBuyer && <p className="text-center mt-1"> Buyer</p>}
+
+            <br />
+            <Link
+              to="/dashboard/edit-profile"
+              className="bg-[#9acd5e] hover:bg-[#80b248] py-1 px-2 text-center duration-300 rounded-md"
+            >
+              Edit Profile
+            </Link>
+          </div>
+          <div>
+            <div className="mb-5">
+              <p className="font-semibold">
+                <small>Name</small>
+              </p>
+              <p>{user?.displayName}</p>
+            </div>
+            <div className="mb-5">
+              <p className="font-semibold">
+                <small>Email</small>
+              </p>
+              <p>{user?.email}</p>
+            </div>
+            {isAdmin && (
+              <div className="mb-5">
+                <p className="font-semibold">
+                  <small>Contact No.</small>
+                </p>
+                <p>01870130414</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
     </>
   );
 };

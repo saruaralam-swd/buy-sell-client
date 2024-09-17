@@ -31,7 +31,7 @@ const Product = ({ product }) => {
 
   return (
     <div className="mb-10">
-      <div className="border rounded-lg grid md:grid-cols-4 gap-5">
+      <div className="border border-[#abb6c0] rounded-lg grid md:grid-cols-4 gap-5">
         <img
           src={image}
           className="md:h-[280px] lg:h-[200px] mx-auto col-span-4 md:col-span-2 lg:col-span-1"
@@ -51,7 +51,7 @@ const Product = ({ product }) => {
                 : description}
             </p>
             <div className="space-x-2">
-              <button className="btn btn-primary btn-sm">Book Now</button>
+              <button className="btn btn-primary btn-sm">Buy Now</button>
               <button className="btn btn-primary btn-sm">See Details</button>
             </div>
           </div>

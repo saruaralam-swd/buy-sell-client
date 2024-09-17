@@ -15,9 +15,12 @@ import { AiOutlineHeart, AiOutlineUnorderedList } from "react-icons/ai";
 import { GoTasklist } from "react-icons/go";
 import { TbPlaylistAdd } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
+import toast from "react-hot-toast";
+import logo from "../assets/image/logo.png";
 
 const DashBoardLayout = () => {
   useTittle("Dashboard");
+
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const [isSeller, isSellerLoading] = useSeller(user?.email);
@@ -31,7 +34,7 @@ const DashBoardLayout = () => {
     logOut()
       .then(() => {})
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -67,11 +70,21 @@ const DashBoardLayout = () => {
         <div className="drawer-side">
           <label htmlFor="dashBoard-drawer" className="drawer-overlay"></label>
           <ul className="menu p-4 w-60 duration-500 bg-base-100 md:bg-base-100/0 lg:bg-slate-100 text-base-content">
+            <li>
+              <Link to="/" className="flex items-center">
+                <img src={logo} className="w-8 mr-3" alt="" />
+                <p className="font-semibold text-xl">
+                  Buy <span className="text-blue-700">&</span> Sell
+                </p>
+              </Link>
+            </li>
+
             <img
               src={profile}
               className="w-24 h-24 block mx-auto rounded-full"
               alt=""
             />
+
             {isAdmin && (
               <h2 className="text-center font-bold uppercase">Admin</h2>
             )}
@@ -81,6 +94,7 @@ const DashBoardLayout = () => {
             {isBuyer && (
               <h2 className="text-center font-bold uppercase">Buyer</h2>
             )}
+
             <div className="divider"></div>
 
             <li>

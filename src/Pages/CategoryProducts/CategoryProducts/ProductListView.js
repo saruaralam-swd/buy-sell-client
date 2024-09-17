@@ -31,7 +31,7 @@ const ProductListView = ({ product, setProduct }) => {
 
   return (
     <div className="mb-10">
-      <div className="grid md:grid-cols-4 gap-5 md:p-7 rounded-lg border border-slate-300 hover:shadow-xl transition-shadow">
+      <div className="grid md:grid-cols-4 gap-5 md:p-7 rounded-lg border border-[#abb6c0] hover:shadow-xl transition-shadow">
         <img
           src={image}
           className="md:h-[280px] lg:h-[200px]  col-span-4 md:col-span-2 lg:col-span-1"
@@ -62,8 +62,7 @@ const ProductListView = ({ product, setProduct }) => {
                     : "btn btn-sm mr-2 btn-primary"
                 }
               >
-                {" "}
-                Book Now{" "}
+                Buy Now
               </label>
             </div>
           </div>
