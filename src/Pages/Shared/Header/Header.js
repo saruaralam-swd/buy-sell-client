@@ -19,22 +19,43 @@ const Header = () => {
   const navMenu = (
     <>
       <li>
-        <Link to="/home">Home</Link>
+        <NavLink
+          to="/home"
+          className={({ isActive }) =>
+            isActive ? "font-semibold text-[#035CB4]" : "font-semibold"
+          }
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link to="/category">All Phones</Link>
+        <NavLink
+          to="/category"
+          className={({ isActive }) =>
+            isActive ? "font-semibold text-[#035CB4]" : "font-semibold"
+          }
+        >
+          All Phones
+        </NavLink>
       </li>
       <li>
-        <Link to="/blog">Blog</Link>
+        <NavLink
+          to="/blog"
+          className={({ isActive }) =>
+            isActive ? "font-semibold text-[#035CB4]" : "font-semibold"
+          }
+        >
+          Blog
+        </NavLink>
       </li>
       {/* <li>
-        <Link to="/side">sidebar</Link>
+        <NavLink to="/side">sidebar</NavLink>
       </li> */}
       {/* <li>
-        <Link to="/about">About</Link>
+        <NavLink to="/about">About</NavLink>
       </li>
       <li>
-        <Link to="/contact">Contact</Link>
+        <NavLink to="/contact">Contact</NavLink>
       </li> */}
     </>
   );
