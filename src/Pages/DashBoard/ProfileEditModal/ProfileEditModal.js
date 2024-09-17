@@ -39,6 +39,15 @@ const ProfileEditModal = ({ setOpenModal }) => {
             ✕
           </label>
 
+          <img
+            className="mb-1 h-32 w-32 mx-auto rounded-full shadow-lg"
+            src={
+              user?.photoURL ||
+              "https://st3.depositphotos.com/6672868/13701/v/600/depositphotos_137014128-stock-illustration-user-profile-icon.jpg"
+            }
+            alt=""
+          />
+
           <form
             onSubmit={handleSubmit(handleProfileUpdate)}
             className="mt-6 space-y-3"

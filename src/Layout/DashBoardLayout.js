@@ -100,7 +100,7 @@ const DashBoardLayout = () => {
             <li>
               <Link to="/dashboard">
                 <BiUserCircle className="h-5 w-5" />
-                DashBoard
+                My Profile
               </Link>
             </li>
 

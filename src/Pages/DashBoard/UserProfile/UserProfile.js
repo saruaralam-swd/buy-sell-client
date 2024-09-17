@@ -1,13 +1,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
-import { UserCircleIcon } from "@heroicons/react/24/solid";
 import useAdmin from "../../../hooks/UseAdmin";
 import useSeller from "../../../hooks/UseSeller";
 import useBuyer from "../../../hooks/UseBuyer";
 import Loader from "../../../Components/Loader";
-import { MdEdit } from "react-icons/md";
 import ProfileEditModal from "../../DashBoard/ProfileEditModal/ProfileEditModal";
-import { Link } from "react-router-dom";
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -22,17 +19,6 @@ const UserProfile = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <label
-          onClick={() => setOpenModal(true)}
-          htmlFor="profile-Edit-Modal"
-          className="bg-[#9acd5e] hover:bg-[#80b248] py-1 px-2 text-center duration-300 rounded-md"
-        >
-          Edit Profile
-        </label>
-      </div>
-      {openModal && <ProfileEditModal setOpenModal={setOpenModal} />}
-
       <div className="">
         <h2 className="text-center md:text-2xl font-bold mb-4 p-0 md:p-10">
           My Profile
@@ -48,17 +34,18 @@ const UserProfile = () => {
               alt=""
             />
 
-            {isAdmin && <p className="text-center mt-1"> Admin</p>}
-            {isSeller && <p className="text-center mt-1"> Seller</p>}
-            {isBuyer && <p className="text-center mt-1"> Buyer</p>}
+            {isAdmin && <p className="text-center mt-2"> Admin</p>}
+            {isSeller && <p className="text-center mt-2"> Seller</p>}
+            {isBuyer && <p className="text-center mt-2"> Buyer</p>}
 
-            <br />
-            <Link
-              to="/dashboard/edit-profile"
-              className="bg-[#9acd5e] hover:bg-[#80b248] py-1 px-2 text-center duration-300 rounded-md"
+            <label
+              onClick={() => setOpenModal(true)}
+              htmlFor="profile-Edit-Modal"
+              className="bg-[#9acd5e] hover:bg-[#80b248] py-1 px-2 mt-2 text-center duration-300 rounded-md"
             >
               Edit Profile
-            </Link>
+            </label>
+            {openModal && <ProfileEditModal setOpenModal={setOpenModal} />}
           </div>
           <div>
             <div className="mb-5">

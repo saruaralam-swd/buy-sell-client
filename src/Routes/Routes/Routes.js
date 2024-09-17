@@ -24,8 +24,6 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import SellerRoute from "../SellerRoute/SellerRoute";
-import Aside from "../../Components/Aside";
-import EditProfile from "../../Pages/DashBoard/EditProfile/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -83,14 +81,6 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <UserProfile />,
-      },
-      {
-        path: "/dashboard/edit-profile",
-        element: (
-          <PrivateRoute>
-            <EditProfile />
-          </PrivateRoute>
-        ),
       },
       {
         path: "/dashboard/myOrders",
