@@ -64,7 +64,7 @@ export const router = createBrowserRouter([
             element: <AllPhones />,
           },
           {
-            path: "/category/:id",
+            path: "/category/:categoryName",
             element: <CategoryProducts />,
           },
         ],

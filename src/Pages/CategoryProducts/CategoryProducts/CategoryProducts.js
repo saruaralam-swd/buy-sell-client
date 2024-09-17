@@ -9,14 +9,14 @@ import ProductListView from "./ProductListView";
 import ProductGridView from "./ProductGridView";
 
 const CategoryProducts = () => {
-  const id = useParams();
+  const categoryName = useParams();
   const [product, setProduct] = useState(null);
   const [isAsc, setIsAsc] = useState("");
   const [productView, setProductView] = useState(true);
   const { allPhones } = useContext(AuthContext);
 
   const categoryProducts = allPhones.filter(
-    (phone) => phone?.categoryId === id.id
+    (phone) => phone.categoryName === categoryName.categoryName
   );
 
   if (isAsc === "Low Price") {
@@ -46,8 +46,9 @@ const CategoryProducts = () => {
             className="select select-bordered select-sm w-56 focus:outline-none"
           >
             <option disabled selected>
-              -- Price --
+              -- Filter By --
             </option>
+
             <option>Low Price</option>
             <option>High Price</option>
           </select>
@@ -88,7 +89,8 @@ const CategoryProducts = () => {
         )
       ) : (
         <h2 className="text-center h-[600px] flex items-center justify-center text-3xl">
-          Phone Not Found
+          <strong className="mr-2">{categoryName.categoryName}</strong> Phone
+          Not Available
         </h2>
       )}
 

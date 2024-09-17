@@ -35,15 +35,13 @@ const CategoryLayout = () => {
 
           <ul className="menu w-80 p-2 bg-base-100 text-base-content lg:bg-slate-50">
             <div className="divider">
-              <h2 className="font-semibold pl-4 uppercase">
-                Shop By Categories
-              </h2>
+              <h2 className="font-semibold pl-4 uppercase">Chose Your Brand</h2>
             </div>
 
             {!categoriesLoading &&
               categories.map((category) => (
                 <NavLink
-                  to={`/category/${category?._id}`}
+                  to={`/category/${category?.categoryName}`}
                   key={category._id}
                   className={({ isActive }) =>
                     isActive

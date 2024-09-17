@@ -257,7 +257,7 @@ const SignUp = () => {
             </button>
             <p className="mt-2">
               Already have an Account?{" "}
-              <Link to="/login" className="hover:underline">
+              <Link to="/login" className="underline text-[#1E40AF]">
                 Login
               </Link>
             </p>
