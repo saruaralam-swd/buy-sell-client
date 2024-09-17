@@ -4,6 +4,7 @@ import logo from "../../../assets/image/logo.png";
 import { AuthContext } from "../../../Context/AuthProvider";
 import { BiLogOut } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Header = () => {
     logOut()
       .then(() => {})
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 
@@ -48,46 +49,6 @@ const Header = () => {
           Blog
         </NavLink>
       </li>
-      {/* <li>
-        <NavLink to="/side">sidebar</NavLink>
-      </li> */}
-      {/* <li>
-        <NavLink to="/about">About</NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
-      </li> */}
-    </>
-  );
-
-  const dropDownMenu = (
-    <>
-      <li>
-        <NavLink
-          to="/home"
-          className="bg-white text-black hover:bg-blue-600 hover:text-white"
-        >
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/phone"
-          className="bg-white text-black hover:bg-blue-600 hover:text-white"
-        >
-          Phones
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/blog"
-          className="bg-white text-black hover:bg-blue-600 hover:text-white"
-        >
-          Blog
-        </NavLink>
-      </li>
-      {/* <li><NavLink to='/about' className='bg-white text-black hover:bg-blue-600 hover:text-white'>About</NavLink></li> */}
-      {/* <li><NavLink to='/contact' className='bg-white text-black hover:bg-blue-600 hover:text-white'>Contact</NavLink></li> */}
     </>
   );
 
@@ -126,44 +87,42 @@ const Header = () => {
             </svg>
           </label>
 
-          {/* small device bars3*/}
+          {/* small device*/}
           {user?.uid ? (
-            <>
-              <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="avatar placeholder">
-                    <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
-                      <span className="text-xs">AA</span>
-                    </div>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="avatar placeholder">
+                  <div className="bg-neutral-focus text-neutral-content rounded-full w-8">
+                    <span className="text-xs">AA</span>
                   </div>
-                </label>
+                </div>
+              </label>
 
-                <ul
-                  tabIndex={0}
-                  className="menu menu-compact dropdown-content mt-2 p-1 shadow rounded-md border w-52 bg-white"
-                >
-                  <p className="md:hidden border-b-2">{dropDownMenu}</p>
-                  <li>
-                    <NavLink
-                      to="/dashboard"
-                      className="bg-white text-black hover:bg-blue-600 hover:text-white"
-                    >
-                      {" "}
-                      <MdOutlineDashboard className="w-5 h-5" /> Dashboard
-                    </NavLink>{" "}
-                  </li>
-                  <li>
-                    <button
-                      onClick={handleLogOut}
-                      className="bg-white text-black hover:bg-blue-600 hover:text-white"
-                    >
-                      {" "}
-                      <BiLogOut className="w-5 h-5" /> Sign out
-                    </button>
-                  </li>
-                </ul>
-              </div>
-            </>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-2 p-1 shadow rounded-md border w-52 bg-white"
+              >
+                <div className="md:hidden border-b-2">{navMenu}</div>
+                <li>
+                  <NavLink
+                    to="/dashboard"
+                    className="bg-white text-black hover:bg-blue-600 hover:text-white"
+                  >
+                    {" "}
+                    <MdOutlineDashboard className="w-5 h-5" /> Dashboard
+                  </NavLink>{" "}
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogOut}
+                    className="bg-white text-black hover:bg-blue-600 hover:text-white"
+                  >
+                    {" "}
+                    <BiLogOut className="w-5 h-5" /> Sign out
+                  </button>
+                </li>
+              </ul>
+            </div>
           ) : (
             <>
               <button>
@@ -208,7 +167,7 @@ const Header = () => {
                   tabIndex={0}
                   className="menu menu-compact dropdown-content mt-2 p-1 shadow rounded-md border w-52 bg-white"
                 >
-                  {dropDownMenu}
+                  {navMenu}
                   <span className="border-b-2 mt-2"></span>
                   <li>
                     <NavLink
