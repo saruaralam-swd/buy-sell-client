@@ -10,8 +10,9 @@ import Folder from "../assets/AsideImage/Folder.png";
 import Setting from "../assets/AsideImage/Setting.png";
 import Chat from "../assets/AsideImage/Chat.png";
 
-const Aside = () => {
+const Sidebar = () => {
   const [open, setOpen] = useState(true);
+
   const Menus = [
     { title: "Dashboard", src: Chart_fill },
     { title: "Inbox", src: Chat },
@@ -27,8 +28,8 @@ const Aside = () => {
     <div className="flex">
       <div
         className={` ${
-          open ? "w-72" : "w-20 "
-        } bg-purple-700 h-screen p-5  pt-8 relative duration-300`}
+          open ? "w-72" : "w-20"
+        } bg-purple-700 h-screen p-5  pt-8 relative duration-500`}
       >
         <img
           src={control}
@@ -57,6 +58,7 @@ const Aside = () => {
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
             <li
+              onMouseOver={() => setOpen(true)}
               key={index}
               className={`flex  rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
             ${Menu.gap ? "mt-9" : "mt-2"} ${index === 0 && "bg-light-white"} `}
@@ -70,11 +72,11 @@ const Aside = () => {
         </ul>
       </div>
 
-      <div className="h-screen flex-1 p-7">
+      <div className={`h-screen flex-1 p-7 ${open && "z-10"}`}>
         <h1 className="text-2xl font-semibold ">Home Page</h1>
       </div>
     </div>
   );
 };
 
-export default Aside;
+export default Sidebar;

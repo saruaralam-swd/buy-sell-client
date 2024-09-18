@@ -5,8 +5,6 @@ import useAdmin from "../hooks/UseAdmin";
 import useBuyer from "../hooks/UseBuyer";
 import useSeller from "../hooks/UseSeller";
 import useTittle from "../hooks/useTittle";
-import Header from "../Pages/Shared/Header/Header";
-import dashBoardIcon from "../assets/Dashboard/dashboard2.svg";
 import profile from "../assets/Dashboard/img.png";
 import Loader from "../Components/Loader";
 import { BiLogOut, BiUserCircle } from "react-icons/bi";
@@ -17,6 +15,7 @@ import { TbPlaylistAdd } from "react-icons/tb";
 import { FiUsers } from "react-icons/fi";
 import toast from "react-hot-toast";
 import logo from "../assets/image/logo.png";
+import { Squares2X2Icon } from "@heroicons/react/24/solid";
 
 const DashBoardLayout = () => {
   useTittle("Dashboard");
@@ -40,19 +39,14 @@ const DashBoardLayout = () => {
 
   return (
     <div>
-      <div className={isAdmin && "hidden"}>
-        <Header></Header>
-      </div>
-
       <div className="h-[50px] bg-slate-300 md:hidden flex justify-end">
         <label
+          title="open sidebar"
           htmlFor="dashBoard-drawer"
           tabIndex={2}
           className="btn btn-ghost lg:hidden"
         >
-          {/* <Squares2X2Icon className="h-6 w-6 text-black mr-2" /> */}
-          <img src={dashBoardIcon} className="w-5 h-5 mr-2" alt="" />
-          {/* <strong>DashBoard</strong> */}
+          <Squares2X2Icon className="h-6 w-6 text-black mr-2" />
         </label>
       </div>
 

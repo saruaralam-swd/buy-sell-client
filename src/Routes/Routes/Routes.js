@@ -50,10 +50,6 @@ export const router = createBrowserRouter([
         path: "/signup",
         element: <SignUp />,
       },
-      // {
-      //   path: "/side",
-      //   element: <Aside />,
-      // },
       {
         path: "/category",
         element: <CategoryLayout />,

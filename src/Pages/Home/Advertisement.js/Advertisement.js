@@ -4,7 +4,6 @@ import { AuthContext } from "../../../Context/AuthProvider";
 import ProductOrderModal from "../../CategoryProducts/ProductOrderModal/ProductOrderModal";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { FaListUl } from "react-icons/fa";
-import sortImg from "../../../assets/image/sort.png";
 import ProductGridView from "../../CategoryProducts/CategoryProducts/ProductGridView";
 import ProductListView from "../../CategoryProducts/CategoryProducts/ProductListView";
 
