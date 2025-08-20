@@ -27,8 +27,6 @@ const Product = ({ product }) => {
 
   const { hour, minute, seconds } = postTime;
 
-  console.log(product);
-
   return (
     <div className="mb-10">
       <div className="border border-[#abb6c0] rounded-lg grid md:grid-cols-4 gap-5">

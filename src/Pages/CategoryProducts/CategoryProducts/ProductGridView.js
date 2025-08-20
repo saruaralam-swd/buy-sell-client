@@ -35,7 +35,7 @@ const ProductGridView = ({ product, setProduct }) => {
               : "btn btn-primary btn-sm mr-2"
           }
         >
-          Buy Now
+          Order Now
         </label>
       </div>
     </div>

@@ -62,7 +62,7 @@ const ProductListView = ({ product, setProduct }) => {
                     : "btn btn-sm mr-2 btn-primary"
                 }
               >
-                Buy Now
+                Order Now
               </label>
             </div>
           </div>
