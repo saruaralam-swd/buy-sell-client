@@ -65,7 +65,7 @@ const Banner = () => {
                 <div className="space-y-5">
                   <h2 className="text-4xl font-semibold">{slide.title}</h2>
                   <p>{slide.text}</p>
-                  <Link to="category" className="btn btn-sm btn-primary">
+                  <Link to="/category" className="btn btn-sm btn-primary">
                     Browse Phones
                   </Link>
                 </div>

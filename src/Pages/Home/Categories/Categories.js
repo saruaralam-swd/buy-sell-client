@@ -43,7 +43,7 @@ const Categories = () => {
           {categories.map((category) => (
             <Link
               key={category._id}
-              to={`/category/${category?._id}`}
+              to={`/category/${category?.categoryName}`}
               className="hover:bg-blue-300 duration-500 cursor-pointer w-32 h-32 border rounded-md flex items-center justify-center"
             >
               <img
