@@ -2,8 +2,15 @@
 
 Live link : [https://buy-cell--web.web.app/]
 
+# Login Credentials 
 - adminEmail: saru@gmail.com
 - adminPassword: 123456
+
+- fbuyer@gmail.com
+- 123456
+
+- fseller@gmail.com
+- 123456
 
 # Feature & Functionality:
 
