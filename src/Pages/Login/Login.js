@@ -8,7 +8,7 @@ import useTittle from "../../hooks/useTittle";
 import { GoogleAuthProvider } from "firebase/auth";
 import logo from "../../assets/image/logo.png";
 import { FcGoogle } from "react-icons/fc";
-import { BiLockAlt, BiUser, BiMailSend } from "react-icons/bi";
+import { BiLockAlt, BiMailSend } from "react-icons/bi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const Login = () => {

@@ -1,10 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  BiLockAlt,
-  BiChevronRightCircle,
-  BiUser,
-  BiMailSend,
-} from "react-icons/bi";
+import { BiLockAlt, BiUser, BiMailSend } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
