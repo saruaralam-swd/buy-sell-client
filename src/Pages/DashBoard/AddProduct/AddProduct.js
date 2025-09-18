@@ -16,7 +16,6 @@ const AddProduct = () => {
   const navigate = useNavigate();
   const [categoryName, setCategoryName] = useState("");
   const [btnBlur, setBtnBlur] = useState(false);
-  const [selectCategory, setSelectedCategory] = useState(0);
 
   const { data: categories = [], isLoading } = useQuery({
     queryKey: [""],
@@ -97,7 +96,6 @@ const AddProduct = () => {
           )
             .then((res) => res.json())
             .then((productData) => {
-              console.log(productData);
               if (productData.acknowledged) {
                 toast.success(
                   `product ${data?.productName} is added successfully`

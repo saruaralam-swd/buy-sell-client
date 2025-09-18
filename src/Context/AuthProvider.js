@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -66,7 +66,6 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // console.log('user Observing', currentUser);
       setUser(currentUser);
       setLoading(false);
     });

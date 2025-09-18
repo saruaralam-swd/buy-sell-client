@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {
   UserCircleIcon,
   PhoneIcon,
@@ -35,7 +35,7 @@ const ProductListView = ({ product, setProduct }) => {
         <img
           src={image}
           className="md:h-[280px] lg:h-[200px]  col-span-4 md:col-span-2 lg:col-span-1"
-          alt=""
+          alt="phone img"
         />
 
         <div className="col-span-4 md:col-span-2 lg:col-span-3 grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-5 pb-10 p-5">

@@ -1,16 +1,10 @@
-import React, { useContext, useEffect } from "react";
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../Context/AuthProvider";
 import { BiCategory } from "react-icons/bi";
 
 const CategoryLayout = () => {
   const { categories, categoriesLoading } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   if (!categoriesLoading && categories && categories?.length > 0) {
-  //     categories.push({ _id: "all", categoryName: "All Phones" });
-  //   }
-  // }, [categories, categoriesLoading]);
 
   return (
     <div>

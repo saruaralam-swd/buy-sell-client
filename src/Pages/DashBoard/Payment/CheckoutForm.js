@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const CheckoutForm = ({ order }) => {
@@ -42,13 +42,12 @@ const CheckoutForm = ({ order }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
 
     if (error) {
-      console.log(error);
       setCardError(error.message);
     } else {
       setCardError("");
@@ -93,8 +92,6 @@ const CheckoutForm = ({ order }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-
           // order paid: true
           fetch(
             `https://used-products-resale-server.vercel.app/orderPaid/${_id}`,

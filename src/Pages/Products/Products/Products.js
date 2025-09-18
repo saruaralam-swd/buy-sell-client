@@ -1,11 +1,9 @@
-import React from "react";
 import { useLoaderData } from "react-router-dom";
 import Product from "./Product";
 
 const Products = () => {
   const allProducts = useLoaderData();
   const products = allProducts[0].products;
-  console.log(products);
 
   return (
     <div>

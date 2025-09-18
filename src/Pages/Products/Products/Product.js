@@ -1,4 +1,3 @@
-import React from "react";
 import {
   UserCircleIcon,
   PhoneIcon,
@@ -6,9 +5,7 @@ import {
 } from "@heroicons/react/24/solid";
 
 const Product = ({ product }) => {
-  console.log(product);
   const {
-    _id,
     productName,
     image,
     originalPrice,
@@ -20,8 +17,6 @@ const Product = ({ product }) => {
     quality,
     purchaseTime,
     usedTime,
-    available,
-    advertise,
     postTime,
   } = product;
 

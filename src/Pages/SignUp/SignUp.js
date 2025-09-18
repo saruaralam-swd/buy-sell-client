@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BiLockAlt, BiUser, BiMailSend } from "react-icons/bi";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -45,7 +45,6 @@ const SignUp = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         handleProfileUpdate(name, email, role);
       })
       .catch((error) => {
@@ -70,7 +69,6 @@ const SignUp = () => {
       });
   };
 
-  // save user info
   const saveUser = (name, email, role) => {
     const user = { name, email, role };
 
@@ -95,7 +93,6 @@ const SignUp = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
 
         const userData = {
           name: user?.displayName,
@@ -112,7 +109,6 @@ const SignUp = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.acknowledged) {
               toast.success("successfully create user");
               setCreatedUserEmail(user?.email);

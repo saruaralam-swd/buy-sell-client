@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -58,7 +58,6 @@ const Login = () => {
     googleLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        console.log(user);
 
         const userData = {
           name: user?.displayName,
@@ -75,7 +74,6 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.acknowledged) {
               toast.success("successfully create user");
               setLoginUserEmail(user?.email);

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 import ProductOrderModal from "../../CategoryProducts/ProductOrderModal/ProductOrderModal";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
@@ -13,7 +13,7 @@ const Advertisement = () => {
   const [productView, setProductView] = useState(null);
   const [isAsc, setIsAsc] = useState("");
 
-  const { data: advertisement = [], isLoading } = useQuery({
+  const { data: advertisement = [] } = useQuery({
     queryKey: ["advertisement"],
     queryFn: async () => {
       const res = await fetch(

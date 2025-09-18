@@ -1,6 +1,6 @@
 import React from "react";
 import { BiPlusCircle } from "react-icons/bi";
-import hosupe from "../../../assets/userDocument/hosupe.png";
+import dataCenter from "../../../assets/userDocument/hosupe.png";
 
 const UserDocument = () => {
   return (
@@ -34,7 +34,7 @@ const UserDocument = () => {
         </div>
       </div>
       <div className="md:w-1/2">
-        <img className="w-4/5" src={hosupe} alt="" />
+        <img className="w-4/5" src={dataCenter} alt="" />
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
 import { CheckBadgeIcon, TrashIcon } from "@heroicons/react/24/solid";
 import useTittle from "../../../hooks/useTittle";
@@ -45,7 +45,6 @@ const AllSellers = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         refetch();
       });
   };
@@ -64,7 +63,6 @@ const AllSellers = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           refetch();
         });
     }

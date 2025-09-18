@@ -1,4 +1,3 @@
-import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Keyboard, FreeMode } from "swiper";
 import "swiper/css";
